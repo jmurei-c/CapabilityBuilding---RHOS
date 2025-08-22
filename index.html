@@ -70,10 +70,12 @@
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             border-top: 4px solid;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
         }
         .phase-card:hover {
             transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
         .phase-1 { border-top-color: #10b981; }
         .phase-2 { border-top-color: #06b6d4; }
@@ -121,6 +123,12 @@
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
             border-left: 4px solid;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .ecosystem-component:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
         }
         .component-umuko { border-left-color: #f59e0b; }
         .component-cert { border-left-color: #7c3aed; }
@@ -255,6 +263,111 @@
             font-size: 2em;
             margin: 20px 0;
         }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(5px);
+        }
+        .modal-content {
+            background-color: white;
+            margin: 5% auto;
+            padding: 30px;
+            border-radius: 15px;
+            width: 80%;
+            max-width: 800px;
+            max-height: 80vh;
+            overflow-y: auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.3s ease-out;
+        }
+        @keyframes modalSlideIn {
+            from { opacity: 0; transform: translateY(-50px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #06b6d4;
+        }
+        .modal-title {
+            font-size: 1.8em;
+            color: #1e3a8a;
+            font-weight: bold;
+            margin: 0;
+        }
+        .close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .close:hover {
+            color: #ef4444;
+            background: #f3f4f6;
+        }
+        .modal-body {
+            line-height: 1.6;
+            color: #555;
+        }
+        .modal-section {
+            margin-bottom: 20px;
+        }
+        .modal-section h3 {
+            color: #1e3a8a;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+        }
+        .detail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .detail-item {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #06b6d4;
+        }
+        .detail-label {
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 5px;
+        }
+        .clickable-hint {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: #06b6d4;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .phase-card:hover .clickable-hint,
+        .ecosystem-component:hover .clickable-hint {
+            opacity: 1;
+        }
     </style>
 </head>
 <body>
@@ -272,7 +385,8 @@
         <div class="flow-section">
             <div class="flow-title">🔄 4-Phase Implementation Coordination (Per Country)</div>
             <div class="phase-container">
-                <div class="phase-card phase-1">
+                <div class="phase-card phase-1" onclick="openModal('phase1')" data-phase="phase1">
+                    <div class="clickable-hint">Click for details</div>
                     <div class="phase-number">1</div>
                     <div class="phase-title">Assessment & Adaptation</div>
                     <div class="phase-timeline">xy months</div>
@@ -284,7 +398,8 @@
                     </div>
                 </div>
                 
-                <div class="phase-card phase-2">
+                <div class="phase-card phase-2" onclick="openModal('phase2')" data-phase="phase2">
+                    <div class="clickable-hint">Click for details</div>
                     <div class="phase-number">2</div>
                     <div class="phase-title">Rapid Deployment</div>
                     <div class="phase-timeline">xy months</div>
@@ -297,7 +412,8 @@
                     </div>
                 </div>
                 
-                <div class="phase-card phase-3">
+                <div class="phase-card phase-3" onclick="openModal('phase3')" data-phase="phase3">
+                    <div class="clickable-hint">Click for details</div>
                     <div class="phase-number">3</div>
                     <div class="phase-title">Scale & Stabilize</div>
                     <div class="phase-timeline">xy months</div>
@@ -309,7 +425,8 @@
                     </div>
                 </div>
                 
-                <div class="phase-card phase-4">
+                <div class="phase-card phase-4" onclick="openModal('phase4')" data-phase="phase4">
+                    <div class="clickable-hint">Click for details</div>
                     <div class="phase-number">4</div>
                     <div class="phase-title">Handover & Sustain</div>
                     <div class="phase-timeline">xy months</div>
@@ -327,7 +444,8 @@
         <div class="flow-section">
             <div class="flow-title">🌐 Existing Training Infrastructure (Proven & Operational)</div>
             <div class="ecosystem-grid">
-                <div class="ecosystem-component component-umuko">
+                <div class="ecosystem-component component-umuko" onclick="openModal('digitalAcademy')">
+                    <div class="clickable-hint">Click for details</div>
                     <div class="component-title">🏛️ Proposed Digital Health Academy - Rwanda (Central Excellence Hub)</div>
                     <div class="component-details">
                         <strong>Central Training Campus:</strong> Masaka Medical Hub, Kigali<br>
@@ -338,7 +456,8 @@
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-umuko">
+                <div class="ecosystem-component component-umuko" onclick="openModal('helpCenters')">
+                    <div class="clickable-hint">Click for details</div>
                     <div class="component-title">🏠 Country-Specific HOS Help Centers (Local Adaptation)</div>
                     <div class="component-details">
                         <strong>Template Platform:</strong> Based on Rwanda's proven model<br>
@@ -349,7 +468,8 @@
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-cert">
+                <div class="ecosystem-component component-cert" onclick="openModal('contentManagement')">
+                    <div class="clickable-hint">Click for details</div>
                     <div class="component-title">📚 Hybrid Content Management System</div>
                     <div class="component-details">
                         <strong>Central Repository:</strong> Proposed Digital Health Academy curriculum library<br>
@@ -360,7 +480,8 @@
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-country">
+                <div class="ecosystem-component component-country" onclick="openModal('trainingDelivery')">
+                    <div class="clickable-hint">Click for details</div>
                     <div class="component-title">🎯 Cascaded Training Delivery Model</div>
                     <div class="component-details">
                         <strong>Tier 1 - Central:</strong> Core teams trained at Proposed Digital Health Academy<br>
@@ -640,5 +761,469 @@
         </div>
 
     </div>
+
+    <!-- Modal Structure -->
+    <div id="detailModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle" class="modal-title"></h2>
+                <button class="close" onclick="closeModal()">&times;</button>
+            </div>
+            <div id="modalBody" class="modal-body">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modal functionality
+        function openModal(contentType) {
+            const modal = document.getElementById('detailModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            
+            // Define detailed content for each component
+            const content = {
+                phase1: {
+                    title: "Phase 1: Assessment & Adaptation",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🎯 Primary Objectives</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Needs Assessment</div>
+                                    Comprehensive evaluation of existing health systems, digital literacy levels, and training infrastructure in target country.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Stakeholder Mapping</div>
+                                    Identify key partners including MOH, medical training institutions, local NGOs, and technology providers.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Curriculum Adaptation</div>
+                                    Localize existing 7-Hub training materials for country-specific health challenges and cultural context.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Language Localization</div>
+                                    Translate and adapt training materials to local languages and health terminology.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📋 Key Activities</h3>
+                            <ul>
+                                <li><strong>Country Assessment Visit:</strong> 2-week on-ground evaluation by implementation team</li>
+                                <li><strong>Stakeholder Workshops:</strong> Series of meetings with MOH, health facilities, and training institutions</li>
+                                <li><strong>Technology Infrastructure Review:</strong> Assess internet connectivity, device availability, and digital platforms</li>
+                                <li><strong>Content Localization:</strong> Adapt Rwanda's proven curriculum to local health priorities and languages</li>
+                                <li><strong>Partnership Agreements:</strong> Establish MOUs with key local partners and government entities</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📊 Success Metrics</h3>
+                            <ul>
+                                <li>Completed country assessment report with actionable recommendations</li>
+                                <li>Signed partnership agreements with MOH and key stakeholders</li>
+                                <li>Localized training curriculum for all 7 hubs</li>
+                                <li>Technology infrastructure requirements and implementation plan</li>
+                                <li>Identified pilot facilities and initial trainee cohorts</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                phase2: {
+                    title: "Phase 2: Rapid Deployment",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🚀 Deployment Strategy</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Central Training</div>
+                                    Core country teams receive intensive training at the Proposed Digital Health Academy in Rwanda.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Platform Deployment</div>
+                                    Launch country-specific HOS Help Center based on proven Rwanda model.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Master Trainer Development</div>
+                                    Train local master trainers using centralized ToT framework for sustainable delivery.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Pilot Implementation</div>
+                                    Launch 12-week certification program with selected facilities.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎓 Training Components</h3>
+                            <ul>
+                                <li><strong>Digital Health Skills:</strong> EHR systems, data collection, telemedicine platforms</li>
+                                <li><strong>7-Hub Curriculum:</strong> Clinical, Finance, People, Inventory, Facilities, Data & Tech, Operations</li>
+                                <li><strong>Certification System:</strong> 4-tier credentialing from completion certificates to master trainer status</li>
+                                <li><strong>Assessment Methods:</strong> Knowledge tests, practical evaluations, portfolio development, workplace performance</li>
+                                <li><strong>Technology Integration:</strong> TalentLMS, ClassMarker, Credly, Google Forms/AppSheet</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📈 Expected Outcomes</h3>
+                            <ul>
+                                <li>20-30 master trainers certified per country</li>
+                                <li>Operational country-specific HOS Help Center</li>
+                                <li>50-100 healthcare workers completing pilot certification</li>
+                                <li>Established MOH-led governance structure</li>
+                                <li>Proven local delivery model ready for scale</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                phase3: {
+                    title: "Phase 3: Scale & Stabilize",
+                    content: `
+                        <div class="modal-section">
+                            <h3>📈 Scaling Strategy</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Full Rollout</div>
+                                    Expand from pilot facilities to comprehensive national coverage across health system tiers.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Multi-Modal Delivery</div>
+                                    Implement blended learning combining in-person, digital, and mentorship approaches.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Quality Assurance</div>
+                                    Establish robust monitoring and evaluation systems for training effectiveness.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">System Integration</div>
+                                    Full integration with national health information systems and policies.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🏥 Target Coverage</h3>
+                            <ul>
+                                <li><strong>Hospitals:</strong> All district and provincial hospitals with comprehensive 7-hub training</li>
+                                <li><strong>Health Centers:</strong> Primary care facilities with focused clinical and operational training</li>
+                                <li><strong>Health Posts:</strong> Community-level facilities with basic digital health and data collection skills</li>
+                                <li><strong>CHWs:</strong> Community health workers with mobile health tools and basic data reporting</li>
+                                <li><strong>District Health Teams:</strong> Policy makers and administrators with advanced data analysis capabilities</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🔍 Monitoring & Evaluation</h3>
+                            <ul>
+                                <li>Real-time training progress dashboards using Looker Studio/eOps</li>
+                                <li>Monthly facility performance assessments</li>
+                                <li>Quarterly certification board reviews</li>
+                                <li>Bi-annual external quality audits</li>
+                                <li>Continuous feedback loops for curriculum improvement</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                phase4: {
+                    title: "Phase 4: Handover & Sustain",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🤝 Handover Strategy</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">MOH Ownership</div>
+                                    Complete transfer of all training operations, systems, and governance to Ministry of Health.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Financial Sustainability</div>
+                                    Establish self-sustaining revenue model through certification fees and government funding.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Continuous Improvement</div>
+                                    Implement systems for ongoing curriculum updates and quality enhancement.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Regional Sharing</div>
+                                    Enable knowledge exchange and best practice sharing across countries.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🏛️ Governance Transition</h3>
+                            <ul>
+                                <li><strong>Leadership Transfer:</strong> MOH assumes full oversight of certification board and training programs</li>
+                                <li><strong>Local Faculty Development:</strong> National master trainers take over all training delivery</li>
+                                <li><strong>System Administration:</strong> Local teams manage all technology platforms and content updates</li>
+                                <li><strong>Quality Standards:</strong> MOH maintains certification standards aligned with international best practices</li>
+                                <li><strong>Continuous Support:</strong> Ongoing technical assistance available on demand</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🌍 Regional Impact</h3>
+                            <ul>
+                                <li>Established country becomes regional center of excellence</li>
+                                <li>Trained professionals available for regional deployments</li>
+                                <li>Best practices documented and shared across 22 countries</li>
+                                <li>Mentorship relationships established between countries</li>
+                                <li>Regional learning networks and communities of practice</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                digitalAcademy: {
+                    title: "Proposed Digital Health Academy - Rwanda",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🏛️ Central Excellence Hub</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Location</div>
+                                    Masaka Medical Hub, Kigali - Strategic placement near IRCAD Africa, University Teaching Hospital, and health innovation ecosystem.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Capacity</div>
+                                    6,000+ health workers and 400+ HIC staff across 22 African countries over 5 years.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Investment</div>
+                                    $6M total funding: $4M CapEx (infrastructure, facilities) + $2M OpEx (curriculum, operations).
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Timeline</div>
+                                    2-year investment phase + 3-year operational phase with transition to self-sustainability by Year 3.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🏢 Physical Facilities</h3>
+                            <ul>
+                                <li><strong>Academy Wing:</strong> 3 training rooms (50 trainees each), 5 offices, boardroom (200 capacity), tech room, library</li>
+                                <li><strong>Model Clinic:</strong> 8 consultation rooms, 2 labs, 2 radiology rooms, 5 observation rooms, emergency room, 2 delivery rooms, maternity ward</li>
+                                <li><strong>Accommodation:</strong> 25 rooms, 50 beds, dining hall (80 capacity), recreational areas</li>
+                                <li><strong>Technology Infrastructure:</strong> High-speed internet, telemedicine capabilities, digital learning platforms</li>
+                                <li><strong>Patient Capacity:</strong> Model clinic serves 200 patients/day while providing practical training opportunities</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎓 Training Programs</h3>
+                            <ul>
+                                <li><strong>Master Trainer Certification:</strong> 4-week intensive program for country implementation leaders</li>
+                                <li><strong>Digital Health Specialization:</strong> Advanced courses in health informatics, data analytics, and system implementation</li>
+                                <li><strong>Health Entrepreneurship:</strong> Business skills, innovation methodologies, and startup incubation</li>
+                                <li><strong>Leadership Development:</strong> Management training for health administrators and policy makers</li>
+                                <li><strong>Research & Development:</strong> Collaborative research initiatives and evidence generation</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🤝 Partnership Model</h3>
+                            <ul>
+                                <li><strong>Lead Partners:</strong> Rwanda MOH (ownership), SAND Technologies (curriculum), SFH (implementation)</li>
+                                <li><strong>Academic Partners:</strong> ALU/ALX (digital learning), University of Global Health Equity</li>
+                                <li><strong>Government Support:</strong> MINEDUC, MINALOC, MININFRA for regulatory and infrastructure support</li>
+                                <li><strong>Funding:</strong> Susan Thompson Buffett Foundation and other strategic investors</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                helpCenters: {
+                    title: "Country-Specific HOS Help Centers",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🌐 Localized Digital Platforms</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Template Model</div>
+                                    Based on Rwanda's operational blueroom-help-center.sandtech.com with proven effectiveness.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Platform Technology</div>
+                                    Google Sites platform enabling easy updates, multilingual support, and offline accessibility.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Content Strategy</div>
+                                    Centrally-developed standards adapted to local health priorities, languages, and cultural contexts.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Integration Model</div>
+                                    Seamless connection between central academy standards and local implementation requirements.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📚 Content Categories</h3>
+                            <ul>
+                                <li><strong>Clinical Hub:</strong> Disease management protocols, treatment guidelines, infection prevention</li>
+                                <li><strong>Digital Health:</strong> EHR training, telemedicine, mobile health applications</li>
+                                <li><strong>Operations:</strong> Facility management, supply chain, quality improvement</li>
+                                <li><strong>Finance:</strong> Budget management, revenue cycle, financial reporting</li>
+                                <li><strong>Human Resources:</strong> Staff management, professional development, performance evaluation</li>
+                                <li><strong>Data & Technology:</strong> Health information systems, data analysis, reporting tools</li>
+                                <li><strong>Emergency Preparedness:</strong> Outbreak response, disaster management, crisis communication</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🔄 Continuous Improvement</h3>
+                            <ul>
+                                <li><strong>User Feedback:</strong> Regular surveys and feedback mechanisms from healthcare workers</li>
+                                <li><strong>Performance Analytics:</strong> Usage tracking, completion rates, effectiveness measurements</li>
+                                <li><strong>Content Updates:</strong> Monthly updates based on new evidence and policy changes</li>
+                                <li><strong>Quality Assurance:</strong> Peer review process for all content before publication</li>
+                                <li><strong>Version Control:</strong> Systematic tracking of content changes and improvements</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎯 Success Indicators</h3>
+                            <ul>
+                                <li>Platform accessibility in local languages</li>
+                                <li>High user engagement and completion rates</li>
+                                <li>Improved job performance among users</li>
+                                <li>Reduced training delivery costs</li>
+                                <li>Enhanced knowledge retention and application</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                contentManagement: {
+                    title: "Hybrid Content Management System",
+                    content: `
+                        <div class="modal-section">
+                            <h3>📊 Centralized Repository</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Central Standards</div>
+                                    Master curriculum library maintained at Proposed Digital Health Academy with global best practices.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Local Adaptation</div>
+                                    Country-specific versions incorporating local health priorities, regulations, and cultural considerations.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Version Control</div>
+                                    Real-time synchronization ensuring all countries benefit from improvements while maintaining local relevance.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Quality Assurance</div>
+                                    Systematic review process balancing central standards with local needs and contexts.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>💻 Technology Infrastructure</h3>
+                            <ul>
+                                <li><strong>Google Drive Integration:</strong> Centralized storage with role-based access controls</li>
+                                <li><strong>Collaborative Development:</strong> Real-time editing capabilities for distributed content teams</li>
+                                <li><strong>Multi-Format Support:</strong> Documents, videos, interactive assessments, simulation tools</li>
+                                <li><strong>Mobile Optimization:</strong> Content accessible on smartphones and tablets for field use</li>
+                                <li><strong>Offline Capability:</strong> Downloadable materials for areas with limited internet connectivity</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🔄 Content Development Workflow</h3>
+                            <ul>
+                                <li><strong>Central Development:</strong> Core curriculum created by subject matter experts</li>
+                                <li><strong>Local Review:</strong> Country teams evaluate content for local relevance and accuracy</li>
+                                <li><strong>Adaptation Process:</strong> Modification of content for local languages, laws, and practices</li>
+                                <li><strong>Quality Control:</strong> Peer review and approval process before publication</li>
+                                <li><strong>Feedback Integration:</strong> Continuous improvement based on user experiences and outcomes</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📈 Impact Measurement</h3>
+                            <ul>
+                                <li>Content usage analytics and engagement metrics</li>
+                                <li>Learning outcome assessments and knowledge retention</li>
+                                <li>Cost-effectiveness of content development and maintenance</li>
+                                <li>Time-to-deployment for new training materials</li>
+                                <li>User satisfaction and content relevance ratings</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                trainingDelivery: {
+                    title: "Cascaded Training Delivery Model",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🎯 Four-Tier Delivery System</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Tier 1 - Central</div>
+                                    Core teams receive intensive training at Proposed Digital Health Academy for culture alignment and advanced skills.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Tier 2 - Regional</div>
+                                    Certified master trainers deploy in-country to establish training programs and local capacity.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Tier 3 - Local</div>
+                                    7-Hub curriculum delivered through 4-tier health system cascade (CHW → Health Post → Health Center → Hospital).
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Tier 4 - Digital</div>
+                                    Continuous remote support, e-learning modules, and ongoing professional development.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🏥 Health System Integration</h3>
+                            <ul>
+                                <li><strong>Hospital Level:</strong> Comprehensive 7-hub training for all departments and specialties</li>
+                                <li><strong>Health Centers:</strong> Focused training on primary care, maternal health, and basic emergency care</li>
+                                <li><strong>Health Posts:</strong> Essential skills for community health workers and basic health services</li>
+                                <li><strong>Community Level:</strong> Training for community health workers on prevention, health promotion, and data collection</li>
+                                <li><strong>District Administration:</strong> Training for health managers on data analysis, planning, and resource allocation</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>💻 Technology Platform Integration</h3>
+                            <ul>
+                                <li><strong>TalentLMS:</strong> Course delivery, progress tracking, and learning pathway management</li>
+                                <li><strong>ClassMarker:</strong> Secure online assessments with browser lockdown and automated scoring</li>
+                                <li><strong>Credly:</strong> Digital badge issuance with LinkedIn integration and employer verification</li>
+                                <li><strong>Google Forms/AppSheet:</strong> Field-based assessments with mobile and offline capabilities</li>
+                                <li><strong>Looker Studio/eOps:</strong> Real-time analytics and performance dashboards</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎓 Training Methodologies</h3>
+                            <ul>
+                                <li><strong>Blended Learning:</strong> Combination of in-person workshops, digital modules, and practical exercises</li>
+                                <li><strong>Competency-Based:</strong> Focus on practical skills and real-world application rather than just knowledge transfer</li>
+                                <li><strong>Peer Learning:</strong> Learning circles and mentorship programs connecting trainees across facilities</li>
+                                <li><strong>Just-in-Time Training:</strong> Quick reference materials and microlearning for immediate job support</li>
+                                <li><strong>Simulation-Based:</strong> Hands-on practice using model clinic and simulation equipment</li>
+                            </ul>
+                        </div>
+                    `
+                }
+            };
+            
+            // Set modal content
+            modalTitle.textContent = content[contentType].title;
+            modalBody.innerHTML = content[contentType].content;
+            
+            // Show modal
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detailModal');
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Re-enable background scrolling
+        }
+
+        // Close modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById('detailModal');
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
 </body>
 </html>
