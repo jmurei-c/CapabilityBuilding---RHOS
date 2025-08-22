@@ -171,12 +171,6 @@
             padding: 15px 0;
             border-bottom: 1px solid #ecf0f1;
             align-items: center;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            position: relative;
-        }
-        .matrix-row:hover {
-            background-color: #f8f9fa;
         }
         .matrix-row:last-child {
             border-bottom: none;
@@ -225,13 +219,6 @@
             padding: 15px;
             border-radius: 10px;
             text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .path-step:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-3px);
         }
         .step-icon {
             font-size: 2em;
@@ -511,8 +498,7 @@
         <div class="flow-section">
             <div class="flow-title">🏆 World-Class Certification Infrastructure (Operational)</div>
             <div class="ecosystem-grid">
-                <div class="ecosystem-component component-cert" onclick="openModal('fourTierSystem')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="ecosystem-component component-cert">
                     <div class="component-title">🎖️ Four-Tier Credentialing System</div>
                     <div class="component-details">
                         <strong>Tier 1:</strong> Certificate of Completion (Basic participation)<br>
@@ -523,8 +509,7 @@
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-admin" onclick="openModal('techStack')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="ecosystem-component component-admin">
                     <div class="component-title">💻 Integrated Technology Stack</div>
                     <div class="component-details">
                         <strong>Learning Management:</strong> TalentLMS (course delivery, progress tracking)<br>
@@ -535,8 +520,7 @@
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-fionet" onclick="openModal('assessmentFramework')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="ecosystem-component component-fionet">
                     <div class="component-title">⚖️ Rigorous Assessment Framework</div>
                     <div class="component-details">
                         <strong>Multi-Method Assessment:</strong> Knowledge (25%) + Practical (35%) + Portfolio (25%) + Workplace (15%)<br>
@@ -546,8 +530,7 @@
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-country" onclick="openModal('mohGovernance')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="ecosystem-component component-country">
                     <div class="component-title">🏛️ MOH-Led Governance</div>
                     <div class="component-details">
                         <strong>Governance Structure:</strong> As Per Country guidelines
@@ -562,8 +545,7 @@
         <div class="flow-section">
             <div class="flow-title">🏗️ Capability Building Ecosystem Components</div>
             <div class="ecosystem-grid">
-                <div class="ecosystem-component component-umuko" onclick="openModal('hosAcademy')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="ecosystem-component component-umuko">
                     <div class="component-title">🎓 HOS Training Academy (Foundation)</div>
                     <div class="component-details">
                         <strong>4-Tier System:</strong> CHWs → Health Posts → Health Centers → Hospitals<br>
@@ -572,8 +554,7 @@
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-cert" onclick="openModal('umukoCertification')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="ecosystem-component component-cert">
                     <div class="component-title">🏆 Umuko HP Prime Certification Program (Operational)</div>
                     <div class="component-details">
                         <strong>Four-Tier System:</strong> Completion Certificate → Micro-credentials → Professional Certification → Master Trainer<br>
@@ -585,8 +566,7 @@
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-country" onclick="openModal('countryAdaptation')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="ecosystem-component component-country">
                     <div class="component-title">🌍 Country Adaptation (Scalability)</div>
                     <div class="component-details">
                         <strong>Local Needs Assessment:</strong> South Sudan 7-week model<br>
@@ -595,8 +575,7 @@
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-admin" onclick="openModal('adminSupport')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="ecosystem-component component-admin">
                     <div class="component-title">⚙️ Admin Support (Operations)</div>
                     <div class="component-details">
                         <strong>L&D Associate:</strong> Platform management, training coordination<br>
@@ -605,8 +584,7 @@
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-fionet" onclick="openModal('fionetTraining')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="ecosystem-component component-fionet">
                     <div class="component-title">💻 Fionet Training (Platform-Specific)</div>
                     <div class="component-details">
                         <strong>2-Day Intensive:</strong> Clinical services, digitization, IT equipment<br>
@@ -696,8 +674,7 @@
         <div class="critical-path">
             <div class="path-title">🎯 Critical Success Path - Pragmatic Implementation Approach</div>
             <div class="path-steps">
-                <div class="path-step" onclick="openModal('idealStep1')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="path-step">
                     <div class="step-icon">🏛️</div>
                     <div class="step-text">
                         <strong>Ideal Step 1:</strong><br>
@@ -705,8 +682,7 @@
                     </div>
                 </div>
                 
-                <div class="path-step" onclick="openModal('currentStep1')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="path-step">
                     <div class="step-icon">📋</div>
                     <div class="step-text">
                         <strong>Current Step 1:</strong><br>
@@ -714,8 +690,7 @@
                     </div>
                 </div>
                 
-                <div class="path-step" onclick="openModal('step2')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="path-step">
                     <div class="step-icon">🎓</div>
                     <div class="step-text">
                         <strong>Step 2:</strong><br>
@@ -723,8 +698,7 @@
                     </div>
                 </div>
                 
-                <div class="path-step" onclick="openModal('step3')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="path-step">
                     <div class="step-icon">🗺️</div>
                     <div class="step-text">
                         <strong>Step 3:</strong><br>
@@ -732,8 +706,7 @@
                     </div>
                 </div>
                 
-                <div class="path-step" onclick="openModal('step4')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="path-step">
                     <div class="step-icon">⚡</div>
                     <div class="step-text">
                         <strong>Step 4:</strong><br>
@@ -741,8 +714,7 @@
                     </div>
                 </div>
                 
-                <div class="path-step" onclick="openModal('step5')">
-                    <div class="clickable-hint">Click for details</div>
+                <div class="path-step">
                     <div class="step-icon">🚀</div>
                     <div class="step-text">
                         <strong>Step 5:</strong><br>
@@ -858,784 +830,6 @@
                         </div>
                     `
                 },
-                // World-Class Certification Infrastructure Components
-                fourTierSystem: {
-                    title: "Four-Tier Credentialing System",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🏆 Progressive Certification Pathway</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Tier 1 - Certificate of Completion</div>
-                                    Basic participation certificate awarded upon completing training modules. Entry-level recognition for engagement.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Tier 2 - Micro-credentials/Digital Badges</div>
-                                    Skill-specific digital badges for mastering particular competencies. Stackable credentials for continuous learning.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Tier 3 - Professional Certification</div>
-                                    Comprehensive role-based certification demonstrating job competency. Industry-recognized qualification.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Tier 4 - Master Trainer Certification</div>
-                                    Advanced qualification for training delivery and curriculum development. Leadership and mentoring capabilities.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎖️ Proven Track Record</h3>
-                            <ul>
-                                <li><strong>Head Nurse Professional Certification:</strong> 40-hour comprehensive program covering 6 core modules</li>
-                                <li><strong>Clinical Excellence:</strong> Patient care standards, safety protocols, quality improvement</li>
-                                <li><strong>Leadership Skills:</strong> Team management, communication, conflict resolution</li>
-                                <li><strong>Digital Health:</strong> EHR systems, data management, telemedicine basics</li>
-                                <li><strong>Operations Management:</strong> Supply chain, inventory, facility operations</li>
-                                <li><strong>Quality Assurance:</strong> Performance monitoring, compliance, continuous improvement</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📈 Career Progression Benefits</h3>
-                            <ul>
-                                <li>Clear pathway for professional advancement and skill development</li>
-                                <li>Recognition by employers and professional bodies</li>
-                                <li>LinkedIn integration for professional profile enhancement</li>
-                                <li>Salary and promotion eligibility improvements</li>
-                                <li>International mobility and recognition opportunities</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                techStack: {
-                    title: "Integrated Technology Stack",
-                    content: `
-                        <div class="modal-section">
-                            <h3>💻 Comprehensive Platform Integration</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">TalentLMS - Learning Management</div>
-                                    Course delivery, progress tracking, learning pathway management, and student analytics.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">ClassMarker - Secure Assessment</div>
-                                    Browser lockdown, automated scoring, proctoring capabilities, and anti-cheating measures.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Credly - Digital Credentials</div>
-                                    LinkedIn integration, employer verification, blockchain security, and global recognition.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Google Forms/AppSheet - Field Assessment</div>
-                                    Mobile compatibility, offline capability, real-time data collection, and automated workflows.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📊 Analytics & Reporting</h3>
-                            <ul>
-                                <li><strong>Looker Studio:</strong> Real-time dashboards, training progress visualization, performance analytics</li>
-                                <li><strong>eOps Integration:</strong> Operational metrics, facility performance tracking, ROI measurement</li>
-                                <li><strong>Automated Reporting:</strong> Weekly progress reports, monthly performance summaries, annual impact assessments</li>
-                                <li><strong>Predictive Analytics:</strong> Early warning systems for training gaps and performance issues</li>
-                                <li><strong>Custom Dashboards:</strong> Role-specific views for trainers, administrators, and policy makers</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🔒 Security & Compliance</h3>
-                            <ul>
-                                <li>End-to-end encryption for all data transmission and storage</li>
-                                <li>GDPR and HIPAA compliance for healthcare data protection</li>
-                                <li>Multi-factor authentication and role-based access controls</li>
-                                <li>Regular security audits and penetration testing</li>
-                                <li>Backup and disaster recovery protocols</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📱 Mobile & Accessibility Features</h3>
-                            <ul>
-                                <li>Responsive design for smartphones, tablets, and desktops</li>
-                                <li>Offline content download for low-connectivity environments</li>
-                                <li>Multi-language support with right-to-left text compatibility</li>
-                                <li>Screen reader compatibility and accessibility standards compliance</li>
-                                <li>Low-bandwidth optimization for rural and remote areas</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                assessmentFramework: {
-                    title: "Rigorous Assessment Framework",
-                    content: `
-                        <div class="modal-section">
-                            <h3>⚖️ Multi-Method Assessment Approach</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Knowledge Assessment (25%)</div>
-                                    Written examinations, multiple-choice questions, case study analysis, and theoretical understanding evaluation.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Practical Assessment (35%)</div>
-                                    Hands-on demonstrations, skill-based tasks, simulation exercises, and real-world application.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Portfolio Assessment (25%)</div>
-                                    Work samples, project documentation, reflection essays, and continuous improvement evidence.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Workplace Performance (15%)</div>
-                                    Supervisor evaluations, peer feedback, patient feedback, and on-the-job performance metrics.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🏥 OSCE (Objective Structured Clinical Examination)</h3>
-                            <ul>
-                                <li><strong>Standardized Stations:</strong> Multiple assessment stations with specific skills and scenarios</li>
-                                <li><strong>Trained Examiners:</strong> Certified assessors using standardized checklists and rubrics</li>
-                                <li><strong>Real-World Scenarios:</strong> Clinical cases reflecting actual workplace challenges</li>
-                                <li><strong>Time-Controlled:</strong> Structured timing to assess efficiency and decision-making under pressure</li>
-                                <li><strong>Immediate Feedback:</strong> Real-time performance feedback and improvement recommendations</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>👥 Supervisor & Community Validation</h3>
-                            <ul>
-                                <li><strong>360-Degree Feedback:</strong> Input from supervisors, peers, subordinates, and patients</li>
-                                <li><strong>Performance Metrics:</strong> Quantifiable indicators of job performance and patient outcomes</li>
-                                <li><strong>Community Impact:</strong> Assessment of community health improvements and patient satisfaction</li>
-                                <li><strong>Professional Growth:</strong> Evidence of continuous learning and skill development</li>
-                                <li><strong>Leadership Demonstration:</strong> Examples of mentoring, innovation, and process improvement</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🔄 Continuous Monitoring System</h3>
-                            <ul>
-                                <li><strong>6-Month Follow-up:</strong> Post-training assessment to measure knowledge retention and application</li>
-                                <li><strong>Annual Recertification:</strong> Ongoing competency validation and skill updates</li>
-                                <li><strong>Performance Tracking:</strong> Continuous monitoring of job performance and patient outcomes</li>
-                                <li><strong>Improvement Plans:</strong> Personalized development plans based on assessment results</li>
-                                <li><strong>Quality Assurance:</strong> Regular audit of assessment processes and outcomes</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                mohGovernance: {
-                    title: "MOH-Led Governance Structure",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🏛️ Country-Specific Governance</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Local Leadership</div>
-                                    Each country establishes governance structures aligned with national health policies and regulations.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Cultural Adaptation</div>
-                                    Governance models respect local customs, languages, and healthcare delivery traditions.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Regulatory Compliance</div>
-                                    Alignment with national medical education standards and professional licensing requirements.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Stakeholder Engagement</div>
-                                    Inclusive participation from medical councils, training institutions, and healthcare organizations.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📋 Core Governance Functions</h3>
-                            <ul>
-                                <li><strong>Standards Development:</strong> Establish certification criteria aligned with international best practices</li>
-                                <li><strong>Quality Assurance:</strong> Monitor training quality and assessment rigor across all programs</li>
-                                <li><strong>Accreditation Process:</strong> Approve training providers and certification programs</li>
-                                <li><strong>Appeals Management:</strong> Handle certification disputes and appeal processes</li>
-                                <li><strong>Continuous Improvement:</strong> Regular review and update of standards and processes</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>💰 Financial Sustainability Models</h3>
-                            <ul>
-                                <li><strong>Government Funding:</strong> Ministry of Health budget allocation for training programs</li>
-                                <li><strong>Certification Fees:</strong> User fees for certification programs and assessments</li>
-                                <li><strong>Partner Contributions:</strong> Support from international organizations and NGOs</li>
-                                <li><strong>Private Sector:</strong> Employer-sponsored training and certification programs</li>
-                                <li><strong>Revenue Sharing:</strong> Collaborative funding models between stakeholders</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🌍 Regional Coordination</h3>
-                            <ul>
-                                <li>Participation in regional health workforce development initiatives</li>
-                                <li>Cross-border recognition of certifications and qualifications</li>
-                                <li>Sharing of best practices and lessons learned</li>
-                                <li>Collaborative research and evidence generation</li>
-                                <li>Joint advocacy for health workforce strengthening policies</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                // Capability Building Ecosystem Components
-                hosAcademy: {
-                    title: "HOS Training Academy Foundation",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🎓 Four-Tier Health System Cascade</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Community Health Workers (CHWs)</div>
-                                    Basic health education, disease prevention, health promotion, and community mobilization skills.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Health Posts</div>
-                                    Primary care services, maternal health, immunization, basic diagnostics, and health data collection.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Health Centers</div>
-                                    Comprehensive primary care, emergency services, laboratory services, and referral management.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Hospitals</div>
-                                    Specialized care, advanced diagnostics, surgical services, and complex case management.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🏢 Seven Operational Training Hubs</h3>
-                            <ul>
-                                <li><strong>Clinical Hub:</strong> Patient care protocols, clinical guidelines, disease management, infection prevention</li>
-                                <li><strong>Finance Hub:</strong> Budget management, revenue cycle, financial reporting, cost control</li>
-                                <li><strong>People Hub:</strong> Human resource management, performance evaluation, professional development</li>
-                                <li><strong>Inventory Hub:</strong> Supply chain management, pharmaceutical logistics, equipment maintenance</li>
-                                <li><strong>Facilities Hub:</strong> Infrastructure management, maintenance protocols, safety standards</li>
-                                <li><strong>Data & Technology Hub:</strong> Health information systems, data analysis, digital tools</li>
-                                <li><strong>Operations Hub:</strong> Process improvement, quality management, workflow optimization</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📈 Proven Implementation Model</h3>
-                            <ul>
-                                <li><strong>Pilot Phase:</strong> Initial implementation with select facilities to test and refine approaches</li>
-                                <li><strong>Expansion Phase:</strong> Scaled rollout to additional facilities based on pilot learnings</li>
-                                <li><strong>Quality Assurance:</strong> Continuous monitoring and improvement of training effectiveness</li>
-                                <li><strong>Sustainability Planning:</strong> Local capacity building and knowledge transfer for long-term success</li>
-                                <li><strong>Impact Measurement:</strong> Regular assessment of training outcomes and facility performance improvements</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 Expected Outcomes</h3>
-                            <ul>
-                                <li>Improved quality of care across all levels of the health system</li>
-                                <li>Enhanced operational efficiency and resource utilization</li>
-                                <li>Strengthened health workforce competencies and job satisfaction</li>
-                                <li>Better health data collection and evidence-based decision making</li>
-                                <li>Reduced costs through improved processes and reduced waste</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                umukoCertification: {
-                    title: "Umuko HP Prime Certification Program",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🏆 Operational Excellence Program</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Completion Certificate</div>
-                                    Recognition for participating in and completing core training modules.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Micro-credentials</div>
-                                    Digital badges for specific skill mastery in targeted competency areas.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Professional Certification</div>
-                                    Comprehensive role-based certification demonstrating job readiness and competency.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Master Trainer</div>
-                                    Advanced certification for training delivery, curriculum development, and mentoring.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>💻 Technology Integration</h3>
-                            <ul>
-                                <li><strong>TalentLMS:</strong> Learning management system for course delivery and progress tracking</li>
-                                <li><strong>ClassMarker:</strong> Secure assessment platform with proctoring and anti-cheating measures</li>
-                                <li><strong>Credly:</strong> Digital credentialing with blockchain verification and LinkedIn integration</li>
-                                <li><strong>Google Forms/AppSheet:</strong> Mobile-friendly field assessments with offline capabilities</li>
-                                <li><strong>Looker Studio:</strong> Real-time analytics and performance dashboards</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📋 Assessment Methodology</h3>
-                            <ul>
-                                <li><strong>Knowledge Assessment:</strong> Written examinations and theoretical understanding evaluation</li>
-                                <li><strong>Practical Assessment:</strong> Hands-on demonstrations and skill-based evaluations</li>
-                                <li><strong>Portfolio Development:</strong> Work samples and continuous improvement documentation</li>
-                                <li><strong>Workplace Performance:</strong> Supervisor evaluations and real-world impact measurement</li>
-                                <li><strong>Peer Review:</strong> Collaborative assessment and feedback from colleagues</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 Pilot Program Success</h3>
-                            <ul>
-                                <li><strong>Head Nurse Certification:</strong> 40-hour comprehensive program with 6 core modules</li>
-                                <li><strong>Participant Satisfaction:</strong> High engagement and completion rates in pilot implementation</li>
-                                <li><strong>Performance Improvement:</strong> Measurable improvements in facility operations and patient care</li>
-                                <li><strong>Employer Recognition:</strong> Strong support from health facilities and government partners</li>
-                                <li><strong>Scalability Proven:</strong> Ready for expansion across multiple countries and contexts</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                countryAdaptation: {
-                    title: "Country Adaptation & Scalability",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🌍 Localization Strategy</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Needs Assessment</div>
-                                    Comprehensive evaluation of local health priorities, system capacity, and training requirements.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Cultural Context</div>
-                                    Adaptation of content to respect local customs, beliefs, and healthcare practices.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Language Localization</div>
-                                    Translation and cultural adaptation of training materials to local languages.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Stakeholder Alignment</div>
-                                    Engagement with government, medical institutions, and community leaders for support.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📊 South Sudan Model (7-Week Framework)</h3>
-                            <ul>
-                                <li><strong>Week 1-2:</strong> Stakeholder engagement and needs assessment</li>
-                                <li><strong>Week 3-4:</strong> Content adaptation and localization</li>
-                                <li><strong>Week 5-6:</strong> Pilot training delivery and feedback collection</li>
-                                <li><strong>Week 7:</strong> Program refinement and scale-up planning</li>
-                                <li><strong>Ongoing:</strong> Continuous monitoring and improvement</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>💼 Resource Planning</h3>
-                            <ul>
-                                <li><strong>Budget Allocation:</strong> Cost estimation for training delivery, technology, and personnel</li>
-                                <li><strong>Local Partnerships:</strong> Collaboration with medical schools, NGOs, and government agencies</li>
-                                <li><strong>Infrastructure Assessment:</strong> Technology requirements and connectivity solutions</li>
-                                <li><strong>Human Resources:</strong> Identification and training of local master trainers</li>
-                                <li><strong>Sustainability Planning:</strong> Long-term financial and operational sustainability models</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 Success Factors</h3>
-                            <ul>
-                                <li>Strong government leadership and policy support</li>
-                                <li>Active engagement from medical training institutions</li>
-                                <li>Adequate technology infrastructure and connectivity</li>
-                                <li>Sufficient funding for initial implementation and sustainability</li>
-                                <li>Cultural sensitivity and community acceptance</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                adminSupport: {
-                    title: "Administrative Support Operations",
-                    content: `
-                        <div class="modal-section">
-                            <h3>⚙️ Learning & Development Support</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">L&D Associate Role</div>
-                                    Dedicated staff for platform management, training coordination, and learner support.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Platform Management</div>
-                                    Technical administration of learning systems, content updates, and user management.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Training Coordination</div>
-                                    Scheduling, logistics, and coordination of training activities across multiple locations.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Quality Assurance</div>
-                                    Monitoring training quality, gathering feedback, and implementing improvements.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📋 Training Request Management</h3>
-                            <ul>
-                                <li><strong>Needs Identification:</strong> Systematic process for identifying training gaps and priorities</li>
-                                <li><strong>Request Processing:</strong> Standardized workflow for handling training requests from facilities</li>
-                                <li><strong>Prioritization Framework:</strong> Criteria-based approach for prioritizing training interventions</li>
-                                <li><strong>Resource Allocation:</strong> Efficient deployment of trainers and resources based on needs</li>
-                                <li><strong>Impact Tracking:</strong> Monitoring and evaluation of training effectiveness and outcomes</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📊 Hub Check-in System</h3>
-                            <ul>
-                                <li><strong>Weekly Progress Reviews:</strong> Regular monitoring of training progress across all hubs</li>
-                                <li><strong>Performance Metrics:</strong> Key indicators for training quality and learner engagement</li>
-                                <li><strong>Issue Resolution:</strong> Quick identification and resolution of training challenges</li>
-                                <li><strong>Best Practice Sharing:</strong> Documentation and dissemination of successful approaches</li>
-                                <li><strong>Continuous Improvement:</strong> Regular updates to training content and delivery methods</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 Operational Excellence</h3>
-                            <ul>
-                                <li>Streamlined administrative processes for maximum efficiency</li>
-                                <li>Technology-enabled automation of routine tasks</li>
-                                <li>Data-driven decision making for resource allocation</li>
-                                <li>Strong communication channels between all stakeholders</li>
-                                <li>Proactive support for trainers and learners</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                fionetTraining: {
-                    title: "Fionet Platform-Specific Training",
-                    content: `
-                        <div class="modal-section">
-                            <h3>💻 2-Day Intensive Program</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Clinical Services Module</div>
-                                    Training on clinical workflows, patient management, and care protocols within the RHOS platform.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Digitization Module</div>
-                                    Electronic health records, data entry, digital forms, and workflow automation.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">IT Equipment Module</div>
-                                    Hardware setup, troubleshooting, maintenance, and technical support procedures.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Integration Focus</div>
-                                    Seamless integration between RHOS platform and existing health system workflows.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📋 Structured Assessment Process</h3>
-                            <ul>
-                                <li><strong>Pre-Training Assessment:</strong> Baseline evaluation of technical skills and platform familiarity</li>
-                                <li><strong>Hands-On Exercises:</strong> Practical exercises using real RHOS platform scenarios</li>
-                                <li><strong>Competency Validation:</strong> Skills demonstration and proficiency testing</li>
-                                <li><strong>Post-Training Evaluation:</strong> Assessment of learning outcomes and platform proficiency</li>
-                                <li><strong>Performance Reporting:</strong> Detailed feedback on strengths and areas for improvement</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 RHOS Platform Proficiency</h3>
-                            <ul>
-                                <li><strong>User Interface Mastery:</strong> Navigation, data entry, and system interaction skills</li>
-                                <li><strong>Clinical Workflow Integration:</strong> Seamless incorporation into daily clinical practices</li>
-                                <li><strong>Data Quality Management:</strong> Accurate data collection, validation, and reporting</li>
-                                <li><strong>Troubleshooting Skills:</strong> Basic technical problem-solving and error resolution</li>
-                                <li><strong>Advanced Features:</strong> Utilization of reporting, analytics, and decision support tools</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🔧 Technical Support</h3>
-                            <ul>
-                                <li>24/7 helpdesk support for technical issues and questions</li>
-                                <li>Regular software updates and feature enhancements</li>
-                                <li>Ongoing training for new features and system improvements</li>
-                                <li>Peer support networks and user communities</li>
-                                <li>Advanced troubleshooting and system optimization</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                // Coordination Matrix Components
-                centralTeam: {
-                    title: "Central Team Coordination Role",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🎯 Strategic Coordination Functions</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">System Deployment</div>
-                                    Coordinate deployment of HOS Help Centers and certification systems across 22 countries.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Technology Integration</div>
-                                    Ensure consistent implementation of integrated technology stack across all countries.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Quality Standards</div>
-                                    Maintain consistent quality and standards while enabling local adaptation.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Progress Monitoring</div>
-                                    Systematic tracking of implementation progress and performance metrics.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🌍 Multi-Country Implementation</h3>
-                            <ul>
-                                <li><strong>Phased Rollout:</strong> Strategic sequencing of country implementations based on readiness and capacity</li>
-                                <li><strong>Resource Allocation:</strong> Efficient deployment of human and financial resources across countries</li>
-                                <li><strong>Best Practice Sharing:</strong> Facilitate knowledge transfer and learning between countries</li>
-                                <li><strong>Risk Management:</strong> Identify and mitigate implementation risks and challenges</li>
-                                <li><strong>Success Replication:</strong> Document and replicate successful models across different contexts</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📊 Governance & Certification Boards</h3>
-                            <ul>
-                                <li><strong>Board Establishment:</strong> Support countries in establishing MOH-led certification boards</li>
-                                <li><strong>Standards Alignment:</strong> Ensure certification standards meet international best practices</li>
-                                <li><strong>Capacity Building:</strong> Train board members on governance and quality assurance</li>
-                                <li><strong>Network Facilitation:</strong> Create networks for peer learning and collaboration</li>
-                                <li><strong>Continuous Support:</strong> Ongoing technical assistance and guidance</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎓 Training & Assessment Coordination</h3>
-                            <ul>
-                                <li>Multi-method assessment protocol implementation and monitoring</li>
-                                <li>12-week pilot program coordination using proven frameworks</li>
-                                <li>Master trainer development and certification oversight</li>
-                                <li>Quality assurance and performance improvement initiatives</li>
-                                <li>Regional training network development and management</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                digitalAcademyMatrix: {
-                    title: "Digital Health Academy Strategic Role",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🏛️ Central Excellence Hub Functions</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Culture Alignment</div>
-                                    Foster shared values, standards, and approaches across all 22 countries.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Quality Standards</div>
-                                    Establish and maintain world-class training and certification standards.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Master Training</div>
-                                    Develop master trainers who can replicate excellence in their home countries.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Innovation Hub</div>
-                                    Research and development center for new training methodologies and technologies.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎓 Comprehensive Training Programs</h3>
-                            <ul>
-                                <li><strong>6,000+ Health Workers:</strong> Comprehensive training program covering all levels of healthcare delivery</li>
-                                <li><strong>400+ HIC Staff:</strong> Specialized training for Health Intelligence Center staff and data professionals</li>
-                                <li><strong>Master Trainer Certification:</strong> Advanced 4-week programs for training delivery and curriculum development</li>
-                                <li><strong>Leadership Development:</strong> Management and leadership skills for health administrators</li>
-                                <li><strong>Research & Innovation:</strong> Collaborative research programs and evidence generation</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📚 Curriculum & Standards Repository</h3>
-                            <ul>
-                                <li><strong>Master Curriculum:</strong> Comprehensive library of training materials and best practices</li>
-                                <li><strong>Quality Framework:</strong> Standards and guidelines for training delivery and assessment</li>
-                                <li><strong>Innovation Pipeline:</strong> Development and testing of new training approaches</li>
-                                <li><strong>Evidence Base:</strong> Research and evaluation findings to inform continuous improvement</li>
-                                <li><strong>Global Network:</strong> Connections to international centers of excellence and expertise</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🌐 Remote Learning & Support</h3>
-                            <ul>
-                                <li>24/7 online learning platform access for all country teams</li>
-                                <li>Virtual mentoring and coaching programs</li>
-                                <li>Regular webinars and knowledge sharing sessions</li>
-                                <li>Technical assistance and troubleshooting support</li>
-                                <li>Continuous professional development opportunities</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                hosAcademyTeams: {
-                    title: "HOS Academy Teams (Country-Level)",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🏠 Local Implementation Leadership</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Platform Management</div>
-                                    Manage country-specific HOS Help Center platforms and localized content.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Curriculum Delivery</div>
-                                    Deliver 7-Hub training curriculum adapted from central standards to local context.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Master Trainer Network</div>
-                                    Deploy and manage master trainers certified at the Digital Health Academy.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Quality Assurance</div>
-                                    Maintain training quality while adapting to local needs and contexts.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 Localized Training Delivery</h3>
-                            <ul>
-                                <li><strong>Cultural Adaptation:</strong> Modify training content to reflect local health priorities and practices</li>
-                                <li><strong>Language Localization:</strong> Deliver training in local languages with culturally appropriate examples</li>
-                                <li><strong>Stakeholder Engagement:</strong> Build strong relationships with local government and health institutions</li>
-                                <li><strong>Community Integration:</strong> Ensure training programs align with community health needs</li>
-                                <li><strong>Sustainability Planning:</strong> Develop local capacity for long-term program continuation</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🤝 Hybrid Central-Local Model</h3>
-                            <ul>
-                                <li><strong>Central Standards:</strong> Maintain adherence to global best practices and quality standards</li>
-                                <li><strong>Local Adaptation:</strong> Customize delivery methods and content to local contexts</li>
-                                <li><strong>Knowledge Transfer:</strong> Facilitate two-way learning between central academy and local teams</li>
-                                <li><strong>Performance Monitoring:</strong> Regular reporting and quality assurance checks</li>
-                                <li><strong>Continuous Improvement:</strong> Ongoing refinement based on local feedback and outcomes</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📊 Local Competence Development</h3>
-                            <ul>
-                                <li>Development of local training capacity and expertise</li>
-                                <li>Building sustainable networks of certified health professionals</li>
-                                <li>Establishing local quality assurance and monitoring systems</li>
-                                <li>Creating pathways for career advancement and professional growth</li>
-                                <li>Fostering innovation and adaptation in local contexts</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                certificationProgram: {
-                    title: "Umuko HP Prime Certification Program",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🏆 Operational Certification System</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">4-Tier System</div>
-                                    Progressive certification pathway from completion certificates to master trainer status.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Technology Integration</div>
-                                    Comprehensive technology stack for learning, assessment, and credentialing.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Multi-Method Assessment</div>
-                                    Rigorous evaluation combining knowledge, practical skills, portfolio, and workplace performance.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Quality Governance</div>
-                                    MOH-led governance structures ensuring standards and accountability.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>💻 Technology Stack Implementation</h3>
-                            <ul>
-                                <li><strong>TalentLMS:</strong> Learning management system for course delivery and progress tracking</li>
-                                <li><strong>ClassMarker:</strong> Secure assessment platform with anti-cheating and proctoring capabilities</li>
-                                <li><strong>Credly:</strong> Digital credentialing with blockchain verification and professional recognition</li>
-                                <li><strong>Analytics Integration:</strong> Real-time dashboards and performance monitoring systems</li>
-                                <li><strong>Mobile Compatibility:</strong> Field-friendly assessment tools with offline capabilities</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📋 Assessment Protocol Execution</h3>
-                            <ul>
-                                <li><strong>Knowledge Assessment (25%):</strong> Written examinations and theoretical understanding</li>
-                                <li><strong>Practical Assessment (35%):</strong> Hands-on demonstrations and skill-based evaluations</li>
-                                <li><strong>Portfolio Assessment (25%):</strong> Work samples and continuous improvement documentation</li>
-                                <li><strong>Workplace Assessment (15%):</strong> Supervisor evaluations and real-world performance</li>
-                                <li><strong>Continuous Monitoring:</strong> Ongoing performance tracking and improvement support</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 Pilot Program Framework</h3>
-                            <ul>
-                                <li><strong>12-Week Timeline:</strong> Structured program with clear milestones and deliverables</li>
-                                <li><strong>Head Nurse Focus:</strong> Proven certification track with 40 hours of comprehensive training</li>
-                                <li><strong>Facility Integration:</strong> Real-world application in actual healthcare delivery settings</li>
-                                <li><strong>Performance Measurement:</strong> Quantifiable improvements in facility operations and patient care</li>
-                                <li><strong>Scalability Validation:</strong> Evidence-based approach for expansion to additional countries</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                mohTeams: {
-                    title: "Country MOH Teams",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🏛️ Government Leadership Role</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Needs Assessment Participation</div>
-                                    Active involvement in identifying national health workforce development priorities.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Local Context Provision</div>
-                                    Share knowledge of local health systems, regulations, and cultural considerations.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Capacity Building Engagement</div>
-                                    Participate in training programs to build internal management and oversight capabilities.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">System Ownership</div>
-                                    Gradual assumption of full ownership and responsibility for program sustainability.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📋 Policy & Regulatory Functions</h3>
-                            <ul>
-                                <li><strong>Policy Development:</strong> Create supportive policies for health workforce development and certification</li>
-                                <li><strong>Regulatory Framework:</strong> Establish regulations governing training standards and certification processes</li>
-                                <li><strong>Quality Assurance:</strong> Develop systems for monitoring and maintaining training quality</li>
-                                <li><strong>Accreditation:</strong> Approve training providers and certification programs</li>
-                                <li><strong>Integration:</strong> Align certification programs with national health system priorities</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>💰 Financial & Resource Management</h3>
-                            <ul>
-                                <li><strong>Budget Planning:</strong> Allocate resources for training program implementation and sustainability</li>
-                                <li><strong>Cost-Benefit Analysis:</strong> Evaluate return on investment for training interventions</li>
-                                <li><strong>Funding Strategies:</strong> Develop diversified funding approaches including government, donor, and user fees</li>
-                                <li><strong>Resource Optimization:</strong> Maximize efficiency and impact of available resources</li>
-                                <li><strong>Sustainability Planning:</strong> Ensure long-term financial viability of training programs</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 Local Ownership Development</h3>
-                            <ul>
-                                <li>Progressive transfer of program management responsibilities from partners to government</li>
-                                <li>Development of local expertise and institutional capacity</li>
-                                <li>Integration of training programs into national health system operations</li>
-                                <li>Establishment of sustainable governance and oversight mechanisms</li>
-                                <li>Creation of networks for peer learning and knowledge sharing</li>
-                            </ul>
-                        </div>`,
                 phase2: {
                     title: "Phase 2: Rapid Deployment",
                     content: `
@@ -1995,343 +1189,6 @@
                                 <li><strong>Peer Learning:</strong> Learning circles and mentorship programs connecting trainees across facilities</li>
                                 <li><strong>Just-in-Time Training:</strong> Quick reference materials and microlearning for immediate job support</li>
                                 <li><strong>Simulation-Based:</strong> Hands-on practice using model clinic and simulation equipment</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                // Critical Success Path Components
-                idealStep1: {
-                    title: "Ideal Step 1: Digital Health Academy Establishment",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🏛️ Central Excellence Hub Vision</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Strategic Vision</div>
-                                    Establish Rwanda as the continental center of excellence for digital health training and capacity building.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Culture Alignment</div>
-                                    Create shared values, standards, and approaches across all 22 expansion countries.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Quality Standards</div>
-                                    Establish world-class training and certification standards for digital health capacity building.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Work in Progress</div>
-                                    Currently in proposal stage - requires $6M investment and 2-3 year development timeline.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🏢 Physical Infrastructure (Proposed)</h3>
-                            <ul>
-                                <li><strong>Location:</strong> Masaka Medical Hub, Kigali - strategic placement in emerging health innovation ecosystem</li>
-                                <li><strong>Academy Wing:</strong> 3 training rooms (150 capacity), offices, boardroom, tech center, library</li>
-                                <li><strong>Model Clinic:</strong> 200 patients/day capacity with full service delivery for practical training</li>
-                                <li><strong>Accommodation:</strong> 50-bed facility with dining and recreational amenities</li>
-                                <li><strong>Technology:</strong> High-speed connectivity, telemedicine capabilities, digital learning platforms</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📊 Anticipated Impact</h3>
-                            <ul>
-                                <li><strong>Scale:</strong> 6,000+ health workers + 400 HIC staff across Africa over 5 years</li>
-                                <li><strong>Master Trainers:</strong> Advanced certification programs for training delivery and curriculum development</li>
-                                <li><strong>Research Hub:</strong> Collaborative research initiatives and evidence generation</li>
-                                <li><strong>Regional Network:</strong> Continental center connecting all expansion countries</li>
-                                <li><strong>Sustainability:</strong> Self-funding model achieved by Year 3 through tuition and partnerships</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>⚠️ Current Status & Next Steps</h3>
-                            <ul>
-                                <li>Proposal submitted to Susan Thompson Buffett Foundation and other potential funders</li>
-                                <li>Partnership agreements in development with MOH, SFH, and SAND Technologies</li>
-                                <li>Site selection and preliminary planning underway</li>
-                                <li>Meanwhile, implementation proceeds using existing proven systems and infrastructure</li>
-                                <li>Academy will enhance and centralize what is already operational across countries</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                currentStep1: {
-                    title: "Current Step 1: Leverage Proven HOS Systems",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🚀 Immediate Action Approach</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Proven Systems</div>
-                                    Start with operational Rwanda's Umuko Academy Help Center and 7-Hub framework already delivering results.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Rapid Deployment</div>
-                                    Begin country implementations immediately without waiting for central academy development.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Evidence-Based</div>
-                                    Build on documented success from Rwanda pilot and initial expansion countries.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Scalable Model</div>
-                                    Use replicable frameworks that can be enhanced when central academy comes online.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🏢 Operational Infrastructure</h3>
-                            <ul>
-                                <li><strong>Live Platform:</strong> blueroom-help-center.sandtech.com currently serving Rwanda with proven results</li>
-                                <li><strong>7-Hub Curriculum:</strong> Clinical, Finance, People, Inventory, Facilities, Data & Tech, Operations</li>
-                                <li><strong>4-Tier System:</strong> CHWs → Health Posts → Health Centers → Hospitals</li>
-                                <li><strong>Technology Stack:</strong> TalentLMS, ClassMarker, Credly, Google Forms/AppSheet, analytics</li>
-                                <li><strong>Certification Ready:</strong> Operational Umuko HP Prime Certification system with proven track record</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📈 Proven Results</h3>
-                            <ul>
-                                <li><strong>Rwanda Success:</strong> Operational help center with Kinyarwanda localization and structured content</li>
-                                <li><strong>Training Delivery:</strong> Validated training methodologies and assessment frameworks</li>
-                                <li><strong>Certification Program:</strong> Head Nurse Professional Certification (40 hours, 6 modules) piloted successfully</li>
-                                <li><strong>Technology Integration:</strong> Seamless platform integration with real-world healthcare delivery</li>
-                                <li><strong>Government Partnership:</strong> Strong MOH collaboration and policy alignment in Rwanda</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 Implementation Strategy</h3>
-                            <ul>
-                                <li>Immediate deployment using existing systems while central academy develops in parallel</li>
-                                <li>Country-by-country rollout starting with highest readiness and strategic importance</li>
-                                <li>Continuous improvement and refinement based on implementation learnings</li>
-                                <li>Transition to enhanced central-local model as Digital Health Academy comes online</li>
-                                <li>Maintain momentum and deliver immediate value while building toward long-term vision</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                step2: {
-                    title: "Step 2: Core Team Training & Transition",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🎓 Hybrid Training Approach</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Current Systems</div>
-                                    Begin training using existing infrastructure, temporary venues, and proven methodologies.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Central Academy Integration</div>
-                                    Transition core teams to Digital Health Academy training when facility becomes operational.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Master Trainer Development</div>
-                                    Develop local capacity for training delivery and program sustainability.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Quality Assurance</div>
-                                    Maintain consistent standards throughout the transition period.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🏢 Training Venues & Infrastructure</h3>
-                            <ul>
-                                <li><strong>Temporary Facilities:</strong> Norrsken Hub, ALX Hubs, partner venues for immediate training delivery</li>
-                                <li><strong>Digital Platforms:</strong> Existing TalentLMS and virtual training capabilities</li>
-                                <li><strong>Field Training:</strong> On-site training at operational facilities and health centers</li>
-                                <li><strong>Regional Hubs:</strong> Strategic training locations in multiple countries</li>
-                                <li><strong>Central Transition:</strong> Gradual shift to Rwanda Digital Health Academy as construction completes</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>👥 Core Team Development</h3>
-                            <ul>
-                                <li><strong>Country Leads:</strong> Senior implementation managers for each expansion country</li>
-                                <li><strong>Master Trainers:</strong> Certified trainers capable of delivering full 7-hub curriculum</li>
-                                <li><strong>Technology Specialists:</strong> Platform administrators and technical support staff</li>
-                                <li><strong>Assessment Coordinators:</strong> Certification and quality assurance specialists</li>
-                                <li><strong>Government Liaisons:</strong> Partnership development and stakeholder engagement leads</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🔄 Transition Management</h3>
-                            <ul>
-                                <li>Seamless handover from temporary to permanent training infrastructure</li>
-                                <li>Continuous improvement based on early implementation learnings</li>
-                                <li>Progressive integration of central academy capabilities as they become available</li>
-                                <li>Maintenance of training quality and consistency throughout transition</li>
-                                <li>Documentation of best practices and lessons learned for future replications</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                step3: {
-                    title: "Step 3: Content & System Adaptation",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🌍 Localization Strategy</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Language Adaptation</div>
-                                    Translate and culturally adapt training content to local languages and contexts.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Health System Integration</div>
-                                    Align training content with country-specific health policies and priorities.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Cultural Sensitivity</div>
-                                    Incorporate local customs, practices, and healthcare delivery approaches.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Regulatory Compliance</div>
-                                    Ensure alignment with national medical education and professional standards.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📚 Content Adaptation Process</h3>
-                            <ul>
-                                <li><strong>Core Content Review:</strong> Assessment of central curriculum for local relevance and applicability</li>
-                                <li><strong>Local Expert Input:</strong> Collaboration with national medical professionals and education specialists</li>
-                                <li><strong>Translation & Localization:</strong> Professional translation with cultural adaptation and medical terminology accuracy</li>
-                                <li><strong>Pilot Testing:</strong> Small-scale testing with local healthcare workers to validate content effectiveness</li>
-                                <li><strong>Iterative Refinement:</strong> Continuous improvement based on user feedback and performance outcomes</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🔧 System Customization</h3>
-                            <ul>
-                                <li><strong>Platform Configuration:</strong> Customize learning management systems for local languages and workflows</li>
-                                <li><strong>Assessment Adaptation:</strong> Modify evaluation criteria to reflect local competency requirements</li>
-                                <li><strong>Integration Setup:</strong> Connect training systems with existing health information systems</li>
-                                <li><strong>User Interface:</strong> Adapt navigation and user experience for local technology literacy levels</li>
-                                <li><strong>Mobile Optimization:</strong> Ensure functionality on locally available devices and connectivity conditions</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 Quality Assurance</h3>
-                            <ul>
-                                <li>Maintain fidelity to core learning objectives while enabling local adaptation</li>
-                                <li>Regular review and approval process for all content modifications</li>
-                                <li>Performance monitoring to ensure adapted content delivers intended outcomes</li>
-                                <li>Feedback loops between central teams and local implementation teams</li>
-                                <li>Documentation of successful adaptations for replication in similar contexts</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                step4: {
-                    title: "Step 4: Certification System Deployment",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🏆 Evolving Standards Implementation</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Operational Systems</div>
-                                    Deploy proven Umuko HP Prime Certification system with documented effectiveness.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Evolving Standards</div>
-                                    Implement systems that can adapt and improve as central academy standards develop.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Local Delivery</div>
-                                    Enable country-specific implementation while maintaining quality consistency.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Technology Integration</div>
-                                    Full deployment of integrated technology stack for learning and assessment.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📊 Certification Components</h3>
-                            <ul>
-                                <li><strong>Four-Tier System:</strong> Completion → Micro-credentials → Professional Certification → Master Trainer</li>
-                                <li><strong>Multi-Method Assessment:</strong> Knowledge (25%) + Practical (35%) + Portfolio (25%) + Workplace (15%)</li>
-                                <li><strong>Technology Stack:</strong> TalentLMS + ClassMarker + Credly + Google Forms/AppSheet + Analytics</li>
-                                <li><strong>Quality Framework:</strong> OSCE format with standardized checklists and trained examiners</li>
-                                <li><strong>Governance Structure:</strong> MOH-led certification boards per country guidelines</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🔄 Standards Evolution</h3>
-                            <ul>
-                                <li><strong>Baseline Implementation:</strong> Start with proven standards from Rwanda pilot program</li>
-                                <li><strong>Continuous Improvement:</strong> Regular updates based on implementation learnings and outcomes</li>
-                                <li><strong>Central Academy Integration:</strong> Incorporate enhanced standards as Digital Health Academy develops</li>
-                                <li><strong>Global Best Practices:</strong> Alignment with international certification and quality standards</li>
-                                <li><strong>Local Adaptation:</strong> Flexibility to address country-specific requirements and contexts</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 Implementation Approach</h3>
-                            <ul>
-                                <li>Phased rollout starting with pilot facilities in each country</li>
-                                <li>12-week certification timeline with proven Head Nurse Professional Certification model</li>
-                                <li>Comprehensive training for certification board members and assessors</li>
-                                <li>Regular monitoring and evaluation of certification effectiveness and outcomes</li>
-                                <li>Establishment of sustainable financial models per country guidelines</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                step5: {
-                    title: "Step 5: Scale Hybrid Model & Integration",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🚀 Full-Scale Implementation</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Hybrid Model Scaling</div>
-                                    Achieve optimal balance between centralized excellence and localized delivery.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Central-Local Integration</div>
-                                    Seamless integration between Digital Health Academy and country-level operations.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">22-Country Network</div>
-                                    Comprehensive coverage across all expansion countries with consistent quality.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Academy Enhancement</div>
-                                    Full utilization of Digital Health Academy capabilities as they become operational.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🌐 Network Integration</h3>
-                            <ul>
-                                <li><strong>Central Hub Operations:</strong> Digital Health Academy serving as continental center of excellence</li>
-                                <li><strong>Country Centers:</strong> Localized training centers connected to central hub for standards and support</li>
-                                <li><strong>Master Trainer Network:</strong> Certified trainers providing quality delivery across all countries</li>
-                                <li><strong>Technology Platform:</strong> Integrated systems enabling seamless learning and assessment experiences</li>
-                                <li><strong>Quality Assurance:</strong> Unified standards with local adaptation and continuous improvement</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📈 Scale & Efficiency</h3>
-                            <ul>
-                                <li><strong>Cost Optimization:</strong> 30% reduction in training costs through hybrid model efficiencies</li>
-                                <li><strong>Quality Consistency:</strong> Standardized excellence across all countries while respecting local contexts</li>
-                                <li><strong>Rapid Deployment:</strong> Accelerated implementation timelines through proven systems and processes</li>
-                                <li><strong>Sustainability:</strong> Self-sustaining operations with diversified funding and strong government ownership</li>
-                                <li><strong>Innovation Pipeline:</strong> Continuous development of new training approaches and technologies</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 Long-term Vision Achievement</h3>
-                            <ul>
-                                <li>Rwanda established as continental digital health training center of excellence</li>
-                                <li>22 countries with fully operational, sustainable health workforce development programs</li>
-                                <li>6,000+ certified health workers and 400+ HIC staff contributing to improved health outcomes</li>
-                                <li>Strong networks enabling peer learning, innovation, and knowledge sharing</li>
-                                <li>Evidence-based model available for replication in additional African countries</li>
                             </ul>
                         </div>
                     `
