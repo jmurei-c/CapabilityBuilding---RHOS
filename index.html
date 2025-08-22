@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete RHOS Capability Building Coordination Flow</title>
+    <title>Complete HOS Capability Building Coordination Flow</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Lato, sans-serif;
             margin: 0;
             padding: 20px;
             background: linear-gradient(135deg, #1e3a8a 0%, #06b6d4 100%);
@@ -72,6 +73,7 @@
             border-top: 4px solid;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
+            position: relative;
         }
         .phase-card:hover {
             transform: translateY(-5px);
@@ -125,6 +127,7 @@
             border-left: 4px solid;
             cursor: pointer;
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
         }
         .ecosystem-component:hover {
             transform: translateY(-3px);
@@ -135,6 +138,7 @@
         .component-country { border-left-color: #10b981; }
         .component-admin { border-left-color: #06b6d4; }
         .component-fionet { border-left-color: #ef4444; }
+        .component-hiring { border-left-color: #8b5cf6; }
         .component-title {
             font-weight: bold;
             color: #1e3a8a;
@@ -171,6 +175,12 @@
             padding: 15px 0;
             border-bottom: 1px solid #ecf0f1;
             align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            position: relative;
+        }
+        .matrix-row:hover {
+            background-color: #f8f9fa;
         }
         .matrix-row:last-child {
             border-bottom: none;
@@ -219,6 +229,13 @@
             padding: 15px;
             border-radius: 10px;
             text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .path-step:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
         }
         .step-icon {
             font-size: 2em;
@@ -236,7 +253,7 @@
         }
         .metrics-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
             gap: 20px;
             margin-top: 15px;
         }
@@ -248,14 +265,20 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
         .metric-number {
-            font-size: 2em;
+            font-size: 1.8em;
             font-weight: bold;
             color: #10b981;
             margin-bottom: 5px;
         }
         .metric-label {
             color: #1e3a8a;
-            font-size: 0.9em;
+            font-size: 0.85em;
+            line-height: 1.3;
+        }
+        .metric-timeline {
+            font-size: 0.75em;
+            color: #666;
+            margin-top: 5px;
         }
         .arrow-flow {
             text-align: center;
@@ -352,6 +375,43 @@
             color: #1e3a8a;
             margin-bottom: 5px;
         }
+        .jd-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .jd-item {
+            background: #f1f5f9;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid #8b5cf6;
+        }
+        .jd-title {
+            font-weight: bold;
+            color: #1e3a8a;
+            margin-bottom: 8px;
+        }
+        .jd-placeholder {
+            color: #666;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+        .readiness-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        .readiness-item {
+            background: #f8fafc;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 3px solid;
+        }
+        .readiness-high { border-left-color: #10b981; }
+        .readiness-medium { border-left-color: #f59e0b; }
+        .readiness-low { border-left-color: #ef4444; }
         .clickable-hint {
             position: absolute;
             top: 10px;
@@ -365,14 +425,16 @@
             transition: opacity 0.3s ease;
         }
         .phase-card:hover .clickable-hint,
-        .ecosystem-component:hover .clickable-hint {
+        .ecosystem-component:hover .clickable-hint,
+        .path-step:hover .clickable-hint,
+        .matrix-row:hover .clickable-hint {
             opacity: 1;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>RHOS Capability Building Coordination Flow Aka SAND HOS Academy</h1>
+        <h1>HOS Capability Building Coordination Flow Aka SAND HOS Academy</h1>
         
         <div class="coordinator-role">
             <div class="coordinator-title">CENTRAL TEAM ROLE</div>
@@ -385,34 +447,34 @@
         <div class="flow-section">
             <div class="flow-title">🔄 4-Phase Implementation Coordination (Per Country)</div>
             <div class="phase-container">
-                <div class="phase-card phase-1" onclick="openModal('phase1')" data-phase="phase1">
+                <div class="phase-card phase-1" onclick="openModal('phase1')">
                     <div class="clickable-hint">Click for details</div>
                     <div class="phase-number">1</div>
                     <div class="phase-title">Assessment & Adaptation</div>
                     <div class="phase-timeline">xy months</div>
                     <div class="phase-activities">
-                        • Leverage Rwanda's Umuko Academy's Help Center as template<br>
-                        • Adapt existing 7-Hub curriculum to local context<br>
+                        • Leverage Rwanda's Academy Help Center as template<br>
+                        • Adapt existing 7-Pod (hubs/teams/departments) curriculum to local context<br>
                         • Map stakeholder ecosystem using proven models<br>
                         • Customize training materials for local languages
                     </div>
                 </div>
                 
-                <div class="phase-card phase-2" onclick="openModal('phase2')" data-phase="phase2">
+                <div class="phase-card phase-2" onclick="openModal('phase2')">
                     <div class="clickable-hint">Click for details</div>
                     <div class="phase-number">2</div>
                     <div class="phase-title">Rapid Deployment</div>
                     <div class="phase-timeline">xy months</div>
                     <div class="phase-activities">
                         • Deploy proven country-specific HOS Help Center model<br>
-                        • Core teams trained at Proposed Digital Health Academy - Rwanda<br>
-                        • Activate operational Umuko HP Prime Certification system<br>
-                        • Train master trainers using proposed central academy ToT framework<br>
-                        • Launch pilot with xy facilities using 12-week certification timeline
+                        • Core teams trained at Digital Health Academy - Rwanda<br>
+                        • Activate operational HOS Professional Development Program<br>
+                        • Execute MOH hiring for 8 critical roles<br>
+                        • Launch pilot with xy facilities using 12-week program timeline
                     </div>
                 </div>
                 
-                <div class="phase-card phase-3" onclick="openModal('phase3')" data-phase="phase3">
+                <div class="phase-card phase-3" onclick="openModal('phase3')">
                     <div class="clickable-hint">Click for details</div>
                     <div class="phase-number">3</div>
                     <div class="phase-title">Scale & Stabilize</div>
@@ -420,12 +482,12 @@
                     <div class="phase-activities">
                         • Full rollout to xy+ facilities<br>
                         • Multi-modal training delivery<br>
-                        • Digital certification system launch<br>
+                        • Digital development system launch<br>
                         • Performance monitoring & QA
                     </div>
                 </div>
                 
-                <div class="phase-card phase-4" onclick="openModal('phase4')" data-phase="phase4">
+                <div class="phase-card phase-4" onclick="openModal('phase4')">
                     <div class="clickable-hint">Click for details</div>
                     <div class="phase-number">4</div>
                     <div class="phase-title">Handover & Sustain</div>
@@ -446,13 +508,13 @@
             <div class="ecosystem-grid">
                 <div class="ecosystem-component component-umuko" onclick="openModal('digitalAcademy')">
                     <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">🏛️ Proposed Digital Health Academy - Rwanda (Central Excellence Hub)</div>
+                    <div class="component-title">🏛️ Digital Health Academy - Rwanda (Central Excellence Hub)</div>
                     <div class="component-details">
-                        <strong>Central Training Campus:</strong> Masaka Medical Hub, Kigali<br>
-                        <strong>Capacity:</strong> 6,000+ health workers + 400 HIC staff across Africa<br>
+                        <strong>Central Training Campus:</strong> Virtual + Leased Spaces transitioning to Masaka Medical Hub<br>
+                        <strong>Capacity:</strong> 6,000+ health workers + 500+ data/tech professionals across Africa<br>
                         <strong>Core Function:</strong> Master trainer development, culture alignment, quality standards<br>
-                        <strong>Model:</strong> 3-tier cascade - Central training → Master trainers → Local delivery<br>
-                        <strong>Facilities:</strong> Academy + Model Clinic + Accommodation (150 trainees)
+                        <strong>Model:</strong> Mixed SAND + External faculty for comprehensive coverage<br>
+                        <strong>Operations:</strong> Virtual + Physical training with specialized partnerships
                     </div>
                 </div>
                 
@@ -472,7 +534,7 @@
                     <div class="clickable-hint">Click for details</div>
                     <div class="component-title">📚 Hybrid Content Management System</div>
                     <div class="component-details">
-                        <strong>Central Repository:</strong> Proposed Digital Health Academy curriculum library<br>
+                        <strong>Central Repository:</strong> Digital Health Academy curriculum library<br>
                         <strong>Local Adaptation:</strong> Country-specific content versions<br>
                         <strong>Version Control:</strong> Real-time updates and synchronization<br>
                         <strong>Multi-format:</strong> Documents, videos, assessments<br>
@@ -484,9 +546,9 @@
                     <div class="clickable-hint">Click for details</div>
                     <div class="component-title">🎯 Cascaded Training Delivery Model</div>
                     <div class="component-details">
-                        <strong>Tier 1 - Central:</strong> Core teams trained at Proposed Digital Health Academy<br>
+                        <strong>Tier 1 - Central:</strong> Core teams trained at Digital Health Academy<br>
                         <strong>Tier 2 - Regional:</strong> Master trainers deploy in-country<br>
-                        <strong>Tier 3 - Local:</strong> 7 Hubs + 4-Tier health system cascade<br>
+                        <strong>Tier 3 - Local:</strong> 7 Pods (hubs/teams/departments) + 4-Tier health system cascade<br>
                         <strong>Tier 4 - Digital:</strong> Remote support and continuous learning<br>
                         <strong>Integration:</strong> TalentLMS + ClassMarker + Credly + local platforms
                     </div>
@@ -494,22 +556,23 @@
             </div>
         </div>
 
-        <!-- Advanced Certification System -->
+        <!-- Capacity Building System -->
         <div class="flow-section">
-            <div class="flow-title">🏆 World-Class Certification Infrastructure (Operational)</div>
+            <div class="flow-title">🏆 Capacity Building Infrastructure (Operational)</div>
             <div class="ecosystem-grid">
-                <div class="ecosystem-component component-cert">
-                    <div class="component-title">🎖️ Four-Tier Credentialing System</div>
+                <div class="ecosystem-component component-cert" onclick="openModal('alxCertification')">
+                    <div class="clickable-hint">Click for details</div>
+                    <div class="component-title">🎖️ Certificate of Completion - ALX-Style</div>
                     <div class="component-details">
-                        <strong>Tier 1:</strong> Certificate of Completion (Basic participation)<br>
-                        <strong>Tier 2:</strong> Micro-credentials/Digital Badges (Skill mastery)<br>
-                        <strong>Tier 3:</strong> Professional Certification (Role competency)<br>
-                        <strong>Tier 4:</strong> Master Trainer Certification (Training delivery)<br>
-                        <strong>Proven Track:</strong> Head Nurse Professional Certification (40 hours, 6 modules)
+                        <strong>Recognition:</strong> Professional certificate upon successful program completion<br>
+                        <strong>Portfolio-Based:</strong> Practical project demonstration and peer review<br>
+                        <strong>Industry Alignment:</strong> Skills-focused assessment with real-world application<br>
+                        <strong>Proven Track:</strong> Based on ALX methodology with health sector adaptation
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-admin">
+                <div class="ecosystem-component component-admin" onclick="openModal('techStack')">
+                    <div class="clickable-hint">Click for details</div>
                     <div class="component-title">💻 Integrated Technology Stack</div>
                     <div class="component-details">
                         <strong>Learning Management:</strong> TalentLMS (course delivery, progress tracking)<br>
@@ -520,76 +583,38 @@
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-fionet">
-                    <div class="component-title">⚖️ Rigorous Assessment Framework</div>
+                <div class="ecosystem-component component-hiring" onclick="openModal('mohHiring')">
+                    <div class="clickable-hint">Click for details</div>
+                    <div class="component-title">👥 MOH Strategic Hiring Program</div>
                     <div class="component-details">
-                        <strong>Multi-Method Assessment:</strong> Knowledge (25%) + Practical (35%) + Portfolio (25%) + Workplace (15%)<br>
-                        <strong>OSCE Format:</strong> Objective Structured Clinical Examination with standardized checklists<br>
-                        <strong>Supervisor Validation:</strong> Workplace performance evaluation and community feedback<br>
-                        <strong>Continuous Monitoring:</strong> 6-month post-training follow-up assessment
+                        <strong>8 Critical Roles:</strong> Data Engineers, Analysts, Platform Engineers, BI Architects<br>
+                        <strong>Leadership Positions:</strong> Blueroom Lead, Tech Operations Lead, User Satisfaction Lead<br>
+                        <strong>L&D Specialist:</strong> Learning & Development coordination<br>
+                        <strong>Training Model:</strong> Academy-based onboarding with SAND trainer shadowing<br>
+                        <strong>Support:</strong> Comprehensive job descriptions and competency frameworks ready
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-country">
+                <div class="ecosystem-component component-country" onclick="openModal('mohGovernance')">
+                    <div class="clickable-hint">Click for details</div>
                     <div class="component-title">🏛️ MOH-Led Governance</div>
                     <div class="component-details">
-                        <strong>Governance Structure:</strong> As Per Country guidelines
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="arrow-flow">⬇️ ⬇️ ⬇️</div>
-
-        <!-- Ecosystem Components -->
-        <div class="flow-section">
-            <div class="flow-title">🏗️ Capability Building Ecosystem Components</div>
-            <div class="ecosystem-grid">
-                <div class="ecosystem-component component-umuko">
-                    <div class="component-title">🎓 HOS Training Academy (Foundation)</div>
-                    <div class="component-details">
-                        <strong>4-Tier System:</strong> CHWs → Health Posts → Health Centers → Hospitals<br>
-                        <strong>7 Training Hubs:</strong> Clinical, Finance, People, Inventory, Facilities, Data & Tech, Operations<br>
-                        <strong>Proven Model:</strong> xy HP Prime → xy+ HP rollout
+                        <strong>Governance Structure:</strong> As Per Country guidelines<br>
+                        <strong>Specialized Training:</strong> FIELD and other partners for gaps SAND cannot cover<br>
+                        <strong>Local Partnerships:</strong> Country launchers identify specialized training providers<br>
+                        <strong>Sustainability:</strong> 12-month transition to full MOH ownership
                     </div>
                 </div>
                 
-                <div class="ecosystem-component component-cert">
-                    <div class="component-title">🏆 Umuko HP Prime Certification Program (Operational)</div>
+                <div class="ecosystem-component component-fionet" onclick="openModal('impactMeasurement')">
+                    <div class="clickable-hint">Click for details</div>
+                    <div class="component-title">📊 Impact Measurement & Value Demonstration</div>
                     <div class="component-details">
-                        <strong>Four-Tier System:</strong> Completion Certificate → Micro-credentials → Professional Certification → Master Trainer<br>
-                        <strong>Technology Stack:</strong> TalentLMS + ClassMarker + Credly + Google Forms/AppSheet + Looker Studio<br>
-                        <strong>Governance:</strong> As Per Country guidelines<br>
-                        <strong>Assessment:</strong> Multi-method (Knowledge + Practical + Portfolio + Workplace Performance)<br>
-                        <strong>Financial Model:</strong> As Per Country guidelines<br>
-                        <strong>Pilot Ready:</strong> Head Nurse Professional Certification (40 hours, 6 modules)
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-country">
-                    <div class="component-title">🌍 Country Adaptation (Scalability)</div>
-                    <div class="component-details">
-                        <strong>Local Needs Assessment:</strong> South Sudan 7-week model<br>
-                        <strong>Cultural Adaptation:</strong> Language, context, stakeholder alignment<br>
-                        <strong>Resource Planning:</strong> Budget allocation, local partnerships
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-admin">
-                    <div class="component-title">⚙️ Admin Support (Operations)</div>
-                    <div class="component-details">
-                        <strong>L&D Associate:</strong> Platform management, training coordination<br>
-                        <strong>Training Requests:</strong> Needs identification and prioritization<br>
-                        <strong>Hub Check-ins:</strong> Weekly progress monitoring
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-fionet">
-                    <div class="component-title">💻 Fionet Training (Platform-Specific)</div>
-                    <div class="component-details">
-                        <strong>2-Day Intensive:</strong> Clinical services, digitization, IT equipment<br>
-                        <strong>Structured Assessment:</strong> Competency validation and reporting<br>
-                        <strong>Integration Focus:</strong> RHOS platform proficiency
+                        <strong>Beneficiary Outcomes:</strong> Health worker performance improvements and patient care metrics<br>
+                        <strong>System Efficiency:</strong> Facility operational improvements and cost savings measurement<br>
+                        <strong>Data Analytics:</strong> Real-time dashboards tracking training effectiveness and ROI<br>
+                        <strong>Funder Reporting:</strong> Comprehensive impact reports demonstrating SAND's value addition<br>
+                        <strong>Evidence Generation:</strong> Rigorous evaluation frameworks for continuous improvement
                     </div>
                 </div>
             </div>
@@ -601,68 +626,46 @@
         <div class="coordination-matrix">
             <div class="matrix-header">Who Does What When - Coordination Matrix</div>
             <div class="matrix-content">
-                <div class="matrix-row">
-                    <div class="matrix-who">Central Team</div>
+                <div class="matrix-row" onclick="openModal('digitalAcademyMatrix')">
+                    <div class="clickable-hint">Click for details</div>
+                    <div class="matrix-who">Digital Health Academy</div>
                     <div class="matrix-what">
-                        • Coordinate deployment of operational HOS Help Center and Umuko HP Prime Certification system across 9 countries<br>
-                        • Ensure consistent adaptation of integrated technology stack (TalentLMS + ClassMarker + Credly + Analytics)<br>
-                        • Establish MOH-led Certification Boards as per country guidelines<br>
-                        • Deploy multi-method assessment protocols (Knowledge + Practical + Portfolio + Workplace)<br>
-                        • Facilitate 12-week pilot implementation using Head Nurse Professional Certification framework<br>
+                        • Coordinate deployment of operational HOS Help Center and Professional Development Program across 22 countries<br>
+                        • Identify and assign SAND trainers for MOH staff training and shadowing programs<br>
+                        • Serve as central excellence hub for culture alignment and quality standards<br>
+                        • Train core teams from all 22 countries using mixed SAND + external faculty model<br>
+                        • Onboard and train hired MOH staff (8 critical roles per country)<br>
+                        • Deploy ALX-style certification protocols with portfolio-based assessment<br>
+                        • Facilitate 12-week pilot implementation using proven frameworks<br>
                         • Monitor quality metrics and implementation progress
                     </div>
                     <div class="matrix-when">Continuous</div>
-                    <div class="matrix-outcome">Systematic Success</div>
+                    <div class="matrix-outcome">Excellence & Coordination</div>
                 </div>
                 
-                <div class="matrix-row">
-                    <div class="matrix-who">Proposed Digital Health Academy - Rwanda</div>
-                    <div class="matrix-what">
-                        • Serve as central excellence hub for culture alignment and quality standards<br>
-                        • Train core teams from all 22 countries (6,000+ health workers + 400 HIC staff)<br>
-                        • Develop and deliver Master Trainer certification programs<br>
-                        • Provide advanced certification and specialized training<br>
-                        • Maintain curriculum standards and best practices repository<br>
-                        • Support remote learning and continuous professional development
-                    </div>
-                    <div class="matrix-when">Years 1-5</div>
-                    <div class="matrix-outcome">Excellence Standards</div>
-                </div>
-                
-                <div class="matrix-row">
+                <div class="matrix-row" onclick="openModal('hosAcademyTeams')">
+                    <div class="clickable-hint">Click for details</div>
                     <div class="matrix-who">HOS Academy Teams (Country-Level)</div>
                     <div class="matrix-what">
                         • Manage country-specific HOS Help Center platforms and content<br>
-                        • Deliver localized 7-Hub training curriculum adapted from central standards<br>
-                        • Deploy master trainers certified at Proposed Digital Health Academy<br>
-                        • Support rapid local deployment using hybrid central-local model<br>
+                        • Deliver localized 7-Pod (hubs/teams/departments) training curriculum adapted from central standards<br>
+                        • Deploy master trainers certified at Digital Health Academy<br>
+                        • Coordinate with FIELD and other specialized training providers<br>
                         • Transfer operational knowledge to local teams with central quality assurance
                     </div>
                     <div class="matrix-when">Months 2-18</div>
                     <div class="matrix-outcome">Local Competence</div>
                 </div>
                 
-                <div class="matrix-row">
-                    <div class="matrix-who">Umuko HP Prime Certification Program</div>
-                    <div class="matrix-what">
-                        • Deploy operational 4-tier certification system (Completion → Micro-credentials → Professional → Master Trainer)<br>
-                        • Implement integrated technology stack (TalentLMS + ClassMarker + Credly + Analytics)<br>
-                        • Establish MOH-led Certification Boards as per country guidelines<br>
-                        • Execute multi-method assessment protocols (Knowledge + Practical + Portfolio + Workplace)<br>
-                        • Launch Head Nurse Professional Certification using 12-week pilot framework<br>
-                        • Ensure financial sustainability as per country guidelines
-                    </div>
-                    <div class="matrix-when">Months 3-24</div>
-                    <div class="matrix-outcome">Verified Competence</div>
-                </div>
-                
-                <div class="matrix-row">
+                <div class="matrix-row" onclick="openModal('mohTeams')">
+                    <div class="clickable-hint">Click for details</div>
                     <div class="matrix-who">Country MOH Teams</div>
                     <div class="matrix-what">
-                        • Participate in needs assessment<br>
-                        • Provide local context and requirements<br>
-                        • Engage in training and capacity building<br>
-                        • Take ownership of systems and processes
+                        • Execute strategic hiring for 8 critical data and technology roles<br>
+                        • Participate in needs assessment and provide local context<br>
+                        • Engage in Academy training and SAND trainer shadowing programs<br>
+                        • Coordinate with country launchers for specialized training identification<br>
+                        • Take ownership of systems and processes within 12 months
                     </div>
                     <div class="matrix-when">Months 1-24</div>
                     <div class="matrix-outcome">Local Ownership</div>
@@ -672,53 +675,59 @@
 
         <!-- Critical Path -->
         <div class="critical-path">
-            <div class="path-title">🎯 Critical Success Path - Pragmatic Implementation Approach</div>
+            <div class="path-title">🎯 Critical Success Path - Country Deployment Workplan</div>
             <div class="path-steps">
-                <div class="path-step">
-                    <div class="step-icon">🏛️</div>
-                    <div class="step-text">
-                        <strong>Ideal Step 1:</strong><br>
-                        Establish Proposed Digital Health Academy - Rwanda as central excellence hub (Work in Progress)
-                    </div>
-                </div>
-                
-                <div class="path-step">
+                <div class="path-step" onclick="openModal('step1Assessment')">
+                    <div class="clickable-hint">Click for workplan</div>
                     <div class="step-icon">📋</div>
                     <div class="step-text">
-                        <strong>Current Step 1:</strong><br>
-                        Leverage proven HOS systems and 7-Hub framework for immediate country replication
+                        <strong>Step 1:</strong><br>
+                        Assessment & Stakeholder Alignment (Readiness-Based Approach)
                     </div>
                 </div>
                 
-                <div class="path-step">
-                    <div class="step-icon">🎓</div>
+                <div class="path-step" onclick="openModal('step2Hiring')">
+                    <div class="clickable-hint">Click for workplan</div>
+                    <div class="step-icon">👥</div>
                     <div class="step-text">
                         <strong>Step 2:</strong><br>
-                        Train core teams using existing systems, transitioning to central academy when available
+                        MOH Strategic Hiring & SAND Trainer Assignment
                     </div>
                 </div>
                 
-                <div class="path-step">
-                    <div class="step-icon">🗺️</div>
+                <div class="path-step" onclick="openModal('step3Training')">
+                    <div class="clickable-hint">Click for workplan</div>
+                    <div class="step-icon">🎓</div>
                     <div class="step-text">
                         <strong>Step 3:</strong><br>
-                        Adapt content and systems to country-specific languages and contexts
+                        Academy Training & Specialized Partnerships
                     </div>
                 </div>
                 
-                <div class="path-step">
-                    <div class="step-icon">⚡</div>
-                    <div class="step-text">
-                        <strong>Step 4:</strong><br>
-                        Deploy operational certification systems with evolving standards and local delivery
-                    </div>
-                </div>
-                
-                <div class="path-step">
+                <div class="path-step" onclick="openModal('step4Deployment')">
+                    <div class="clickable-hint">Click for workplan</div>
                     <div class="step-icon">🚀</div>
                     <div class="step-text">
+                        <strong>Step 4:</strong><br>
+                        Local Deployment & Help Center Launch
+                    </div>
+                </div>
+                
+                <div class="path-step" onclick="openModal('step5Scale')">
+                    <div class="clickable-hint">Click for workplan</div>
+                    <div class="step-icon">📈</div>
+                    <div class="step-text">
                         <strong>Step 5:</strong><br>
-                        Scale hybrid model, transitioning to full central-local integration as academy develops
+                        Scale Operations & Quality Assurance
+                    </div>
+                </div>
+                
+                <div class="path-step" onclick="openModal('step6Handover')">
+                    <div class="clickable-hint">Click for workplan</div>
+                    <div class="step-icon">🤝</div>
+                    <div class="step-text">
+                        <strong>Step 6:</strong><br>
+                        Handover & Sustainability Transition
                     </div>
                 </div>
             </div>
@@ -726,36 +735,42 @@
 
         <!-- Success Metrics -->
         <div class="success-metrics">
-            <div class="flow-title" style="color: #10b981; margin-top: 0;">📊 Success Metrics Dashboard (Placeholders)</div>
+            <div class="flow-title" style="color: #10b981; margin-top: 0;">📊 Success Metrics Dashboard</div>
             <div class="metrics-grid">
                 <div class="metric-card">
-                    <div class="metric-number">22</div>
-                    <div class="metric-label">Countries Coordinated</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-number">24</div>
-                    <div class="metric-label">Months to MOH Ownership</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-number">6,000+</div>
+                    <div class="metric-number">500 → 100K+</div>
                     <div class="metric-label">Healthcare Workers Trained</div>
+                    <div class="metric-timeline">2025 → 2028</div>
                 </div>
                 
                 <div class="metric-card">
-                    <div class="metric-number">400+</div>
-                    <div class="metric-label">HIC Staff Certified</div>
+                    <div class="metric-number">50+ → 500+</div>
+                    <div class="metric-label">Data & Technology Professionals Trained</div>
+                    <div class="metric-timeline">2025 → 2028</div>
                 </div>
                 
                 <div class="metric-card">
-                    <div class="metric-number">1</div>
-                    <div class="metric-label">Proposed Central Excellence Hub</div>
+                    <div class="metric-number">2 → 22</div>
+                    <div class="metric-label">HICs Fully MOH-Owned Within 12 Months</div>
+                    <div class="metric-timeline">2025 → 2028</div>
                 </div>
                 
                 <div class="metric-card">
-                    <div class="metric-number">30%</div>
-                    <div class="metric-label">Cost Reduction via Hybrid Model</div>
+                    <div class="metric-number">80%</div>
+                    <div class="metric-label">Return Trainee NPS Score</div>
+                    <div class="metric-timeline">2025 & 2028 Target</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-number">176</div>
+                    <div class="metric-label">MOH Critical Roles Hired (8 per country)</div>
+                    <div class="metric-timeline">Across 22 Countries</div>
+                </div>
+                
+                <div class="metric-card">
+                    <div class="metric-number">22</div>
+                    <div class="metric-label">Countries with Operational HOS</div>
+                    <div class="metric-timeline">By 2028</div>
                 </div>
             </div>
         </div>
@@ -800,7 +815,7 @@
                                 </div>
                                 <div class="detail-item">
                                     <div class="detail-label">Curriculum Adaptation</div>
-                                    Localize existing 7-Hub training materials for country-specific health challenges and cultural context.
+                                    Localize existing 7-Pod (hubs/teams/departments) training materials for country-specific health challenges and cultural context.
                                 </div>
                                 <div class="detail-item">
                                     <div class="detail-label">Language Localization</div>
@@ -823,55 +838,751 @@
                             <ul>
                                 <li>Completed country assessment report with actionable recommendations</li>
                                 <li>Signed partnership agreements with MOH and key stakeholders</li>
-                                <li>Localized training curriculum for all 7 hubs</li>
+                                <li>Localized training curriculum for all 7 pods (hubs/teams/departments)</li>
                                 <li>Technology infrastructure requirements and implementation plan</li>
                                 <li>Identified pilot facilities and initial trainee cohorts</li>
                             </ul>
                         </div>
                     `
                 },
-                phase2: {
-                    title: "Phase 2: Rapid Deployment",
+                techStack: {
+                    title: "Integrated Technology Stack",
                     content: `
                         <div class="modal-section">
-                            <h3>🚀 Deployment Strategy</h3>
+                            <h3>💻 Comprehensive Platform Integration</h3>
                             <div class="detail-grid">
                                 <div class="detail-item">
-                                    <div class="detail-label">Central Training</div>
-                                    Core country teams receive intensive training at the Proposed Digital Health Academy in Rwanda.
+                                    <div class="detail-label">TalentLMS - Learning Management</div>
+                                    Course delivery, progress tracking, learning pathway management, and student analytics.
                                 </div>
                                 <div class="detail-item">
-                                    <div class="detail-label">Platform Deployment</div>
-                                    Launch country-specific HOS Help Center based on proven Rwanda model.
+                                    <div class="detail-label">ClassMarker - Secure Assessment</div>
+                                    Browser lockdown, automated scoring, proctoring capabilities, and anti-cheating measures.
                                 </div>
                                 <div class="detail-item">
-                                    <div class="detail-label">Master Trainer Development</div>
-                                    Train local master trainers using centralized ToT framework for sustainable delivery.
+                                    <div class="detail-label">Credly - Digital Credentials</div>
+                                    Professional credential management and employer verification systems.
                                 </div>
                                 <div class="detail-item">
-                                    <div class="detail-label">Pilot Implementation</div>
-                                    Launch 12-week certification program with selected facilities.
+                                    <div class="detail-label">Google Forms/AppSheet - Field Assessment</div>
+                                    Mobile compatibility, offline capability, real-time data collection, and automated workflows.
                                 </div>
                             </div>
                         </div>
                         <div class="modal-section">
-                            <h3>🎓 Training Components</h3>
+                            <h3>📊 Analytics & Reporting</h3>
                             <ul>
-                                <li><strong>Digital Health Skills:</strong> EHR systems, data collection, telemedicine platforms</li>
-                                <li><strong>7-Hub Curriculum:</strong> Clinical, Finance, People, Inventory, Facilities, Data & Tech, Operations</li>
-                                <li><strong>Certification System:</strong> 4-tier credentialing from completion certificates to master trainer status</li>
-                                <li><strong>Assessment Methods:</strong> Knowledge tests, practical evaluations, portfolio development, workplace performance</li>
-                                <li><strong>Technology Integration:</strong> TalentLMS, ClassMarker, Credly, Google Forms/AppSheet</li>
+                                <li><strong>Looker Studio:</strong> Real-time dashboards, training progress visualization, performance analytics</li>
+                                <li><strong>eOps Integration:</strong> Operational metrics, facility performance tracking, ROI measurement</li>
+                                <li><strong>Automated Reporting:</strong> Weekly progress reports, monthly performance summaries, annual impact assessments</li>
+                                <li><strong>Predictive Analytics:</strong> Early warning systems for training gaps and performance issues</li>
+                                <li><strong>Custom Dashboards:</strong> Role-specific views for trainers, administrators, and policy makers</li>
                             </ul>
                         </div>
                         <div class="modal-section">
-                            <h3>📈 Expected Outcomes</h3>
+                            <h3>🔒 Security & Compliance</h3>
                             <ul>
-                                <li>20-30 master trainers certified per country</li>
-                                <li>Operational country-specific HOS Help Center</li>
-                                <li>50-100 healthcare workers completing pilot certification</li>
-                                <li>Established MOH-led governance structure</li>
-                                <li>Proven local delivery model ready for scale</li>
+                                <li>End-to-end encryption for all data transmission and storage</li>
+                                <li>GDPR and HIPAA compliance for healthcare data protection</li>
+                                <li>Multi-factor authentication and role-based access controls</li>
+                                <li>Regular security audits and penetration testing</li>
+                                <li>Backup and disaster recovery protocols</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📱 Mobile & Accessibility Features</h3>
+                            <ul>
+                                <li>Responsive design for smartphones, tablets, and desktops</li>
+                                <li>Offline content download for low-connectivity environments</li>
+                                <li>Multi-language support with right-to-left text compatibility</li>
+                                <li>Screen reader compatibility and accessibility standards compliance</li>
+                                <li>Low-bandwidth optimization for rural and remote areas</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                mohGovernance: {
+                    title: "MOH-Led Governance Structure",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🏛️ Country-Specific Governance</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Local Leadership</div>
+                                    Each country establishes governance structures aligned with national health policies and regulations.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Specialized Training Coordination</div>
+                                    FIELD and other partners provide training for gaps SAND cannot cover, ensuring comprehensive skill development.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Local Partnerships</div>
+                                    Country launchers work with MOH to identify and engage specialized training providers for complete coverage.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Ownership Transition</div>
+                                    Structured 12-month transition to full MOH ownership and operational independence.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📋 Core Governance Functions</h3>
+                            <ul>
+                                <li><strong>Standards Development:</strong> Establish certification criteria aligned with international best practices</li>
+                                <li><strong>Quality Assurance:</strong> Monitor training quality and assessment rigor across all programs</li>
+                                <li><strong>Partnership Management:</strong> Coordinate with FIELD and specialized training providers</li>
+                                <li><strong>Local Adaptation:</strong> Ensure training programs meet country-specific needs and contexts</li>
+                                <li><strong>Sustainability Planning:</strong> Develop long-term operational and financial sustainability models</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🤝 Specialized Training Ecosystem</h3>
+                            <ul>
+                                <li><strong>FIELD Partnership:</strong> Technical training for areas beyond SAND's core expertise</li>
+                                <li><strong>Local Providers:</strong> Country-specific training organizations identified by launchers</li>
+                                <li><strong>Academic Institutions:</strong> Medical schools and universities for specialized medical training</li>
+                                <li><strong>Professional Associations:</strong> Nursing councils, medical associations for certification alignment</li>
+                                <li><strong>International Partners:</strong> WHO, PEPFAR, and other global health organizations</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>⏰ 12-Month Transition Timeline</h3>
+                            <ul>
+                                <li><strong>Months 1-3:</strong> Governance structure establishment and partnership agreements</li>
+                                <li><strong>Months 4-6:</strong> Staff hiring, training, and system familiarization</li>
+                                <li><strong>Months 7-9:</strong> Gradual responsibility transfer with ongoing support</li>
+                                <li><strong>Months 10-12:</strong> Full operational independence with monitoring and evaluation</li>
+                                <li><strong>Year 2+:</strong> Sustainable operations with periodic best practice sharing</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                helpCenters: {
+                    title: "Country-Specific HOS Help Centers",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🌐 Localized Digital Platforms</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Template Model</div>
+                                    Based on Rwanda's operational help center with proven effectiveness and user engagement.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Platform Technology</div>
+                                    Google Sites platform enabling easy updates, multilingual support, and offline accessibility.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Content Strategy</div>
+                                    Centrally-developed standards adapted to local health priorities, languages, and cultural contexts.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Integration Model</div>
+                                    Seamless connection between central academy standards and local implementation requirements.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📚 Content Categories</h3>
+                            <ul>
+                                <li><strong>Clinical Pod:</strong> Disease management protocols, treatment guidelines, infection prevention</li>
+                                <li><strong>Digital Health:</strong> EHR training, telemedicine, mobile health applications</li>
+                                <li><strong>Operations:</strong> Facility management, supply chain, quality improvement</li>
+                                <li><strong>Finance:</strong> Budget management, revenue cycle, financial reporting</li>
+                                <li><strong>Human Resources:</strong> Staff management, professional development, performance evaluation</li>
+                                <li><strong>Data & Technology:</strong> Health information systems, data analysis, reporting tools</li>
+                                <li><strong>Emergency Preparedness:</strong> Outbreak response, disaster management, crisis communication</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🔄 Continuous Improvement</h3>
+                            <ul>
+                                <li><strong>User Feedback:</strong> Regular surveys and feedback mechanisms from healthcare workers</li>
+                                <li><strong>Performance Analytics:</strong> Usage tracking, completion rates, effectiveness measurements</li>
+                                <li><strong>Content Updates:</strong> Monthly updates based on new evidence and policy changes</li>
+                                <li><strong>Quality Assurance:</strong> Peer review process for all content before publication</li>
+                                <li><strong>Version Control:</strong> Systematic tracking of content changes and improvements</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎯 Success Indicators</h3>
+                            <ul>
+                                <li>Platform accessibility in local languages with cultural adaptation</li>
+                                <li>High user engagement and completion rates across all pods</li>
+                                <li>Improved job performance among users measured through assessments</li>
+                                <li>Reduced training delivery costs while maintaining quality</li>
+                                <li>Enhanced knowledge retention and practical application in workplace</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                contentManagement: {
+                    title: "Hybrid Content Management System",
+                    content: `
+                        <div class="modal-section">
+                            <h3>📊 Centralized Repository</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Central Standards</div>
+                                    Master curriculum library maintained at Digital Health Academy with global best practices.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Local Adaptation</div>
+                                    Country-specific versions incorporating local health priorities, regulations, and cultural considerations.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Version Control</div>
+                                    Real-time synchronization ensuring all countries benefit from improvements while maintaining local relevance.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Quality Assurance</div>
+                                    Systematic review process balancing central standards with local needs and contexts.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>💻 Technology Infrastructure</h3>
+                            <ul>
+                                <li><strong>Google Drive Integration:</strong> Centralized storage with role-based access controls</li>
+                                <li><strong>Collaborative Development:</strong> Real-time editing capabilities for distributed content teams</li>
+                                <li><strong>Multi-Format Support:</strong> Documents, videos, interactive assessments, simulation tools</li>
+                                <li><strong>Mobile Optimization:</strong> Content accessible on smartphones and tablets for field use</li>
+                                <li><strong>Offline Capability:</strong> Downloadable materials for areas with limited internet connectivity</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🔄 Content Development Workflow</h3>
+                            <ul>
+                                <li><strong>Central Development:</strong> Core curriculum created by subject matter experts</li>
+                                <li><strong>Local Review:</strong> Country teams evaluate content for local relevance and accuracy</li>
+                                <li><strong>Adaptation Process:</strong> Modification of content for local languages, laws, and practices</li>
+                                <li><strong>Quality Control:</strong> Peer review and approval process before publication</li>
+                                <li><strong>Feedback Integration:</strong> Continuous improvement based on user experiences and outcomes</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📈 Impact Measurement</h3>
+                            <ul>
+                                <li>Content usage analytics and engagement metrics across all countries</li>
+                                <li>Learning outcome assessments and knowledge retention tracking</li>
+                                <li>Cost-effectiveness of content development and maintenance</li>
+                                <li>Time-to-deployment for new training materials</li>
+                                <li>User satisfaction and content relevance ratings by country and pod</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                trainingDelivery: {
+                    title: "Cascaded Training Delivery Model",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🎯 Four-Tier Delivery System</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Tier 1 - Central</div>
+                                    Core teams receive intensive training at Digital Health Academy for culture alignment and advanced skills.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Tier 2 - Regional</div>
+                                    Certified master trainers (2-3 per country) deploy in-country to establish training programs and local capacity.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Tier 3 - Local</div>
+                                    7-Pod (hubs/teams/departments) curriculum delivered through 4-tier health system cascade.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Tier 4 - Digital</div>
+                                    Continuous remote support, e-learning modules, and ongoing professional development.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🏥 Health System Integration</h3>
+                            <ul>
+                                <li><strong>Hospital Level:</strong> Comprehensive 7-pod training for all departments and specialties</li>
+                                <li><strong>Health Centers:</strong> Focused training on primary care, maternal health, and basic emergency care</li>
+                                <li><strong>Health Posts:</strong> Essential skills for community health workers and basic health services</li>
+                                <li><strong>Community Level:</strong> Training for community health workers on prevention, health promotion, and data collection</li>
+                                <li><strong>District Administration:</strong> Training for health managers on data analysis, planning, and resource allocation</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>💻 Technology Platform Integration</h3>
+                            <ul>
+                                <li><strong>TalentLMS:</strong> Course delivery, progress tracking, and learning pathway management</li>
+                                <li><strong>ClassMarker:</strong> Secure online assessments with browser lockdown and automated scoring</li>
+                                <li><strong>Credly:</strong> Digital credential issuance with professional verification</li>
+                                <li><strong>Google Forms/AppSheet:</strong> Field-based assessments with mobile and offline capabilities</li>
+                                <li><strong>Looker Studio/eOps:</strong> Real-time analytics and performance dashboards</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎓 Training Methodologies</h3>
+                            <ul>
+                                <li><strong>Blended Learning:</strong> Combination of in-person workshops, digital modules, and practical exercises</li>
+                                <li><strong>Competency-Based:</strong> Focus on practical skills and real-world application rather than just knowledge transfer</li>
+                                <li><strong>Peer Learning:</strong> Learning circles and mentorship programs connecting trainees across facilities</li>
+                                <li><strong>Just-in-Time Training:</strong> Quick reference materials and microlearning for immediate job support</li>
+                                <li><strong>Simulation-Based:</strong> Hands-on practice using model clinic and simulation equipment</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                step3Training: {
+                    title: "Step 3: Academy Training & Specialized Partnerships",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🎓 Academy-Based Training Program</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Mixed Faculty Model</div>
+                                    SAND trainers provide core HOS expertise while external specialists cover technical gaps.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">MOH Staff Onboarding</div>
+                                    Comprehensive training for all 8 critical roles with hands-on shadowing programs.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Master Trainer Development</div>
+                                    Certify 2-3 master trainers per country for sustainable local delivery.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Specialized Partnerships</div>
+                                    Engage FIELD and other providers for technical areas beyond SAND capacity.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📋 Training Implementation Timeline</h3>
+                            <ul>
+                                <li><strong>Week 1-2:</strong> MOH staff arrival and Academy orientation program</li>
+                                <li><strong>Week 3-6:</strong> Intensive 7-Pod (hubs/teams/departments) curriculum training</li>
+                                <li><strong>Week 7-8:</strong> SAND trainer shadowing and hands-on practice</li>
+                                <li><strong>Week 9-10:</strong> Specialized training with FIELD or other providers</li>
+                                <li><strong>Week 11-12:</strong> Master trainer certification and country deployment preparation</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🤝 Specialized Training Partnerships</h3>
+                            <ul>
+                                <li><strong>FIELD Partnership:</strong> Advanced technical training for data engineering and platform architecture</li>
+                                <li><strong>Local Medical Schools:</strong> Clinical training and medical protocol updates</li>
+                                <li><strong>Professional Associations:</strong> Certification alignment and continuing education credits</li>
+                                <li><strong>Technology Vendors:</strong> Platform-specific training for specialized software</li>
+                                <li><strong>International Experts:</strong> Guest faculty for specialized topics and best practice sharing</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎯 Training Outcomes</h3>
+                            <ul>
+                                <li>8 MOH critical roles fully trained and competent for independent operation</li>
+                                <li>2-3 certified master trainers ready for country-level training delivery</li>
+                                <li>Comprehensive understanding of HOS systems and local adaptation requirements</li>
+                                <li>Strong network connections with SAND team and international best practices</li>
+                                <li>Clear implementation plan for country-specific deployment and scaling</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                step4Deployment: {
+                    title: "Step 4: Local Deployment & Help Center Launch",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🚀 Country-Specific Deployment</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Help Center Launch</div>
+                                    Deploy localized HOS Help Center with country-specific content and language adaptation.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Pilot Facility Selection</div>
+                                    Launch 12-week pilot program in carefully selected representative health facilities.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Local Training Delivery</div>
+                                    Master trainers begin delivering 7-Pod (hubs/teams/departments) curriculum to health workers.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">System Integration</div>
+                                    Integrate HOS systems with existing national health information systems and workflows.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📅 Deployment Timeline</h3>
+                            <ul>
+                                <li><strong>Month 1:</strong> Help Center platform setup and content localization</li>
+                                <li><strong>Month 2:</strong> Pilot facility selection and stakeholder engagement</li>
+                                <li><strong>Month 3:</strong> Initial training cohort launch with 50-100 health workers</li>
+                                <li><strong>Month 4-6:</strong> Intensive training delivery and continuous monitoring</li>
+                                <li><strong>Month 7-9:</strong> Pilot evaluation, feedback integration, and system refinement</li>
+                                <li><strong>Month 10-12:</strong> Preparation for scale-up based on pilot learnings</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🏥 Pilot Facility Strategy</h3>
+                            <ul>
+                                <li><strong>Representative Selection:</strong> Mix of urban/rural, different service levels, varying capacity</li>
+                                <li><strong>Leadership Engagement:</strong> Strong facility management commitment and support</li>
+                                <li><strong>Baseline Assessment:</strong> Pre-training performance measurement for impact evaluation</li>
+                                <li><strong>Intensive Support:</strong> Weekly check-ins and real-time problem resolution</li>
+                                <li><strong>Success Documentation:</strong> Detailed case studies for scale-up planning</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📊 Monitoring & Evaluation</h3>
+                            <ul>
+                                <li>Real-time tracking of training completion rates and user engagement</li>
+                                <li>Weekly progress reports to Digital Health Academy and MOH leadership</li>
+                                <li>Monthly facility performance assessments and improvement tracking</li>
+                                <li>Quarterly stakeholder feedback sessions and program adjustments</li>
+                                <li>Continuous documentation of challenges, solutions, and best practices</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                step5Scale: {
+                    title: "Step 5: Scale Operations & Quality Assurance",
+                    content: `
+                        <div class="modal-section">
+                            <h3>📈 National Scale-Up Strategy</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Phased Expansion</div>
+                                    Systematic rollout from pilot facilities to full national coverage based on readiness and capacity.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Quality Standards</div>
+                                    Maintain consistent training quality and certification standards across all facilities.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Resource Optimization</div>
+                                    Efficient deployment of master trainers and training resources across the country.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Performance Monitoring</div>
+                                    Comprehensive tracking of training effectiveness and facility improvement metrics.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎯 Scale-Up Implementation</h3>
+                            <ul>
+                                <li><strong>Geographic Expansion:</strong> Province-by-province rollout based on infrastructure readiness</li>
+                                <li><strong>Facility Tiers:</strong> Hospitals → Health Centers → Health Posts → Community level</li>
+                                <li><strong>Training Capacity:</strong> Expand from 2-3 to full master trainer network as needed</li>
+                                <li><strong>Technology Infrastructure:</strong> Ensure connectivity and platform access at all levels</li>
+                                <li><strong>Local Partnerships:</strong> Strengthen relationships with medical schools and professional associations</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🔍 Quality Assurance Framework</h3>
+                            <ul>
+                                <li><strong>Standardized Assessments:</strong> Consistent evaluation criteria across all training programs</li>
+                                <li><strong>Regular Audits:</strong> Monthly quality checks and annual comprehensive evaluations</li>
+                                <li><strong>Trainer Certification:</strong> Ongoing professional development for master trainers</li>
+                                <li><strong>Feedback Integration:</strong> Systematic collection and integration of learner and facility feedback</li>
+                                <li><strong>Continuous Improvement:</strong> Regular curriculum updates based on performance data and outcomes</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📊 Performance Metrics</h3>
+                            <ul>
+                                <li>Training completion rates and certification achievement across all facilities</li>
+                                <li>Health facility performance improvements and operational efficiency gains</li>
+                                <li>Patient care quality indicators and satisfaction scores</li>
+                                <li>Cost-effectiveness analysis and return on investment measurement</li>
+                                <li>Sustainability indicators and local capacity development progress</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                step6Handover: {
+                    title: "Step 6: Handover & Sustainability Transition",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🤝 12-Month Transition Strategy</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Gradual Ownership Transfer</div>
+                                    Systematic transfer of all operations, systems, and governance to Ministry of Health within 12 months.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Financial Sustainability</div>
+                                    Establish self-sustaining revenue models through government funding and program fees.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Local Capacity</div>
+                                    Ensure complete local competency for program management and continuous improvement.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Knowledge Transfer</div>
+                                    Comprehensive documentation and knowledge transfer to local teams for sustainability.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📅 Handover Timeline</h3>
+                            <ul>
+                                <li><strong>Months 1-3:</strong> Joint management and gradual responsibility transfer</li>
+                                <li><strong>Months 4-6:</strong> MOH-led operations with ongoing SAND advisory support</li>
+                                <li><strong>Months 7-9:</strong> Independent MOH operations with quarterly check-ins</li>
+                                <li><strong>Months 10-12:</strong> Full independence with annual best practice sharing</li>
+                                <li><strong>Year 2+:</strong> Autonomous operations with regional learning network participation</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>💰 Financial Sustainability Models</h3>
+                            <ul>
+                                <li><strong>Government Funding:</strong> MOH budget allocation for ongoing training and operations</li>
+                                <li><strong>Training Fees:</strong> Sustainable fee structure for certification programs</li>
+                                <li><strong>International Partnerships:</strong> Continued support from development partners</li>
+                                <li><strong>Revenue Generation:</strong> Training services for private sector and neighboring countries</li>
+                                <li><strong>Cost Optimization:</strong> Efficient resource utilization and technology leverage</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🌍 Regional Learning Network</h3>
+                            <ul>
+                                <li><strong>Best Practice Sharing:</strong> Regular knowledge exchange with other countries</li>
+                                <li><strong>Peer Support:</strong> Mentorship relationships between established and new programs</li>
+                                <li><strong>Innovation Pipeline:</strong> Collaborative development of new training approaches</li>
+                                <li><strong>Quality Standards:</strong> Participation in regional quality assurance networks</li>
+                                <li><strong>Evidence Generation:</strong> Contribution to regional research and evaluation efforts</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎯 Success Indicators</h3>
+                            <ul>
+                                <li>Full MOH operational independence with sustained quality standards</li>
+                                <li>Financial sustainability achieved without external donor dependency</li>
+                                <li>Continuous improvement culture established with local innovation</li>
+                                <li>Regional leadership role in health workforce development</li>
+                                <li>Documented model ready for replication in other countries</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                impactMeasurement: {
+                    title: "Impact Measurement & Value Demonstration",
+                    content: `
+                        <div class="modal-section">
+                            <h3>📊 Comprehensive Impact Framework</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Beneficiary Outcomes</div>
+                                    Track health worker performance improvements, skill acquisition, and patient care quality metrics to demonstrate direct impact.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">System Efficiency</div>
+                                    Measure facility operational improvements, workflow optimization, and cost savings across health facilities.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Data Analytics</div>
+                                    Real-time dashboards and analytics tracking training effectiveness, completion rates, and return on investment.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Evidence Generation</div>
+                                    Rigorous evaluation frameworks producing peer-reviewed evidence for continuous program improvement.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎯 Key Performance Indicators</h3>
+                            <ul>
+                                <li><strong>Training Effectiveness:</strong> Pre/post assessments showing skill improvement and knowledge retention</li>
+                                <li><strong>Patient Care Quality:</strong> Clinical indicators, patient satisfaction scores, and safety metrics</li>
+                                <li><strong>Operational Efficiency:</strong> Reduced wait times, improved workflow, optimized resource utilization</li>
+                                <li><strong>Cost Savings:</strong> Reduced operational costs, improved revenue cycle, minimized waste</li>
+                                <li><strong>Health Outcomes:</strong> Population health indicators, maternal mortality, immunization coverage</li>
+                                <li><strong>System Sustainability:</strong> Local capacity, knowledge retention, continuous improvement adoption</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📈 Funder Value Demonstration</h3>
+                            <ul>
+                                <li><strong>ROI Analysis:</strong> Quantified return on investment through improved efficiency and health outcomes</li>
+                                <li><strong>Comparative Studies:</strong> Before/after analysis and benchmarking against similar health systems</li>
+                                <li><strong>Success Stories:</strong> Case studies highlighting individual and institutional transformation</li>
+                                <li><strong>Scalability Evidence:</strong> Data proving model replicability and sustainable impact across countries</li>
+                                <li><strong>Cost-Effectiveness:</strong> Demonstrating value per dollar invested compared to traditional training approaches</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🔄 Continuous Improvement Cycle</h3>
+                            <ul>
+                                <li><strong>Real-Time Monitoring:</strong> Live dashboards tracking progress and identifying issues immediately</li>
+                                <li><strong>Regular Evaluations:</strong> Quarterly assessments and annual comprehensive impact studies</li>
+                                <li><strong>Feedback Integration:</strong> Beneficiary feedback loops informing program adjustments</li>
+                                <li><strong>Best Practice Documentation:</strong> Capturing and sharing successful approaches across countries</li>
+                                <li><strong>Innovation Pipeline:</strong> Using data insights to develop new training methodologies and tools</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📋 Reporting & Communication</h3>
+                            <ul>
+                                <li><strong>Executive Dashboards:</strong> High-level impact summaries for leadership and funder presentations</li>
+                                <li><strong>Detailed Reports:</strong> Comprehensive quarterly and annual impact assessments</li>
+                                <li><strong>Visual Storytelling:</strong> Infographics and data visualizations making impact accessible</li>
+                                <li><strong>Stakeholder Updates:</strong> Regular communication to MOH, funders, and implementation partners</li>
+                                <li><strong>Public Documentation:</strong> Transparent reporting contributing to global health knowledge base</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                digitalAcademyMatrix: {
+                    title: "Digital Health Academy - Central Coordination Hub",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🏛️ Dual Role: Central Excellence + Coordination</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Strategic Coordination</div>
+                                    Coordinate deployment of HOS systems and professional development programs across all 22 countries.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Training Excellence</div>
+                                    Serve as central excellence hub for culture alignment, quality standards, and master trainer development.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">SAND Trainer Management</div>
+                                    Identify and assign experienced SAND trainers for MOH staff training and shadowing programs.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Quality Assurance</div>
+                                    Monitor implementation progress and maintain consistent quality across all countries.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🌍 Multi-Country Coordination Functions</h3>
+                            <ul>
+                                <li><strong>System Deployment:</strong> Coordinate HOS Help Centers and Professional Development Programs across 22 countries</li>
+                                <li><strong>Trainer Assignment:</strong> Match SAND expertise with country-specific MOH training needs</li>
+                                <li><strong>Standards Management:</strong> Ensure consistent ALX-style certification protocols and quality frameworks</li>
+                                <li><strong>Pilot Coordination:</strong> Facilitate 12-week implementation pilots using proven methodologies</li>
+                                <li><strong>Progress Monitoring:</strong> Track quality metrics and implementation milestones across all countries</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎓 Training & Development</h3>
+                            <ul>
+                                <li><strong>Core Team Training:</strong> Train leadership teams from all 22 countries using mixed SAND + external faculty</li>
+                                <li><strong>MOH Staff Onboarding:</strong> Comprehensive training for 8 critical roles per country (176 total)</li>
+                                <li><strong>Master Trainer Development:</strong> Certify 2-3 master trainers per country for local delivery</li>
+                                <li><strong>Specialized Training Coordination:</strong> Partner with FIELD and others for technical gaps</li>
+                                <li><strong>Continuous Development:</strong> Ongoing support and professional development programs</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📊 Success Outcomes</h3>
+                            <ul>
+                                <li>22 countries with operational HOS systems under local MOH ownership</li>
+                                <li>176 MOH critical roles hired and trained across all countries</li>
+                                <li>Consistent quality standards while respecting local contexts</li>
+                                <li>Sustainable training networks in each country</li>
+                                <li>Evidence-based model for future African expansion</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                hosAcademyTeams: {
+                    title: "HOS Academy Teams (Country-Level)",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🏠 Local Implementation Leadership</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Platform Management</div>
+                                    Manage country-specific HOS Help Center platforms and localized content.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Curriculum Delivery</div>
+                                    Deliver 7-Pod (hubs/teams/departments) training curriculum adapted from central standards to local context.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Master Trainer Network</div>
+                                    Deploy and manage 2-3 master trainers certified at the Digital Health Academy.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Partnership Coordination</div>
+                                    Work with FIELD and other specialized training providers for comprehensive coverage.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎯 Localized Training Delivery</h3>
+                            <ul>
+                                <li><strong>Cultural Adaptation:</strong> Modify training content to reflect local health priorities and practices</li>
+                                <li><strong>Language Localization:</strong> Deliver training in local languages with culturally appropriate examples</li>
+                                <li><strong>Stakeholder Engagement:</strong> Build strong relationships with local government and health institutions</li>
+                                <li><strong>Community Integration:</strong> Ensure training programs align with community health needs</li>
+                                <li><strong>Sustainability Planning:</strong> Develop local capacity for long-term program continuation</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🤝 Central-Local Integration</h3>
+                            <ul>
+                                <li><strong>Central Standards:</strong> Maintain adherence to global best practices and quality standards</li>
+                                <li><strong>Local Adaptation:</strong> Customize delivery methods and content to local contexts</li>
+                                <li><strong>Knowledge Transfer:</strong> Facilitate two-way learning between central academy and local teams</li>
+                                <li><strong>Performance Monitoring:</strong> Regular reporting and quality assurance checks</li>
+                                <li><strong>Continuous Improvement:</strong> Ongoing refinement based on local feedback and outcomes</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                mohTeams: {
+                    title: "Country MOH Teams",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🏛️ Government Leadership Role</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Strategic Hiring</div>
+                                    Execute recruitment for 8 critical data and technology roles per country requirements.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Needs Assessment</div>
+                                    Active involvement in identifying national health workforce development priorities.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Training Participation</div>
+                                    Engage in Academy training and SAND trainer shadowing programs for capacity building.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">System Ownership</div>
+                                    Assumption of full ownership and responsibility within 12-month transition timeline.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>👥 Critical Hiring Execution</h3>
+                            <ul>
+                                <li><strong>8 Key Roles:</strong> Senior Data Engineer, Senior Data Analyst, Platform Engineer, Principal BI Architect</li>
+                                <li><strong>Leadership Positions:</strong> Blueroom Lead, Tech Operations Lead, User Satisfaction Lead, L&D Lead</li>
+                                <li><strong>Recruitment Process:</strong> Use provided job descriptions and competency frameworks</li>
+                                <li><strong>Onboarding:</strong> Academy-based training with SAND trainer shadowing programs</li>
+                                <li><strong>Performance Management:</strong> Clear expectations and professional development pathways</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📋 Policy & Implementation</h3>
+                            <ul>
+                                <li><strong>Policy Development:</strong> Create supportive policies for health workforce development</li>
+                                <li><strong>Local Context:</strong> Provide knowledge of local health systems, regulations, and cultural considerations</li>
+                                <li><strong>Partnership Coordination:</strong> Work with country launchers to identify specialized training providers</li>
+                                <li><strong>Quality Assurance:</strong> Participate in monitoring and maintaining training quality standards</li>
+                                <li><strong>Sustainability Planning:</strong> Ensure long-term financial viability and operational continuity</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎯 Local Ownership Timeline</h3>
+                            <ul>
+                                <li>Months 1-6: Strategic hiring and initial training participation</li>
+                                <li>Months 7-12: Gradual responsibility transfer and system familiarization</li>
+                                <li>Months 13-18: Lead operations with ongoing support and quality assurance</li>
+                                <li>Months 19-24: Full independence with periodic check-ins and best practice sharing</li>
+                                <li>Year 2+: Regional center of excellence and mentor for other countries</li>
                             </ul>
                         </div>
                     `
@@ -903,7 +1614,7 @@
                         <div class="modal-section">
                             <h3>🏥 Target Coverage</h3>
                             <ul>
-                                <li><strong>Hospitals:</strong> All district and provincial hospitals with comprehensive 7-hub training</li>
+                                <li><strong>Hospitals:</strong> All district and provincial hospitals with comprehensive 7-pod training</li>
                                 <li><strong>Health Centers:</strong> Primary care facilities with focused clinical and operational training</li>
                                 <li><strong>Health Posts:</strong> Community-level facilities with basic digital health and data collection skills</li>
                                 <li><strong>CHWs:</strong> Community health workers with mobile health tools and basic data reporting</li>
@@ -968,227 +1679,392 @@
                         </div>
                     `
                 },
+                phase2: {
+                    title: "Phase 2: Rapid Deployment",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🚀 Deployment Strategy</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Central Training</div>
+                                    Core country teams receive intensive training at the Digital Health Academy in Rwanda using mixed SAND + external faculty model.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Platform Deployment</div>
+                                    Launch country-specific HOS Help Center based on proven Rwanda model.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">MOH Strategic Hiring</div>
+                                    Execute hiring for 8 critical roles with Academy onboarding and SAND trainer shadowing.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Pilot Implementation</div>
+                                    Launch 12-week development program with selected facilities using ALX-style methodology.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>👥 MOH Critical Roles (8 per Country)</h3>
+                            <div class="jd-grid">
+                                <div class="jd-item">
+                                    <div class="jd-title">Senior Data Engineer</div>
+                                    <div class="jd-placeholder">JD Placeholder: Data pipeline architecture, ETL processes, database optimization</div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">Senior Data Analyst</div>
+                                    <div class="jd-placeholder">JD Placeholder: Health metrics analysis, reporting, insight generation</div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">Platform Engineer</div>
+                                    <div class="jd-placeholder">JD Placeholder: System architecture, DevOps, platform maintenance</div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">Principal BI Architect</div>
+                                    <div class="jd-placeholder">JD Placeholder: Business intelligence strategy, dashboard design, data visualization</div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">Blueroom Lead</div>
+                                    <div class="jd-placeholder">JD Placeholder: HIC operations management, workflow coordination</div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">Tech Operations Lead</div>
+                                    <div class="jd-placeholder">JD Placeholder: Technical infrastructure, system monitoring, troubleshooting</div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">User Satisfaction Lead</div>
+                                    <div class="jd-placeholder">JD Placeholder: User experience, feedback management, satisfaction metrics</div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">Learning & Development</div>
+                                    <div class="jd-placeholder">JD Placeholder: Training coordination, curriculum development, capacity building</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎓 Training Components</h3>
+                            <ul>
+                                <li><strong>Digital Health Skills:</strong> EHR systems, data collection, telemedicine platforms</li>
+                                <li><strong>7-Pod (hubs/teams/departments) Curriculum:</strong> Clinical, Finance, People, Inventory, Facilities, Data & Tech, Operations</li>
+                                <li><strong>Development System:</strong> ALX-style portfolio-based learning with practical projects</li>
+                                <li><strong>Assessment Methods:</strong> Project demonstrations, peer review, portfolio development, workplace application</li>
+                                <li><strong>Technology Integration:</strong> TalentLMS, ClassMarker, Credly, Google Forms/AppSheet</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📈 Expected Outcomes</h3>
+                            <ul>
+                                <li>8 critical MOH roles hired and onboarded per country</li>
+                                <li>2-3 master trainers certified per country</li>
+                                <li>Operational country-specific HOS Help Center</li>
+                                <li>50-100 healthcare workers completing pilot program</li>
+                                <li>Established MOH-led governance structure with SAND trainer support</li>
+                                <li>Proven local delivery model ready for scale</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                mohHiring: {
+                    title: "MOH Strategic Hiring Program",
+                    content: `
+                        <div class="modal-section">
+                            <h3>👥 8 Critical Roles Per Country</h3>
+                            <div class="jd-grid">
+                                <div class="jd-item">
+                                    <div class="jd-title">Senior Data Engineer</div>
+                                    <div class="jd-placeholder">
+                                        <strong>JD Placeholder:</strong><br>
+                                        • Design and maintain data pipelines for health information systems<br>
+                                        • Optimize database performance and data warehouse architecture<br>
+                                        • Ensure data quality and integrity across multiple health platforms<br>
+                                        • Collaborate with analysts and BI teams for data accessibility
+                                    </div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">Senior Data Analyst</div>
+                                    <div class="jd-placeholder">
+                                        <strong>JD Placeholder:</strong><br>
+                                        • Analyze health metrics and generate actionable insights<br>
+                                        • Create reports and dashboards for decision-making<br>
+                                        • Support evidence-based health policy development<br>
+                                        • Monitor and evaluate health program effectiveness
+                                    </div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">Platform Engineer</div>
+                                    <div class="jd-placeholder">
+                                        <strong>JD Placeholder:</strong><br>
+                                        • Manage HOS platform architecture and infrastructure<br>
+                                        • Implement DevOps practices and system automation<br>
+                                        • Ensure platform security, scalability, and reliability<br>
+                                        • Coordinate system integrations and API management
+                                    </div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">Principal BI Architect</div>
+                                    <div class="jd-placeholder">
+                                        <strong>JD Placeholder:</strong><br>
+                                        • Lead business intelligence strategy and implementation<br>
+                                        • Design comprehensive dashboard and reporting solutions<br>
+                                        • Establish data governance and analytics best practices<br>
+                                        • Guide strategic decision-making through data visualization
+                                    </div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">Blueroom Lead</div>
+                                    <div class="jd-placeholder">
+                                        <strong>JD Placeholder:</strong><br>
+                                        • Oversee Health Intelligence Center operations<br>
+                                        • Coordinate workflow between data teams and health programs<br>
+                                        • Manage daily operations and performance metrics<br>
+                                        • Ensure alignment between HIC activities and MOH priorities
+                                    </div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">Tech Operations Lead</div>
+                                    <div class="jd-placeholder">
+                                        <strong>JD Placeholder:</strong><br>
+                                        • Lead technical infrastructure management and monitoring<br>
+                                        • Oversee system maintenance and troubleshooting<br>
+                                        • Coordinate with vendors and technical support teams<br>
+                                        • Implement security protocols and backup procedures
+                                    </div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">User Satisfaction Lead</div>
+                                    <div class="jd-placeholder">
+                                        <strong>JD Placeholder:</strong><br>
+                                        • Manage user experience and satisfaction programs<br>
+                                        • Collect and analyze user feedback and satisfaction metrics<br>
+                                        • Implement user-centered design improvements<br>
+                                        • Coordinate with training teams for user support
+                                    </div>
+                                </div>
+                                <div class="jd-item">
+                                    <div class="jd-title">Learning & Development Lead</div>
+                                    <div class="jd-placeholder">
+                                        <strong>JD Placeholder:</strong><br>
+                                        • Coordinate training programs and capacity building initiatives<br>
+                                        • Develop and maintain curriculum for health workers<br>
+                                        • Manage relationships with training providers and academies<br>
+                                        • Monitor training effectiveness and learner outcomes
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎓 Training & Onboarding</h3>
+                            <ul>
+                                <li><strong>Academy-Based Training:</strong> Intensive onboarding at Digital Health Academy - Rwanda</li>
+                                <li><strong>SAND Trainer Shadowing:</strong> Hands-on learning with experienced SAND team members</li>
+                                <li><strong>Mixed Faculty Model:</strong> SAND expertise combined with external specialists where needed</li>
+                                <li><strong>Competency Framework:</strong> Clear skill requirements and assessment criteria</li>
+                                <li><strong>Continuous Development:</strong> Ongoing professional development and skill updates</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📊 Success Metrics</h3>
+                            <ul>
+                                <li><strong>Hiring Timeline:</strong> All 8 roles filled within 6 months of country launch</li>
+                                <li><strong>Training Completion:</strong> 100% completion of Academy onboarding program</li>
+                                <li><strong>Performance Standards:</strong> Meeting defined competency benchmarks within 12 months</li>
+                                <li><strong>Retention Rate:</strong> 90%+ retention of hired staff through handover period</li>
+                                <li><strong>Local Ownership:</strong> Full operational independence within 24 months</li>
+                            </ul>
+                        </div>
+                    `
+                },
+                alxCertification: {
+                    title: "Certificate of Completion - ALX-Style",
+                    content: `
+                        <div class="modal-section">
+                            <h3>🎖️ ALX-Style Methodology</h3>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <div class="detail-label">Portfolio-Based Assessment</div>
+                                    Learners demonstrate competency through practical projects and real-world applications rather than traditional examinations.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Peer Learning & Review</div>
+                                    Collaborative learning environment with peer feedback and review as integral assessment components.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Industry Alignment</div>
+                                    Skills-focused curriculum designed to meet actual workplace needs and industry standards.
+                                </div>
+                                <div class="detail-item">
+                                    <div class="detail-label">Continuous Assessment</div>
+                                    Ongoing evaluation through projects, presentations, and practical demonstrations throughout the program.
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-section">
+                            <h3>📚 Health Sector Adaptation</h3>
+                            <ul>
+                                <li><strong>Clinical Projects:</strong> Real health facility challenges as learning projects</li>
+                                <li><strong>Data Analysis Portfolio:</strong> Health data analysis and visualization projects</li>
+                                <li><strong>System Implementation:</strong> Hands-on experience with health information systems</li>
+                                <li><strong>Quality Improvement:</strong> Process improvement projects in actual healthcare settings</li>
+                                <li><strong>Community Impact:</strong> Projects demonstrating measurable health outcomes</li>
+                            </ul>
+                        </div>
+                        <div class="modal-section">
+                            <h3>🎯 Success Framework</h3>
+                            <ul>
+                                <li>Project-based learning with minimum 5 completed health sector projects</li>
+                                <li>Peer review scores of 80%+ across all assessment criteria</li>
+                                <li>Workplace supervisor validation of applied skills</li>
+                                <li>Portfolio presentation to industry panel</li>
+                                <li>Demonstrated impact on health facility operations or patient outcomes</li>
+                            </ul>
+                        </div>
+                    `
+                },
                 digitalAcademy: {
-                    title: "Proposed Digital Health Academy - Rwanda",
+                    title: "Digital Health Academy - Rwanda",
                     content: `
                         <div class="modal-section">
                             <h3>🏛️ Central Excellence Hub</h3>
                             <div class="detail-grid">
                                 <div class="detail-item">
-                                    <div class="detail-label">Location</div>
-                                    Masaka Medical Hub, Kigali - Strategic placement near IRCAD Africa, University Teaching Hospital, and health innovation ecosystem.
+                                    <div class="detail-label">Current Operations</div>
+                                    Operating virtually and in leased spaces while transitioning to permanent Masaka Medical Hub facility.
                                 </div>
                                 <div class="detail-item">
                                     <div class="detail-label">Capacity</div>
-                                    6,000+ health workers and 400+ HIC staff across 22 African countries over 5 years.
+                                    6,000+ health workers and 500+ data/technology professionals across 22 African countries over 5 years.
                                 </div>
                                 <div class="detail-item">
-                                    <div class="detail-label">Investment</div>
-                                    $6M total funding: $4M CapEx (infrastructure, facilities) + $2M OpEx (curriculum, operations).
+                                    <div class="detail-label">Faculty Model</div>
+                                    Mixed SAND + External faculty ensuring comprehensive coverage across all specialization areas.
                                 </div>
                                 <div class="detail-item">
-                                    <div class="detail-label">Timeline</div>
-                                    2-year investment phase + 3-year operational phase with transition to self-sustainability by Year 3.
+                                    <div class="detail-label">Training Approach</div>
+                                    Combination of virtual learning, leased space intensives, and future permanent campus programs.
                                 </div>
                             </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🏢 Physical Facilities</h3>
-                            <ul>
-                                <li><strong>Academy Wing:</strong> 3 training rooms (50 trainees each), 5 offices, boardroom (200 capacity), tech room, library</li>
-                                <li><strong>Model Clinic:</strong> 8 consultation rooms, 2 labs, 2 radiology rooms, 5 observation rooms, emergency room, 2 delivery rooms, maternity ward</li>
-                                <li><strong>Accommodation:</strong> 25 rooms, 50 beds, dining hall (80 capacity), recreational areas</li>
-                                <li><strong>Technology Infrastructure:</strong> High-speed internet, telemedicine capabilities, digital learning platforms</li>
-                                <li><strong>Patient Capacity:</strong> Model clinic serves 200 patients/day while providing practical training opportunities</li>
-                            </ul>
                         </div>
                         <div class="modal-section">
                             <h3>🎓 Training Programs</h3>
                             <ul>
-                                <li><strong>Master Trainer Certification:</strong> 4-week intensive program for country implementation leaders</li>
-                                <li><strong>Digital Health Specialization:</strong> Advanced courses in health informatics, data analytics, and system implementation</li>
-                                <li><strong>Health Entrepreneurship:</strong> Business skills, innovation methodologies, and startup incubation</li>
+                                <li><strong>MOH Staff Onboarding:</strong> Comprehensive program for 8 critical roles per country</li>
+                                <li><strong>Master Trainer Development:</strong> Train-the-trainer programs for country implementation leaders</li>
+                                <li><strong>Digital Health Specialization:</strong> Advanced courses in health informatics and system implementation</li>
                                 <li><strong>Leadership Development:</strong> Management training for health administrators and policy makers</li>
-                                <li><strong>Research & Development:</strong> Collaborative research initiatives and evidence generation</li>
+                                <li><strong>Specialized Training Coordination:</strong> Partnerships with FIELD and other providers for gap coverage</li>
                             </ul>
                         </div>
                         <div class="modal-section">
-                            <h3>🤝 Partnership Model</h3>
+                            <h3>🤝 Mixed Faculty Model</h3>
                             <ul>
-                                <li><strong>Lead Partners:</strong> Rwanda MOH (ownership), SAND Technologies (curriculum), SFH (implementation)</li>
-                                <li><strong>Academic Partners:</strong> ALU/ALX (digital learning), University of Global Health Equity</li>
-                                <li><strong>Government Support:</strong> MINEDUC, MINALOC, MININFRA for regulatory and infrastructure support</li>
-                                <li><strong>Funding:</strong> Susan Thompson Buffett Foundation and other strategic investors</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                helpCenters: {
-                    title: "Country-Specific HOS Help Centers",
-                    content: `
-                        <div class="modal-section">
-                            <h3>🌐 Localized Digital Platforms</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Template Model</div>
-                                    Based on Rwanda's operational blueroom-help-center.sandtech.com with proven effectiveness.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Platform Technology</div>
-                                    Google Sites platform enabling easy updates, multilingual support, and offline accessibility.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Content Strategy</div>
-                                    Centrally-developed standards adapted to local health priorities, languages, and cultural contexts.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Integration Model</div>
-                                    Seamless connection between central academy standards and local implementation requirements.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📚 Content Categories</h3>
-                            <ul>
-                                <li><strong>Clinical Hub:</strong> Disease management protocols, treatment guidelines, infection prevention</li>
-                                <li><strong>Digital Health:</strong> EHR training, telemedicine, mobile health applications</li>
-                                <li><strong>Operations:</strong> Facility management, supply chain, quality improvement</li>
-                                <li><strong>Finance:</strong> Budget management, revenue cycle, financial reporting</li>
-                                <li><strong>Human Resources:</strong> Staff management, professional development, performance evaluation</li>
-                                <li><strong>Data & Technology:</strong> Health information systems, data analysis, reporting tools</li>
-                                <li><strong>Emergency Preparedness:</strong> Outbreak response, disaster management, crisis communication</li>
+                                <li><strong>SAND Trainers:</strong> Core team expertise in HOS implementation and health system operations</li>
+                                <li><strong>External Specialists:</strong> Subject matter experts for areas beyond SAND capacity</li>
+                                <li><strong>FIELD Partnership:</strong> Specialized training provider for technical gaps</li>
+                                <li><strong>Academic Partners:</strong> ALU/ALX methodology and University of Global Health Equity collaboration</li>
+                                <li><strong>Local Experts:</strong> Country-specific expertise and cultural adaptation support</li>
                             </ul>
                         </div>
                         <div class="modal-section">
-                            <h3>🔄 Continuous Improvement</h3>
+                            <h3>🏢 Infrastructure Evolution</h3>
                             <ul>
-                                <li><strong>User Feedback:</strong> Regular surveys and feedback mechanisms from healthcare workers</li>
-                                <li><strong>Performance Analytics:</strong> Usage tracking, completion rates, effectiveness measurements</li>
-                                <li><strong>Content Updates:</strong> Monthly updates based on new evidence and policy changes</li>
-                                <li><strong>Quality Assurance:</strong> Peer review process for all content before publication</li>
-                                <li><strong>Version Control:</strong> Systematic tracking of content changes and improvements</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎯 Success Indicators</h3>
-                            <ul>
-                                <li>Platform accessibility in local languages</li>
-                                <li>High user engagement and completion rates</li>
-                                <li>Improved job performance among users</li>
-                                <li>Reduced training delivery costs</li>
-                                <li>Enhanced knowledge retention and application</li>
+                                <li><strong>Current State:</strong> Virtual platform + leased training spaces in Kigali</li>
+                                <li><strong>Transition Phase:</strong> Gradual move to Masaka Medical Hub as construction progresses</li>
+                                <li><strong>Future State:</strong> Dedicated academy + model clinic + accommodation facilities</li>
+                                <li><strong>Technology:</strong> High-speed connectivity, telemedicine capabilities, digital learning platforms</li>
+                                <li><strong>Sustainability:</strong> Self-funding model through tuition and strategic partnerships</li>
                             </ul>
                         </div>
                     `
                 },
-                contentManagement: {
-                    title: "Hybrid Content Management System",
+                step1Assessment: {
+                    title: "Step 1: Assessment & Stakeholder Alignment",
                     content: `
                         <div class="modal-section">
-                            <h3>📊 Centralized Repository</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Central Standards</div>
-                                    Master curriculum library maintained at Proposed Digital Health Academy with global best practices.
+                            <h3>🎯 Readiness-Based Country Approach</h3>
+                            <div class="readiness-levels">
+                                <div class="readiness-item readiness-high">
+                                    <div class="detail-label">High Readiness (e.g., Togo)</div>
+                                    <strong>Timeline:</strong> 2-4 weeks<br>
+                                    <strong>Activities:</strong> Rapid stakeholder alignment, immediate MOH partnership, fast-track hiring initiation<br>
+                                    <strong>Outcome:</strong> Direct to deployment phase
                                 </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Local Adaptation</div>
-                                    Country-specific versions incorporating local health priorities, regulations, and cultural considerations.
+                                <div class="readiness-item readiness-medium">
+                                    <div class="detail-label">Medium Readiness</div>
+                                    <strong>Timeline:</strong> 6-8 weeks<br>
+                                    <strong>Activities:</strong> Stakeholder workshops, policy alignment, infrastructure assessment<br>
+                                    <strong>Outcome:</strong> Structured preparation for deployment
                                 </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Version Control</div>
-                                    Real-time synchronization ensuring all countries benefit from improvements while maintaining local relevance.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Quality Assurance</div>
-                                    Systematic review process balancing central standards with local needs and contexts.
+                                <div class="readiness-item readiness-low">
+                                    <div class="detail-label">Lower Readiness</div>
+                                    <strong>Timeline:</strong> 12-16 weeks<br>
+                                    <strong>Activities:</strong> Extensive capacity building, infrastructure development, partnership building<br>
+                                    <strong>Outcome:</strong> Foundation setting for future deployment
                                 </div>
                             </div>
                         </div>
                         <div class="modal-section">
-                            <h3>💻 Technology Infrastructure</h3>
+                            <h3>📋 Togo Example Workplan (High Readiness)</h3>
                             <ul>
-                                <li><strong>Google Drive Integration:</strong> Centralized storage with role-based access controls</li>
-                                <li><strong>Collaborative Development:</strong> Real-time editing capabilities for distributed content teams</li>
-                                <li><strong>Multi-Format Support:</strong> Documents, videos, interactive assessments, simulation tools</li>
-                                <li><strong>Mobile Optimization:</strong> Content accessible on smartphones and tablets for field use</li>
-                                <li><strong>Offline Capability:</strong> Downloadable materials for areas with limited internet connectivity</li>
+                                <li><strong>Week 1:</strong> Initial stakeholder meetings with MOH leadership and key health officials</li>
+                                <li><strong>Week 2:</strong> Infrastructure assessment, technology readiness evaluation, training venue identification</li>
+                                <li><strong>Week 3:</strong> Partnership agreements signing, hiring process initiation for 8 critical roles</li>
+                                <li><strong>Week 4:</strong> SAND trainer assignment, Academy training scheduling, specialized training provider identification</li>
+                                <li><strong>Week 5+:</strong> Direct progression to MOH hiring and Academy training phases</li>
                             </ul>
                         </div>
                         <div class="modal-section">
-                            <h3>🔄 Content Development Workflow</h3>
+                            <h3>🔍 Assessment Framework</h3>
                             <ul>
-                                <li><strong>Central Development:</strong> Core curriculum created by subject matter experts</li>
-                                <li><strong>Local Review:</strong> Country teams evaluate content for local relevance and accuracy</li>
-                                <li><strong>Adaptation Process:</strong> Modification of content for local languages, laws, and practices</li>
-                                <li><strong>Quality Control:</strong> Peer review and approval process before publication</li>
-                                <li><strong>Feedback Integration:</strong> Continuous improvement based on user experiences and outcomes</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>📈 Impact Measurement</h3>
-                            <ul>
-                                <li>Content usage analytics and engagement metrics</li>
-                                <li>Learning outcome assessments and knowledge retention</li>
-                                <li>Cost-effectiveness of content development and maintenance</li>
-                                <li>Time-to-deployment for new training materials</li>
-                                <li>User satisfaction and content relevance ratings</li>
+                                <li><strong>Government Commitment:</strong> MOH leadership engagement and policy support</li>
+                                <li><strong>Infrastructure Readiness:</strong> Technology, connectivity, and facility availability</li>
+                                <li><strong>Human Resource Capacity:</strong> Existing skilled workforce and hiring capability</li>
+                                <li><strong>Financial Readiness:</strong> Budget allocation and sustainability planning</li>
+                                <li><strong>Stakeholder Ecosystem:</strong> Partner organizations and institutional support</li>
                             </ul>
                         </div>
                     `
                 },
-                trainingDelivery: {
-                    title: "Cascaded Training Delivery Model",
+                step2Hiring: {
+                    title: "Step 2: MOH Strategic Hiring & SAND Trainer Assignment",
                     content: `
                         <div class="modal-section">
-                            <h3>🎯 Four-Tier Delivery System</h3>
+                            <h3>👥 Parallel Execution Strategy</h3>
                             <div class="detail-grid">
                                 <div class="detail-item">
-                                    <div class="detail-label">Tier 1 - Central</div>
-                                    Core teams receive intensive training at Proposed Digital Health Academy for culture alignment and advanced skills.
+                                    <div class="detail-label">MOH Hiring Process</div>
+                                    Execute recruitment for 8 critical roles using provided job descriptions and competency frameworks.
                                 </div>
                                 <div class="detail-item">
-                                    <div class="detail-label">Tier 2 - Regional</div>
-                                    Certified master trainers deploy in-country to establish training programs and local capacity.
+                                    <div class="detail-label">SAND Trainer Identification</div>
+                                    Central team assigns experienced SAND trainers for each country based on expertise and availability.
                                 </div>
                                 <div class="detail-item">
-                                    <div class="detail-label">Tier 3 - Local</div>
-                                    7-Hub curriculum delivered through 4-tier health system cascade (CHW → Health Post → Health Center → Hospital).
+                                    <div class="detail-label">Training Preparation</div>
+                                    Academy slot booking and training module customization for country-specific needs.
                                 </div>
                                 <div class="detail-item">
-                                    <div class="detail-label">Tier 4 - Digital</div>
-                                    Continuous remote support, e-learning modules, and ongoing professional development.
+                                    <div class="detail-label">Partnership Setup</div>
+                                    Identify and engage FIELD or other specialized training providers for gaps.
                                 </div>
                             </div>
                         </div>
                         <div class="modal-section">
-                            <h3>🏥 Health System Integration</h3>
+                            <h3>📅 Implementation Timeline</h3>
                             <ul>
-                                <li><strong>Hospital Level:</strong> Comprehensive 7-hub training for all departments and specialties</li>
-                                <li><strong>Health Centers:</strong> Focused training on primary care, maternal health, and basic emergency care</li>
-                                <li><strong>Health Posts:</strong> Essential skills for community health workers and basic health services</li>
-                                <li><strong>Community Level:</strong> Training for community health workers on prevention, health promotion, and data collection</li>
-                                <li><strong>District Administration:</strong> Training for health managers on data analysis, planning, and resource allocation</li>
+                                <li><strong>Month 1:</strong> Job posting and recruitment launch for all 8 critical roles</li>
+                                <li><strong>Month 2:</strong> Candidate screening, interviews, and SAND trainer assignment</li>
+                                <li><strong>Month 3:</strong> Hiring completion and Academy training schedule confirmation</li>
+                                <li><strong>Month 4:</strong> Onboarding preparation and specialized training provider contracts</li>
+                                <li><strong>Month 5+:</strong> Academy training commencement with shadowing programs</li>
                             </ul>
                         </div>
                         <div class="modal-section">
-                            <h3>💻 Technology Platform Integration</h3>
+                            <h3>🎯 Critical Success Factors</h3>
                             <ul>
-                                <li><strong>TalentLMS:</strong> Course delivery, progress tracking, and learning pathway management</li>
-                                <li><strong>ClassMarker:</strong> Secure online assessments with browser lockdown and automated scoring</li>
-                                <li><strong>Credly:</strong> Digital badge issuance with LinkedIn integration and employer verification</li>
-                                <li><strong>Google Forms/AppSheet:</strong> Field-based assessments with mobile and offline capabilities</li>
-                                <li><strong>Looker Studio/eOps:</strong> Real-time analytics and performance dashboards</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>🎓 Training Methodologies</h3>
-                            <ul>
-                                <li><strong>Blended Learning:</strong> Combination of in-person workshops, digital modules, and practical exercises</li>
-                                <li><strong>Competency-Based:</strong> Focus on practical skills and real-world application rather than just knowledge transfer</li>
-                                <li><strong>Peer Learning:</strong> Learning circles and mentorship programs connecting trainees across facilities</li>
-                                <li><strong>Just-in-Time Training:</strong> Quick reference materials and microlearning for immediate job support</li>
-                                <li><strong>Simulation-Based:</strong> Hands-on practice using model clinic and simulation equipment</li>
+                                <li><strong>Competitive Packages:</strong> Attractive compensation to secure top talent</li>
+                                <li><strong>Clear Expectations:</strong> Well-defined roles and growth opportunities</li>
+                                <li><strong>SAND Trainer Quality:</strong> Experienced practitioners with proven track records</li>
+                                <li><strong>Specialized Coverage:</strong> FIELD partnership for areas beyond SAND expertise</li>
+                                <li><strong>Smooth Transition:</strong> Seamless handover from hiring to training phases</li>
                             </ul>
                         </div>
                     `
@@ -1196,12 +2072,16 @@
             };
             
             // Set modal content
-            modalTitle.textContent = content[contentType].title;
-            modalBody.innerHTML = content[contentType].content;
-            
-            // Show modal
-            modal.style.display = 'block';
-            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            if (content[contentType]) {
+                modalTitle.textContent = content[contentType].title;
+                modalBody.innerHTML = content[contentType].content;
+                
+                // Show modal
+                modal.style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+            } else {
+                console.error('Content not found for:', contentType);
+            }
         }
 
         function closeModal() {
@@ -1213,10 +2093,10 @@
         // Close modal when clicking outside of it
         window.onclick = function(event) {
             const modal = document.getElementById('detailModal');
-            if (event.target == modal) {
+            if (event.target === modal) {
                 closeModal();
             }
-        }
+        };
 
         // Close modal with Escape key
         document.addEventListener('keydown', function(event) {
@@ -1224,6 +2104,9 @@
                 closeModal();
             }
         });
+
+        // Add console log to verify script is running
+        console.log('HOS Dashboard JavaScript loaded successfully');
     </script>
 </body>
 </html>
