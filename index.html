@@ -3,2119 +3,979 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Complete HOS Capability Building Coordination Flow</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <title>SAND Mission Control - Sept 17, 2025</title>
     <style>
         body {
-            font-family: Lato, sans-serif;
             margin: 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #1e3a8a 0%, #06b6d4 100%);
-            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
         }
-        .container {
-            max-width: 1800px;
-            margin: 0 auto;
+        .slide {
+            width: 1920px;
+            height: 1080px;
             background: white;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-        h1 {
-            color: #1e3a8a;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            border-bottom: 3px solid #06b6d4;
-            padding-bottom: 15px;
-        }
-        .coordinator-role {
-            background: linear-gradient(135deg, #06b6d4, #0891b2);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-            text-align: center;
-        }
-        .coordinator-title {
-            font-size: 1.8em;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-        .coordinator-description {
-            font-size: 1.1em;
-            line-height: 1.5;
-        }
-        .flow-section {
-            margin: 40px 0;
-            background: #f8f9fa;
-            padding: 30px;
-            border-radius: 15px;
-            border-left: 5px solid #06b6d4;
-        }
-        .flow-title {
-            font-size: 1.6em;
-            color: #1e3a8a;
-            margin-bottom: 20px;
-            font-weight: bold;
-        }
-        .phase-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
-            gap: 20px;
-            margin: 30px 0;
-        }
-        .phase-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border-top: 4px solid;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            cursor: pointer;
-            position: relative;
-        }
-        .phase-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        .phase-1 { border-top-color: #10b981; }
-        .phase-2 { border-top-color: #06b6d4; }
-        .phase-3 { border-top-color: #7c3aed; }
-        .phase-4 { border-top-color: #ef4444; }
-        .phase-number {
-            background: #06b6d4;
-            color: white;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-        .phase-1 .phase-number { background: #10b981; }
-        .phase-2 .phase-number { background: #06b6d4; }
-        .phase-3 .phase-number { background: #7c3aed; }
-        .phase-4 .phase-number { background: #ef4444; }
-        .phase-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: #1e3a8a;
-        }
-        .phase-timeline {
-            font-size: 0.9em;
-            color: #7f8c8d;
-            margin-bottom: 15px;
-        }
-        .phase-activities {
-            font-size: 0.9em;
-            line-height: 1.4;
-        }
-        .ecosystem-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 30px 0;
-        }
-        .ecosystem-component {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border-left: 4px solid;
-            cursor: pointer;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            position: relative;
-        }
-        .ecosystem-component:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-        }
-        .component-umuko { border-left-color: #f59e0b; }
-        .component-cert { border-left-color: #7c3aed; }
-        .component-country { border-left-color: #10b981; }
-        .component-admin { border-left-color: #06b6d4; }
-        .component-fionet { border-left-color: #ef4444; }
-        .component-hiring { border-left-color: #8b5cf6; }
-        .component-title {
-            font-weight: bold;
-            color: #1e3a8a;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-        .component-details {
-            font-size: 0.9em;
-            color: #555;
-            line-height: 1.4;
-        }
-        .coordination-matrix {
-            background: #fff;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            margin: 30px 0;
-        }
-        .matrix-header {
-            background: linear-gradient(135deg, #06b6d4, #0891b2);
-            color: white;
-            padding: 20px;
-            text-align: center;
-            font-size: 1.4em;
-            font-weight: bold;
-        }
-        .matrix-content {
-            padding: 20px;
-        }
-        .matrix-row {
-            display: grid;
-            grid-template-columns: 200px 1fr 150px 200px;
-            gap: 15px;
-            padding: 15px 0;
-            border-bottom: 1px solid #ecf0f1;
-            align-items: center;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            position: relative;
-        }
-        .matrix-row:hover {
-            background-color: #f8f9fa;
-        }
-        .matrix-row:last-child {
-            border-bottom: none;
-        }
-        .matrix-who {
-            font-weight: bold;
-            color: #1e3a8a;
-        }
-        .matrix-what {
-            color: #555;
-            line-height: 1.4;
-        }
-        .matrix-when {
-            background: #ecf0f1;
-            padding: 8px;
-            border-radius: 5px;
-            text-align: center;
-            font-size: 0.9em;
-            font-weight: bold;
-        }
-        .matrix-outcome {
-            color: #27ae60;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-        .critical-path {
-            background: linear-gradient(135deg, #7c3aed, #5b21b6);
-            color: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 30px 0;
-        }
-        .path-title {
-            font-size: 1.5em;
-            font-weight: bold;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .path-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-        .path-step {
-            background: rgba(255,255,255,0.1);
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-        }
-        .path-step:hover {
-            background: rgba(255,255,255,0.2);
-            transform: translateY(-3px);
-        }
-        .step-icon {
-            font-size: 2em;
-            margin-bottom: 10px;
-        }
-        .step-text {
-            font-size: 0.9em;
-            line-height: 1.4;
-        }
-        .success-metrics {
-            background: #ecfdf5;
-            padding: 25px;
-            border-radius: 15px;
-            border-left: 5px solid #10b981;
-        }
-        .metrics-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
-            margin-top: 15px;
-        }
-        .metric-card {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .metric-number {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #10b981;
-            margin-bottom: 5px;
-        }
-        .metric-label {
-            color: #1e3a8a;
-            font-size: 0.85em;
-            line-height: 1.3;
-        }
-        .metric-timeline {
-            font-size: 0.75em;
-            color: #666;
-            margin-top: 5px;
-        }
-        .arrow-flow {
-            text-align: center;
-            color: #06b6d4;
-            font-size: 2em;
-            margin: 20px 0;
-        }
-
-        /* Modal Styles */
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.7);
-            backdrop-filter: blur(5px);
-        }
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 15px;
-            width: 80%;
-            max-width: 800px;
-            max-height: 80vh;
-            overflow-y: auto;
-            position: relative;
+            margin: 20px auto;
+            padding: 60px;
+            box-sizing: border-box;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: modalSlideIn 0.3s ease-out;
+            page-break-after: always;
+            position: relative;
+            overflow: hidden;
         }
-        @keyframes modalSlideIn {
-            from { opacity: 0; transform: translateY(-50px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .modal-header {
+        .header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #06b6d4;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid #667eea;
         }
-        .modal-title {
-            font-size: 1.8em;
-            color: #1e3a8a;
+        .logo {
+            font-size: 32px;
             font-weight: bold;
-            margin: 0;
+            color: #667eea;
         }
-        .close {
-            color: #aaa;
+        .date {
+            font-size: 22px;
+            color: #666;
+        }
+        h1 {
+            font-size: 48px;
+            margin: 30px 0;
+            color: #2c3e50;
+        }
+        h2 {
+            font-size: 36px;
+            color: #667eea;
+            margin: 25px 0;
+        }
+        h3 {
             font-size: 28px;
+            color: #2c3e50;
+            margin: 20px 0;
+        }
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .metric-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #667eea;
+        }
+        .metric-value {
+            font-size: 42px;
             font-weight: bold;
-            cursor: pointer;
-            background: none;
-            border: none;
-            padding: 5px 10px;
-            border-radius: 5px;
-            transition: all 0.3s ease;
+            color: #2c3e50;
         }
-        .close:hover {
-            color: #ef4444;
-            background: #f3f4f6;
+        .metric-label {
+            font-size: 18px;
+            color: #666;
+            margin-top: 8px;
         }
-        .modal-body {
+        .pillars-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+        .pillar-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-top: 4px solid #667eea;
+        }
+        .pillar-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        .pillar-icon {
+            font-size: 28px;
+            margin-right: 10px;
+        }
+        .country-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 16px;
+        }
+        .country-table th {
+            background: #667eea;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-weight: bold;
+        }
+        .country-table td {
+            padding: 10px;
+            border-bottom: 1px solid #e9ecef;
+        }
+        .country-table tr:nth-child(even) {
+            background: #f8f9fa;
+        }
+        .status-dot {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+        .status-green { background: #28a745; }
+        .status-yellow { background: #ffc107; }
+        .status-red { background: #dc3545; }
+        .status-gray { background: #6c757d; }
+        
+        .win-badge {
+            background: #d4f4dd;
+            color: #155724;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 2px;
+        }
+        .challenge-badge {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            font-weight: bold;
+            display: inline-block;
+            margin: 2px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 25px;
+            background: #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .risk-indicator {
+            display: inline-block;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            margin: 15px 0;
+        }
+        .risk-high {
+            background: #dc3545;
+            color: white;
+        }
+        .risk-medium {
+            background: #ffc107;
+            color: #333;
+        }
+        .risk-low {
+            background: #28a745;
+            color: white;
+        }
+        .slide-number {
+            position: absolute;
+            bottom: 30px;
+            right: 40px;
+            font-size: 18px;
+            color: #999;
+        }
+        ul {
+            font-size: 20px;
             line-height: 1.6;
-            color: #555;
+            margin: 10px 0;
         }
-        .modal-section {
-            margin-bottom: 20px;
+        .highlight {
+            background: #ffeaa7;
+            padding: 2px 6px;
+            border-radius: 3px;
         }
-        .modal-section h3 {
-            color: #1e3a8a;
-            border-bottom: 1px solid #e5e7eb;
-            padding-bottom: 5px;
-            margin-bottom: 10px;
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 30px 0;
+        }
+        .action-item {
+            background: #f8f9fa;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            border-left: 5px solid #dc3545;
+        }
+        .action-item.warning {
+            border-left-color: #ffc107;
+        }
+        .action-item.success {
+            border-left-color: #28a745;
+        }
+        .mini-stat {
+            display: inline-block;
+            background: #e9ecef;
+            padding: 3px 8px;
+            border-radius: 10px;
+            font-size: 14px;
+            margin-left: 5px;
         }
         .detail-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 15px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin: 20px 0;
         }
-        .detail-item {
+        .detail-card {
             background: #f8f9fa;
             padding: 15px;
             border-radius: 8px;
-            border-left: 3px solid #06b6d4;
         }
-        .detail-label {
-            font-weight: bold;
-            color: #1e3a8a;
-            margin-bottom: 5px;
+        .detail-card h4 {
+            font-size: 18px;
+            color: #667eea;
+            margin: 0 0 10px 0;
         }
-        .jd-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin: 15px 0;
-        }
-        .jd-item {
-            background: #f1f5f9;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 3px solid #8b5cf6;
-        }
-        .jd-title {
-            font-weight: bold;
-            color: #1e3a8a;
-            margin-bottom: 8px;
-        }
-        .jd-placeholder {
-            color: #666;
-            font-style: italic;
-            font-size: 0.9em;
-        }
-        .readiness-levels {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 15px 0;
-        }
-        .readiness-item {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 3px solid;
-        }
-        .readiness-high { border-left-color: #10b981; }
-        .readiness-medium { border-left-color: #f59e0b; }
-        .readiness-low { border-left-color: #ef4444; }
-        .clickable-hint {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: #06b6d4;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 15px;
-            font-size: 0.8em;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .phase-card:hover .clickable-hint,
-        .ecosystem-component:hover .clickable-hint,
-        .path-step:hover .clickable-hint,
-        .matrix-row:hover .clickable-hint {
-            opacity: 1;
+        .detail-card ul {
+            font-size: 16px;
+            margin: 5px 0;
+            padding-left: 20px;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>HOS Capability Building Coordination Flow Aka SAND HOS Academy AKA CODA</h1>
+
+<!-- Slide 1: Executive Summary -->
+<div class="slide">
+    <div class="header">
+        <div class="logo">SAND TECHNOLOGIES</div>
+        <div class="date">Healthcare Expansion - September 17, 2025</div>
+    </div>
+    <h1 style="text-align: center;">Mission Control Executive Summary</h1>
+    <div style="text-align: center;">
+        <span class="risk-indicator risk-medium">PROGRAM STATUS: MODERATE RISK</span>
+    </div>
+    
+    <div class="metric-grid" style="margin-top: 50px;">
+        <div class="metric-card">
+            <div class="metric-value">10</div>
+            <div class="metric-label">Target Countries</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" style="color: #dc3545;">4/30</div>
+            <div class="metric-label">Positions Filled (13%)</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" style="color: #ffc107;">~3</div>
+            <div class="metric-label">MoUs Active</div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value">13</div>
+            <div class="metric-label">Days to Sept Target</div>
+        </div>
+    </div>
+
+    <div class="pillars-grid" style="margin-top: 50px;">
+        <div class="pillar-card">
+            <div class="pillar-title">
+                <span class="pillar-icon">🏥</span>
+                Intelligence Centers
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 25%; background: #ffc107;">Design Phase</div>
+            </div>
+            <ul style="font-size: 16px; padding-left: 20px;">
+                <li>2 centers in design (Rwanda)</li>
+                <li>1 renovation started (Togo)</li>
+                <li>5 sites identified</li>
+            </ul>
+        </div>
         
-        <div class="coordinator-role">
-            <div class="coordinator-title">CENTRAL TEAM ROLE</div>
-            <div class="coordinator-description">
-                Support Country launchers to Set-up HOS through structured implementation phases, and ensure successful handover to respective governments within agreed timelines.
+        <div class="pillar-card">
+            <div class="pillar-title">
+                <span class="pillar-icon">🔗</span>
+                Connected Facilities
             </div>
-        </div>
-
-        <!-- Phase Implementation Flow -->
-        <div class="flow-section">
-            <div class="flow-title">4-Phase Implementation Coordination (Per Country)</div>
-            <div class="phase-container">
-                <div class="phase-card phase-1" onclick="openModal('phase1')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="phase-number">1</div>
-                    <div class="phase-title">Assessment & Adaptation</div>
-                    <div class="phase-timeline">xy months</div>
-                    <div class="phase-activities">
-                        • Leverage Rwanda's Academy Help Center as template<br>
-                        • Adapt existing 7-Pod (hubs/teams/departments) curriculum to local context<br>
-                        • Map stakeholder ecosystem using proven models<br>
-                        • Customize training materials for local languages
-                    </div>
-                </div>
-                
-                <div class="phase-card phase-2" onclick="openModal('phase2')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="phase-number">2</div>
-                    <div class="phase-title">Rapid Deployment</div>
-                    <div class="phase-timeline">xy months</div>
-                    <div class="phase-activities">
-                        • Deploy proven country-specific HOS Help Center model<br>
-                        • Core teams trained at Digital Health Academy - Rwanda<br>
-                        • Activate operational HOS Professional Development Program<br>
-                        • Execute MOH hiring for critical roles (pending central team alignment)<br>
-                        • Launch pilot with xy facilities using 1-week intensive + online program
-                    </div>
-                </div>
-                
-                <div class="phase-card phase-3" onclick="openModal('phase3')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="phase-number">3</div>
-                    <div class="phase-title">Scale & Stabilize</div>
-                    <div class="phase-timeline">xy months</div>
-                    <div class="phase-activities">
-                        • Full rollout to xy+ facilities<br>
-                        • Multi-modal training delivery<br>
-                        • Digital development system launch<br>
-                        • Performance monitoring & QA
-                    </div>
-                </div>
-                
-                <div class="phase-card phase-4" onclick="openModal('phase4')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="phase-number">4</div>
-                    <div class="phase-title">Handover & Sustain</div>
-                    <div class="phase-timeline">xy months</div>
-                    <div class="phase-activities">
-                        • Complete MOH ownership transfer<br>
-                        • Self-sustaining operations<br>
-                        • Continuous improvement systems<br>
-                        • Regional knowledge sharing
-                    </div>
-                </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 15%; background: #dc3545;">Assessment Phase</div>
             </div>
+            <ul style="font-size: 16px; padding-left: 20px;">
+                <li>Eastern/Western clusters (Rwanda)</li>
+                <li>Most facilities paper-based</li>
+                <li>DHIS2 mapping underway</li>
+            </ul>
         </div>
-
-        <!-- Operational Infrastructure -->
-        <div class="flow-section">
-            <div class="flow-title">Existing Training Infrastructure (Proven & Operational)</div>
-            <div class="ecosystem-grid">
-                <div class="ecosystem-component component-cert" onclick="openModal('programCurriculum')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Program & Curriculum Framework</div>
-                    <div class="component-details">
-                        <strong>Core Curriculum:</strong> 7-Pod (hubs/teams/departments) comprehensive training framework<br>
-                        <strong>Competency-Based:</strong> Learning objectives mapped to real-world health facility needs<br>
-                        <strong>Localization:</strong> Country-specific adaptation for 9 expansion countries (2025)<br>
-                        <strong>Assessment:</strong> Multi-method evaluation with practical application focus<br>
-                        <strong>Tracking:</strong> Progress monitoring across curriculum development and deployment
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-umuko" onclick="openModal('digitalAcademy')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Digital Health Academy - Rwanda (Central Excellence Hub)</div>
-                    <div class="component-details">
-                        <strong>Central Training Campus:</strong> Virtual + Leased Spaces transitioning to Masaka Medical Hub<br>
-                        <strong>Capacity:</strong> 6,000+ health workers + 500+ data/tech professionals across Africa<br>
-                        <strong>Unified Training Wing:</strong> All Umuko content and other training programs delivered under Academy<br>
-                        <strong>Model:</strong> Mixed SAND + External faculty for comprehensive coverage<br>
-                        <strong>Operations:</strong> 1-week intensive + online programs with specialized partnerships
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-umuko" onclick="openModal('helpCenters')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Country-Specific HOS Help Centers (Local Adaptation)</div>
-                    <div class="component-details">
-                        <strong>Template Platform:</strong> Based on Rwanda's proven model<br>
-                        <strong>Localized Content:</strong> Country-specific languages and contexts<br>
-                        <strong>Structured Topics:</strong> Organized training categories per local needs<br>
-                        <strong>Accessibility:</strong> Google Sites platform for easy updates<br>
-                        <strong>Integration:</strong> Fed by central academy standards and local requirements
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-cert" onclick="openModal('contentManagement')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Hybrid Content Management System</div>
-                    <div class="component-details">
-                        <strong>Central Repository:</strong> Digital Health Academy curriculum library<br>
-                        <strong>Local Adaptation:</strong> Country-specific content versions<br>
-                        <strong>Version Control:</strong> Real-time updates and synchronization<br>
-                        <strong>Multi-format:</strong> Documents, videos, assessments<br>
-                        <strong>Collaborative:</strong> Central standards + local customization
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-country" onclick="openModal('trainingDelivery')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Cascaded Training Delivery Model</div>
-                    <div class="component-details">
-                        <strong>Tier 1 - Central:</strong> Core teams trained at Digital Health Academy<br>
-                        <strong>Tier 2 - Regional:</strong> Master trainers deploy in-country<br>
-                        <strong>Tier 3 - Local:</strong> 7 Pods (hubs/teams/departments) + 4-Tier health system cascade<br>
-                        <strong>Tier 4 - Digital:</strong> Remote support and continuous learning<br>
-                        <strong>Integration:</strong> TalentLMS + ClassMarker + Credly + local platforms
-                    </div>
-                </div>
+        
+        <div class="pillar-card">
+            <div class="pillar-title">
+                <span class="pillar-icon">🎓</span>
+                Capability Building
             </div>
-        </div>
-
-        <!-- Capacity Building System -->
-        <div class="flow-section">
-            <div class="flow-title">Capacity Building Infrastructure (Operational)</div>
-            <div class="ecosystem-grid">
-                <div class="ecosystem-component component-cert" onclick="openModal('alxCertification')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Certificate of Completion - ALX-Style</div>
-                    <div class="component-details">
-                        <strong>Recognition:</strong> Professional certificate upon successful program completion<br>
-                        <strong>Portfolio-Based:</strong> Practical project demonstration and peer review<br>
-                        <strong>Industry Alignment:</strong> Skills-focused assessment with real-world application<br>
-                        <strong>Proven Track:</strong> Based on ALX methodology with health sector adaptation
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-admin" onclick="openModal('techStack')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Integrated Technology Stack</div>
-                    <div class="component-details">
-                        <strong>Learning Management:</strong> TalentLMS (course delivery, progress tracking)<br>
-                        <strong>Secure Assessment:</strong> ClassMarker (browser lockdown, automated scoring)<br>
-                        <strong>Digital Badges:</strong> Credly (LinkedIn integration, employer verification)<br>
-                        <strong>Field Assessment:</strong> Google Forms + AppSheet (mobile, offline capability)<br>
-                        <strong>Analytics:</strong> Looker Studio/eOps (real-time dashboards)
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-hiring" onclick="openModal('mohHiring')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">MOH Strategic Hiring Program</div>
-                    <div class="component-details">
-                        <strong>Pending Alignment:</strong> Number of roles and profiles to be confirmed with central expansion team<br>
-                        <strong>Role Profiles:</strong> Job descriptions and competency frameworks under development<br>
-                        <strong>Training Model:</strong> 1-week intensive + online program with Academy coordination<br>
-                        <strong>Support:</strong> Comprehensive hiring framework pending central team alignment<br>
-                        <strong>Timeline:</strong> Hiring process alignment needed before implementation
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-country" onclick="openModal('mohGovernance')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">MOH-Led Governance</div>
-                    <div class="component-details">
-                        <strong>Governance Structure:</strong> As Per Country guidelines<br>
-                        <strong>Specialized Training:</strong> FIELD and other partners for gaps SAND cannot cover<br>
-                        <strong>Local Partnerships:</strong> Country launchers identify specialized training providers<br>
-                        <strong>Sustainability:</strong> HIC handover timeline TBD (pending central team clarification)
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-fionet" onclick="openModal('impactMeasurement')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Impact Measurement & Value Demonstration</div>
-                    <div class="component-details">
-                        <strong>Beneficiary Outcomes:</strong> Health worker performance improvements and patient care metrics<br>
-                        <strong>System Efficiency:</strong> Facility operational improvements and cost savings measurement<br>
-                        <strong>Data Analytics:</strong> Real-time dashboards tracking training effectiveness and ROI<br>
-                        <strong>Funder Reporting:</strong> Comprehensive impact reports demonstrating SAND's value addition<br>
-                        <strong>Evidence Generation:</strong> Rigorous evaluation frameworks for continuous improvement
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-admin" onclick="openModal('physicalLayout')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Physical Layout & HOS Facilities</div>
-                    <div class="component-details">
-                        <strong>Country Facilities:</strong> Standardized HOS setup for 9 expansion countries (2025)<br>
-                        <strong>Space Requirements:</strong> Training rooms, equipment areas, technology infrastructure<br>
-                        <strong>Capacity Planning:</strong> 50-100 trainees per facility with expansion capability<br>
-                        <strong>Equipment Specs:</strong> IT hardware, furniture, medical training equipment<br>
-                        <strong>Cost Tracking:</strong> $180K setup cost per country facility
-                    </div>
-                </div>
+            <div class="progress-bar">
+                <div class="progress-fill" style="width: 20%; background: #ffc107;">Planning Phase</div>
             </div>
+            <ul style="font-size: 16px; padding-left: 20px;">
+                <li>eBuzima rollout started (Rwanda)</li>
+                <li>12 startups identified</li>
+                <li>Training modules finalized</li>
+            </ul>
         </div>
-
-        <div class="arrow-flow">↓ ↓ ↓</div>
-
-        <!-- Government Engagement Materials -->
-        <div class="flow-section">
-            <div class="flow-title">Government Engagement Materials & Program Documentation</div>
-            <div class="ecosystem-grid">
-                <div class="ecosystem-component component-country" onclick="openModal('programFlyers')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Official Program Documentation</div>
-                    <div class="component-details">
-                        <strong>Program Flyers:</strong> Professional marketing materials for government stakeholders<br>
-                        <strong>MOH Proposals:</strong> Country-specific implementation proposals and timelines<br>
-                        <strong>Compliance Documents:</strong> Regulatory alignment and accreditation materials<br>
-                        <strong>Partnership Agreements:</strong> Template MOUs and collaboration frameworks<br>
-                        <strong>Tracking:</strong> Document status across 9 priority countries (2025)
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-cert" onclick="openModal('govPresentations')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Stakeholder Presentation Materials</div>
-                    <div class="component-details">
-                        <strong>Executive Summaries:</strong> High-level program overviews for MOH leadership<br>
-                        <strong>Technical Specs:</strong> Detailed implementation requirements and timelines<br>
-                        <strong>ROI Analysis:</strong> Cost-benefit analysis and value proposition documents<br>
-                        <strong>Success Stories:</strong> Rwanda case studies and proof of concept materials<br>
-                        <strong>Customization:</strong> Country-specific adaptations and local context integration
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-hiring" onclick="openModal('regulatoryDocs')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Regulatory & Compliance Framework</div>
-                    <div class="component-details">
-                        <strong>Accreditation Standards:</strong> International certification alignment and recognition<br>
-                        <strong>Quality Frameworks:</strong> Training standards and assessment criteria<br>
-                        <strong>Legal Compliance:</strong> Country-specific regulatory requirements and approvals<br>
-                        <strong>Professional Standards:</strong> Medical council and professional association alignment<br>
-                        <strong>Documentation:</strong> Complete regulatory package for government approval
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Program Management Dashboard -->
-        <div class="flow-section">
-            <div class="flow-title">Program Management Dashboard & Gantt Tracking</div>
-            <div class="ecosystem-grid">
-                <div class="ecosystem-component component-admin" onclick="openModal('ganttOverview')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Master Gantt Chart - 9 Countries (2025)</div>
-                    <div class="component-details">
-                        <strong>Timeline Overview:</strong> Complete project schedule across all priority countries<br>
-                        <strong>Milestone Tracking:</strong> Key deliverables and critical path dependencies<br>
-                        <strong>Resource Allocation:</strong> SAND trainer assignments and capacity planning<br>
-                        <strong>Risk Management:</strong> Delay tracking and mitigation strategies<br>
-                        <strong>Status Updates:</strong> Real-time progress monitoring and reporting
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-country" onclick="openModal('countryGantt')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Country-Specific Implementation Schedules</div>
-                    <div class="component-details">
-                        <strong>6-Phase Breakdown:</strong> Assessment → Hiring → Training → Deployment → Scale → Handover<br>
-                        <strong>Dependencies:</strong> Cross-country resource sharing and sequencing<br>
-                        <strong>Readiness Levels:</strong> High/Medium/Low readiness country groupings<br>
-                        <strong>Budget Alignment:</strong> Cost tracking against timeline milestones<br>
-                        <strong>Quality Gates:</strong> Go/no-go decision points and success criteria
-                    </div>
-                </div>
-                
-                <div class="ecosystem-component component-fionet" onclick="openModal('resourceGantt')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="component-title">Resource & Budget Timeline</div>
-                    <div class="component-details">
-                        <strong>Financial Milestones:</strong> Budget release schedules and spending tracking<br>
-                        <strong>SAND Trainer Calendar:</strong> Personnel deployment and availability planning<br>
-                        <strong>Equipment Procurement:</strong> Physical setup and technology deployment schedules<br>
-                        <strong>Cash Flow:</strong> Monthly financial requirements and funding drawdowns<br>
-                        <strong>Performance Metrics:</strong> Budget vs actual tracking and variance analysis
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="arrow-flow">↓ ↓ ↓</div>
-
-        <!-- Coordination Matrix -->
-        <div class="coordination-matrix">
-            <div class="matrix-header">Who Does What When - Coordination Matrix</div>
-            <div class="matrix-content">
-                <div class="matrix-row" onclick="openModal('digitalAcademyMatrix')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="matrix-who">Digital Health Academy</div>
-                    <div class="matrix-what">
-                        • Coordinate deployment of operational HOS Help Center and Professional Development Program across 22 countries<br>
-                        • Identify and assign SAND trainers for MOH staff training and shadowing programs<br>
-                        • Serve as central excellence hub for culture alignment and quality standards<br>
-                        • Train core teams from all 22 countries using mixed SAND + external faculty model<br>
-                        • Onboard and train hired MOH staff (8 critical roles per country)<br>
-                        • Deploy ALX-style certification protocols with portfolio-based assessment<br>
-                        • Facilitate 12-week pilot implementation using proven frameworks<br>
-                        • Monitor quality metrics and implementation progress
-                    </div>
-                    <div class="matrix-when">Continuous</div>
-                    <div class="matrix-outcome">Excellence & Coordination</div>
-                </div>
-                
-                <div class="matrix-row" onclick="openModal('hosAcademyTeams')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="matrix-who">HOS Academy Teams (Country-Level)</div>
-                    <div class="matrix-what">
-                        • Manage country-specific HOS Help Center platforms and content<br>
-                        • Deliver localized 7-Pod (hubs/teams/departments) training curriculum adapted from central standards<br>
-                        • Deploy master trainers certified at Digital Health Academy<br>
-                        • Coordinate with FIELD and other specialized training providers<br>
-                        • Transfer operational knowledge to local teams with central quality assurance
-                    </div>
-                    <div class="matrix-when">Months 2-18</div>
-                    <div class="matrix-outcome">Local Competence</div>
-                </div>
-                
-                <div class="matrix-row" onclick="openModal('mohTeams')">
-                    <div class="clickable-hint">Click for details</div>
-                    <div class="matrix-who">Country MOH Teams</div>
-                    <div class="matrix-what">
-                        • Execute strategic hiring for 8 critical data and technology roles<br>
-                        • Participate in needs assessment and provide local context<br>
-                        • Engage in Academy training and SAND trainer shadowing programs<br>
-                        • Coordinate with country launchers for specialized training identification<br>
-                        • Take ownership of systems and processes within 12 months
-                    </div>
-                    <div class="matrix-when">Months 1-24</div>
-                    <div class="matrix-outcome">Local Ownership</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Critical Path -->
-        <div class="critical-path">
-            <div class="path-title">Critical Success Path - Country Deployment Workplan</div>
-            <div class="path-steps">
-                <div class="path-step" onclick="openModal('step1Assessment')">
-                    <div class="clickable-hint">Click for workplan</div>
-                    <div class="step-icon">1</div>
-                    <div class="step-text">
-                        <strong>Step 1:</strong><br>
-                        Assessment & Stakeholder Alignment (Readiness-Based Approach)
-                    </div>
-                </div>
-                
-                <div class="path-step" onclick="openModal('step2Hiring')">
-                    <div class="clickable-hint">Click for workplan</div>
-                    <div class="step-icon">2</div>
-                    <div class="step-text">
-                        <strong>Step 2:</strong><br>
-                        MOH Strategic Hiring & SAND Trainer Assignment
-                    </div>
-                </div>
-                
-                <div class="path-step" onclick="openModal('step3Training')">
-                    <div class="clickable-hint">Click for workplan</div>
-                    <div class="step-icon">3</div>
-                    <div class="step-text">
-                        <strong>Step 3:</strong><br>
-                        Academy Training & Specialized Partnerships
-                    </div>
-                </div>
-                
-                <div class="path-step" onclick="openModal('step4Deployment')">
-                    <div class="clickable-hint">Click for workplan</div>
-                    <div class="step-icon">4</div>
-                    <div class="step-text">
-                        <strong>Step 4:</strong><br>
-                        Local Deployment & Help Center Launch
-                    </div>
-                </div>
-                
-                <div class="path-step" onclick="openModal('step5Scale')">
-                    <div class="clickable-hint">Click for workplan</div>
-                    <div class="step-icon">5</div>
-                    <div class="step-text">
-                        <strong>Step 5:</strong><br>
-                        Scale Operations & Quality Assurance
-                    </div>
-                </div>
-                
-                <div class="path-step" onclick="openModal('step6Handover')">
-                    <div class="clickable-hint">Click for workplan</div>
-                    <div class="step-icon">6</div>
-                    <div class="step-text">
-                        <strong>Step 6:</strong><br>
-                        Handover & Sustainability Transition
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Success Metrics -->
-        <div class="success-metrics">
-            <div class="flow-title" style="color: #10b981; margin-top: 0;">Success Metrics Dashboard</div>
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-number">500 → 100K+</div>
-                    <div class="metric-label">Healthcare Workers Trained</div>
-                    <div class="metric-timeline">2025 → 2028</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-number">50+ → 500+</div>
-                    <div class="metric-label">Data & Technology Professionals Trained</div>
-                    <div class="metric-timeline">2025 → 2028</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-number">2 → 9</div>
-                    <div class="metric-label">Countries with Operational HOS (2025 Focus)</div>
-                    <div class="metric-timeline">2025 Priority Expansion</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-number">80%</div>
-                    <div class="metric-label">Return Trainee NPS Score</div>
-                    <div class="metric-timeline">2025 & 2028 Target</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-number">TBD</div>
-                    <div class="metric-label">MOH Critical Roles Hired (pending central team alignment)</div>
-                    <div class="metric-timeline">Across 9 Priority Countries</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-number">$2,400</div>
-                    <div class="metric-label">Training Cost Per Student (Target)</div>
-                    <div class="metric-timeline">Including Materials & Certification</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-number">$250K</div>
-                    <div class="metric-label">Physical Space Setup Per Country</div>
-                    <div class="metric-timeline">HOS Facilities & Equipment</div>
-                </div>
-                
-                <div class="metric-card">
-                    <div class="metric-number">$2.1M</div>
-                    <div class="metric-label">Total SFH Engagement Budget</div>
-                    <div class="metric-timeline">9 Countries Implementation</div>
-                </div>
-            </div>
-        </div>
-
     </div>
 
-    <!-- Modal Structure -->
-    <div id="detailModal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h2 id="modalTitle" class="modal-title"></h2>
-                <button class="close" onclick="closeModal()">&times;</button>
+    <div class="slide-number">1</div>
+</div>
+
+<!-- Slide 2: Country Status by Three Pillars -->
+<div class="slide">
+    <div class="header">
+        <div class="logo">SAND TECHNOLOGIES</div>
+        <div class="date">Country Progress by Strategic Pillar</div>
+    </div>
+    <h2>Health Operating System Implementation Status</h2>
+    
+    <div style="overflow-x: auto;">
+        <table class="country-table">
+            <thead>
+                <tr>
+                    <th style="width: 12%;">Country</th>
+                    <th style="width: 10%;">Hiring</th>
+                    <th style="width: 26%;">Intelligence Centers</th>
+                    <th style="width: 26%;">Connected Facilities</th>
+                    <th style="width: 26%;">Capability Building</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="background: #d4f4dd;">
+                    <td><strong>Rwanda</strong></td>
+                    <td><span class="status-dot status-green"></span>2/3</td>
+                    <td>✓ 2 SNHIC centers: BOQ received, prices benchmarking</td>
+                    <td>✓ Eastern/Western clusters identified, baseline assessment started</td>
+                    <td>✓ eBuzima rollout in Musanze, 12 startups identified</td>
+                </tr>
+                <tr style="background: #d4f4dd;">
+                    <td><strong>Togo</strong></td>
+                    <td><span class="status-dot status-red"></span>0/3</td>
+                    <td>✓ Renovations started, ceiling replacement underway</td>
+                    <td>⚠️ DHIS2 meeting approved, HISP follow-up pending</td>
+                    <td>- Not started</td>
+                </tr>
+                <tr style="background: #d4f4dd;">
+                    <td><strong>Burkina Faso</strong></td>
+                    <td><span class="status-dot status-red"></span>0/3</td>
+                    <td>✓ 7 use cases identified, architect proposals received</td>
+                    <td>✓ Data sources identified based on use cases</td>
+                    <td>⚠️ MoH working on job descriptions</td>
+                </tr>
+                <tr>
+                    <td><strong>Senegal</strong></td>
+                    <td><span class="status-dot status-red"></span>0/3</td>
+                    <td>⚠️ Delegation visiting Rwanda (Day 3/5), impressed with HIC</td>
+                    <td>- Not started</td>
+                    <td>⚠️ French docs being transcribed</td>
+                </tr>
+                <tr>
+                    <td><strong>Benin</strong></td>
+                    <td><span class="status-dot status-red"></span>0/3</td>
+                    <td>✓ 3 sites identified, 4 use cases, vendor pre-qualification</td>
+                    <td>❌ Facilities paper-based, pivoting to iHRS for CHWs</td>
+                    <td>- Not started</td>
+                </tr>
+                <tr>
+                    <td><strong>Sierra Leone</strong></td>
+                    <td><span class="status-dot status-red"></span>0/3</td>
+                    <td>⚠️ 2 contractor proposals under review</td>
+                    <td>⚠️ Master Data List shared with solutions team</td>
+                    <td>⚠️ Hiring needs identified</td>
+                </tr>
+                <tr>
+                    <td><strong>CAR</strong></td>
+                    <td><span class="status-dot status-red"></span>0/3</td>
+                    <td>✓ Site selected, equipment quotes from CAR received</td>
+                    <td>⚠️ Data deep dive pending MOU</td>
+                    <td>⚠️ 1 local hire planned</td>
+                </tr>
+                <tr>
+                    <td><strong>Botswana</strong></td>
+                    <td><span class="status-dot status-yellow"></span>1/3</td>
+                    <td>⚠️ Existing "war room" identified</td>
+                    <td>✓ DHIS2 by CHWs, OpenMRS migration (2/31 districts)</td>
+                    <td>⚠️ 10 Country Director candidates</td>
+                </tr>
+                <tr>
+                    <td><strong>Liberia</strong></td>
+                    <td><span class="status-dot status-yellow"></span>1/3</td>
+                    <td>⚠️ Vendor research initiated</td>
+                    <td>⚠️ Vendor research initiated</td>
+                    <td>⚠️ Central draft received</td>
+                </tr>
+                <tr style="background: #f8d7da;">
+                    <td><strong>Malawi</strong></td>
+                    <td><span class="status-dot status-gray"></span>0/3</td>
+                    <td>- No updates</td>
+                    <td>- No updates</td>
+                    <td>- No updates</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="slide-number">2</div>
+</div>
+
+<!-- Slide 3: Intelligence Centers Deep Dive -->
+<div class="slide">
+    <div class="header">
+        <div class="logo">SAND TECHNOLOGIES</div>
+        <div class="date">Intelligence Centers - Progress & Challenges</div>
+    </div>
+    <h2>🏥 Intelligence Centers Status</h2>
+    
+    <div class="two-column">
+        <div>
+            <h3 style="color: #28a745;">✅ WINS This Week</h3>
+            <div class="action-item success">
+                <strong>Physical Progress:</strong>
+                <ul style="font-size: 18px;">
+                    <li><strong>Togo:</strong> Renovation works began, old ceiling removal in progress</li>
+                    <li><strong>Rwanda:</strong> BOM for both SNHIC centers received</li>
+                    <li><strong>Burkina:</strong> Architects submitted renovation plans</li>
+                    <li><strong>CAR:</strong> Equipment quotes obtained locally</li>
+                    <li><strong>Benin:</strong> 3 physical spaces identified</li>
+                </ul>
             </div>
-            <div id="modalBody" class="modal-body">
-                <!-- Dynamic content will be inserted here -->
+            
+            <div class="action-item success">
+                <strong>Use Case Development:</strong>
+                <ul style="font-size: 18px;">
+                    <li><strong>Burkina:</strong> MoH shared wishlist of 7 use cases</li>
+                    <li><strong>Benin:</strong> 4 possible use cases, starting with 2</li>
+                    <li><strong>Sierra Leone:</strong> Priority use cases ready by Thursday</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div>
+            <h3 style="color: #dc3545;">⚠️ CHALLENGES</h3>
+            <div class="action-item">
+                <strong>Equipment & Procurement:</strong>
+                <ul style="font-size: 18px;">
+                    <li><strong>Togo:</strong> Budget awaiting validation</li>
+                    <li><strong>Senegal:</strong> Equipment cost research incomplete</li>
+                    <li><strong>Sierra Leone:</strong> Contractor approval pending</li>
+                    <li><strong>Burkina:</strong> Local equipment assessment ongoing</li>
+                </ul>
+            </div>
+            
+            <div class="action-item">
+                <strong>Timeline Risks:</strong>
+                <ul style="font-size: 18px;">
+                    <li><strong>Target:</strong> Togo renovation by Sept 30</li>
+                    <li><strong>Risk:</strong> Equipment procurement delays</li>
+                    <li><strong>Risk:</strong> Burkina architect selection pending</li>
+                    <li><strong>Risk:</strong> Multiple countries still identifying sites</li>
+                </ul>
             </div>
         </div>
     </div>
 
-    <script>
-        // Modal functionality
-        function openModal(contentType) {
-            const modal = document.getElementById('detailModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const modalBody = document.getElementById('modalBody');
+    <h3>September Milestones Status</h3>
+    <div class="detail-grid">
+        <div class="detail-card">
+            <h4>🟢 On Track (3 countries)</h4>
+            <ul>
+                <li>Rwanda: Discovery complete, design approved</li>
+                <li>Togo: Renovation 25% complete</li>
+                <li>CAR: Site selected, equipment identified</li>
+            </ul>
+        </div>
+        <div class="detail-card">
+            <h4>🟡 At Risk (4 countries)</h4>
+            <ul>
+                <li>Burkina: Awaiting architect selection</li>
+                <li>Benin: Vendor pre-qualification in progress</li>
+                <li>Senegal: Delegation decision pending</li>
+                <li>Sierra Leone: Contractor selection delayed</li>
+            </ul>
+        </div>
+    </div>
+    <div class="slide-number">3</div>
+</div>
+
+<!-- Slide 4: Connected Facilities Deep Dive -->
+<div class="slide">
+    <div class="header">
+        <div class="logo">SAND TECHNOLOGIES</div>
+        <div class="date">Connected Facilities - Progress & Challenges</div>
+    </div>
+    <h2>🔗 Connected Facilities Status</h2>
+    
+    <div class="two-column">
+        <div>
+            <h3 style="color: #28a745;">✅ PROGRESS This Week</h3>
+            <div class="action-item success">
+                <strong>Facility Assessments:</strong>
+                <ul style="font-size: 18px;">
+                    <li><strong>Rwanda:</strong> Baseline assessment signed off by MOH</li>
+                    <li><strong>Rwanda:</strong> Eastern province assessment started</li>
+                    <li><strong>Togo:</strong> DHIS2 ecosystem mapping approved</li>
+                    <li><strong>Burkina:</strong> Key data sources identified</li>
+                </ul>
+            </div>
             
-            // Define detailed content for each component
-            const content = {
-                phase1: {
-                    title: "Phase 1: Assessment & Adaptation",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Primary Objectives</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Needs Assessment</div>
-                                    Comprehensive evaluation of existing health systems, digital literacy levels, and training infrastructure in target country.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Stakeholder Mapping</div>
-                                    Identify key partners including MOH, medical training institutions, local NGOs, and technology providers.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Curriculum Adaptation</div>
-                                    Localize existing 7-Pod (hubs/teams/departments) training materials for country-specific health challenges and cultural context.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Language Localization</div>
-                                    Translate and adapt training materials to local languages and health terminology.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Key Activities</h3>
-                            <ul>
-                                <li><strong>Country Assessment Visit:</strong> 2-week on-ground evaluation by implementation team</li>
-                                <li><strong>Stakeholder Workshops:</strong> Series of meetings with MOH, health facilities, and training institutions</li>
-                                <li><strong>Technology Infrastructure Review:</strong> Assess internet connectivity, device availability, and digital platforms</li>
-                                <li><strong>Content Localization:</strong> Adapt Rwanda's proven curriculum to local health priorities and languages</li>
-                                <li><strong>Partnership Agreements:</strong> Establish MOUs with key local partners and government entities</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Success Metrics</h3>
-                            <ul>
-                                <li>Completed country assessment report with actionable recommendations</li>
-                                <li>Signed partnership agreements with MOH and key stakeholders</li>
-                                <li>Localized training curriculum for all 7 pods (hubs/teams/departments)</li>
-                                <li>Technology infrastructure requirements and implementation plan</li>
-                                <li>Identified pilot facilities and initial trainee cohorts</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                phase2: {
-                    title: "Phase 2: Rapid Deployment",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Deployment Strategy</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Central Training</div>
-                                    Core country teams receive intensive training at the Digital Health Academy in Rwanda using mixed SAND + external faculty model.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Platform Deployment</div>
-                                    Launch country-specific HOS Help Center based on proven Rwanda model.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">MOH Strategic Hiring</div>
-                                    Execute hiring for 8 critical roles with Academy onboarding and SAND trainer shadowing.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Pilot Implementation</div>
-                                    Launch 12-week development program with selected facilities using ALX-style methodology.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>MOH Critical Roles (8 per Country)</h3>
-                            <div class="jd-grid">
-                                <div class="jd-item">
-                                    <div class="jd-title">Senior Data Engineer</div>
-                                    <div class="jd-placeholder">JD Placeholder: Data pipeline architecture, ETL processes, database optimization</div>
-                                </div>
-                                <div class="jd-item">
-                                    <div class="jd-title">Senior Data Analyst</div>
-                                    <div class="jd-placeholder">JD Placeholder: Health metrics analysis, reporting, insight generation</div>
-                                </div>
-                                <div class="jd-item">
-                                    <div class="jd-title">Platform Engineer</div>
-                                    <div class="jd-placeholder">JD Placeholder: System architecture, DevOps, platform maintenance</div>
-                                </div>
-                                <div class="jd-item">
-                                    <div class="jd-title">Principal BI Architect</div>
-                                    <div class="jd-placeholder">JD Placeholder: Business intelligence strategy, dashboard design, data visualization</div>
-                                </div>
-                                <div class="jd-item">
-                                    <div class="jd-title">Blueroom Lead</div>
-                                    <div class="jd-placeholder">JD Placeholder: HIC operations management, workflow coordination</div>
-                                </div>
-                                <div class="jd-item">
-                                    <div class="jd-title">Tech Operations Lead</div>
-                                    <div class="jd-placeholder">JD Placeholder: Technical infrastructure, system monitoring, troubleshooting</div>
-                                </div>
-                                <div class="jd-item">
-                                    <div class="jd-title">User Satisfaction Lead</div>
-                                    <div class="jd-placeholder">JD Placeholder: User experience, feedback management, satisfaction metrics</div>
-                                </div>
-                                <div class="jd-item">
-                                    <div class="jd-title">Learning & Development</div>
-                                    <div class="jd-placeholder">JD Placeholder: Training coordination, curriculum development, capacity building</div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Expected Outcomes</h3>
-                            <ul>
-                                <li>8 critical MOH roles hired and onboarded per country</li>
-                                <li>2-3 master trainers certified per country</li>
-                                <li>Operational country-specific HOS Help Center</li>
-                                <li>50-100 healthcare workers completing pilot program</li>
-                                <li>Established MOH-led governance structure with SAND trainer support</li>
-                                <li>Proven local delivery model ready for scale</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                phase3: {
-                    title: "Phase 3: Scale & Stabilize",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Scaling Strategy</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Facility Expansion</div>
-                                    Roll out training to 50+ healthcare facilities with proven curriculum and methods.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Multi-Modal Delivery</div>
-                                    Combine in-person, online, and mobile training for maximum reach and effectiveness.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Digital Systems</div>
-                                    Launch comprehensive digital development system with analytics and tracking.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Quality Assurance</div>
-                                    Implement continuous monitoring and performance improvement systems.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Key Activities</h3>
-                            <ul>
-                                <li><strong>Facility Onboarding:</strong> Systematic rollout to 50+ healthcare facilities</li>
-                                <li><strong>Trainer Development:</strong> Scale master trainer network for sustainable delivery</li>
-                                <li><strong>Digital Platform:</strong> Full deployment of integrated technology stack</li>
-                                <li><strong>Performance Monitoring:</strong> Real-time dashboards and quality metrics</li>
-                                <li><strong>Feedback Systems:</strong> Continuous improvement based on user feedback</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                phase4: {
-                    title: "Phase 4: Handover & Sustain",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Transition Strategy</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">MOH Ownership</div>
-                                    Complete operational control transfer to Ministry of Health with ongoing support.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Self-Sustaining Systems</div>
-                                    Local capacity for training delivery, content updates, and quality management.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Continuous Improvement</div>
-                                    Established processes for ongoing curriculum updates and system enhancements.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Knowledge Sharing</div>
-                                    Regional networks for best practice sharing and collaborative learning.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Sustainability Measures</h3>
-                            <ul>
-                                <li><strong>Local Leadership:</strong> MOH teams fully capable of independent operation</li>
-                                <li><strong>Financial Independence:</strong> Sustainable funding models and cost structures</li>
-                                <li><strong>Technical Capability:</strong> In-country expertise for system maintenance and updates</li>
-                                <li><strong>Quality Standards:</strong> Maintained excellence without external oversight</li>
-                                <li><strong>Regional Integration:</strong> Cross-country learning and support networks</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                programCurriculum: {
-                    title: "Program & Curriculum Framework",
-                    content: `
-                        <div class="modal-section">
-                            <h3>7-Pod Training Framework</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Clinical Pod</div>
-                                    Patient care protocols, clinical guidelines, disease management, infection prevention
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Finance Pod</div>
-                                    Budget management, revenue cycle, financial reporting, cost control
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">People Pod</div>
-                                    Human resource management, performance evaluation, professional development
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Inventory Pod</div>
-                                    Supply chain management, pharmaceutical logistics, equipment maintenance
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Facilities Pod</div>
-                                    Infrastructure management, maintenance protocols, safety standards
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Data & Technology Pod</div>
-                                    Health information systems, data analysis, digital tools, reporting
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Operations Pod</div>
-                                    Process improvement, quality management, workflow optimization
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Country Localization (9 Countries - 2025)</h3>
-                            <ul>
-                                <li><strong>Language Adaptation:</strong> Translation and cultural adaptation of all training materials</li>
-                                <li><strong>Regulatory Alignment:</strong> Compliance with national health policies and professional standards</li>
-                                <li><strong>Clinical Context:</strong> Integration of country-specific disease patterns and health priorities</li>
-                                <li><strong>Resource Constraints:</strong> Adaptation for local technology and infrastructure limitations</li>
-                                <li><strong>Cultural Sensitivity:</strong> Respect for local healthcare delivery traditions and practices</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                digitalAcademy: {
-                    title: "Digital Health Academy - Rwanda (Central Excellence Hub)",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Academy Infrastructure</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Physical Campus</div>
-                                    Virtual + Leased Spaces transitioning to Masaka Medical Hub for permanent location
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Training Capacity</div>
-                                    6,000+ health workers + 500+ data/tech professionals across Africa
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Faculty Model</div>
-                                    Mixed SAND + External faculty for comprehensive coverage and expertise
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Program Delivery</div>
-                                    1-week intensive + online programs with specialized partnerships
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Strategic Role</h3>
-                            <ul>
-                                <li><strong>Central Excellence Hub:</strong> Maintain quality standards and culture alignment across all countries</li>
-                                <li><strong>Trainer Development:</strong> Certify master trainers for local deployment</li>
-                                <li><strong>Content Creation:</strong> Unified training wing for all Umuko content and programs</li>
-                                <li><strong>Quality Assurance:</strong> Monitor and maintain training effectiveness across network</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                helpCenters: {
-                    title: "Country-Specific HOS Help Centers",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Platform Features</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Template Base</div>
-                                    Built on Rwanda's proven model with country-specific adaptations
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Localized Content</div>
-                                    Country-specific languages, contexts, and health priorities
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Google Sites Platform</div>
-                                    Easy to update, accessible, and cost-effective solution
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Structured Navigation</div>
-                                    Organized training categories based on 7-Pod framework
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Content Organization</h3>
-                            <ul>
-                                <li><strong>Pod-Based Structure:</strong> Training materials organized by the 7-Pod system</li>
-                                <li><strong>Multi-Language Support:</strong> Local language versions with English fallbacks</li>
-                                <li><strong>Interactive Elements:</strong> Quizzes, assessments, and practical exercises</li>
-                                <li><strong>Resource Library:</strong> Documents, videos, templates, and tools</li>
-                                <li><strong>Community Features:</strong> Discussion forums and peer learning spaces</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                contentManagement: {
-                    title: "Hybrid Content Management System",
-                    content: `
-                        <div class="modal-section">
-                            <h3>System Architecture</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Central Repository</div>
-                                    Digital Health Academy maintains master curriculum library
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Version Control</div>
-                                    Real-time synchronization and update management
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Multi-Format Support</div>
-                                    Documents, videos, assessments, interactive content
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Collaborative Editing</div>
-                                    Central standards with local customization capabilities
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Content Workflow</h3>
-                            <ul>
-                                <li><strong>Central Creation:</strong> Core curriculum developed at Digital Health Academy</li>
-                                <li><strong>Local Adaptation:</strong> Country teams customize for local context</li>
-                                <li><strong>Quality Review:</strong> Central approval process for modified content</li>
-                                <li><strong>Distribution:</strong> Automated deployment to country platforms</li>
-                                <li><strong>Feedback Loop:</strong> Local insights inform central curriculum updates</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                trainingDelivery: {
-                    title: "Cascaded Training Delivery Model",
-                    content: `
-                        <div class="modal-section">
-                            <h3>4-Tier Delivery System</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Tier 1 - Central</div>
-                                    Core teams trained at Digital Health Academy with mixed faculty
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Tier 2 - Regional</div>
-                                    Master trainers deploy in-country with local context
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Tier 3 - Local</div>
-                                    7 Pods cascade + 4-Tier health system implementation
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Tier 4 - Digital</div>
-                                    Remote support and continuous learning platforms
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Technology Integration</h3>
-                            <ul>
-                                <li><strong>TalentLMS:</strong> Core learning management and progress tracking</li>
-                                <li><strong>ClassMarker:</strong> Secure assessments with browser lockdown</li>
-                                <li><strong>Credly:</strong> Digital badges and LinkedIn integration</li>
-                                <li><strong>Local Platforms:</strong> Country-specific tools and systems</li>
-                                <li><strong>Mobile Support:</strong> Offline capability for remote areas</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                alxCertification: {
-                    title: "Certificate of Completion - ALX-Style",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Certification Framework</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Portfolio-Based Assessment</div>
-                                    Practical project demonstration with real-world application and peer review
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Professional Recognition</div>
-                                    Industry-aligned certificate upon successful program completion
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Skills-Focused</div>
-                                    Competency-based evaluation with health sector adaptation
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Proven Methodology</div>
-                                    Based on ALX's successful approach to professional development
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Assessment Components</h3>
-                            <ul>
-                                <li><strong>Practical Projects:</strong> Real health facility improvement initiatives</li>
-                                <li><strong>Peer Reviews:</strong> Collaborative evaluation and feedback systems</li>
-                                <li><strong>Professional Portfolio:</strong> Documented evidence of skill application</li>
-                                <li><strong>Continuous Assessment:</strong> Progress tracking throughout program</li>
-                                <li><strong>Digital Badges:</strong> Credly integration for employer verification</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                techStack: {
-                    title: "Integrated Technology Stack",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Core Platforms</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">TalentLMS</div>
-                                    Course delivery, progress tracking, learner management
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">ClassMarker</div>
-                                    Secure assessment with browser lockdown and automated scoring
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Credly</div>
-                                    Digital badges, LinkedIn integration, employer verification
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Analytics Suite</div>
-                                    Looker Studio/eOps for real-time dashboards and reporting
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Field Assessment Tools</h3>
-                            <ul>
-                                <li><strong>Google Forms:</strong> Mobile-friendly assessment creation and distribution</li>
-                                <li><strong>AppSheet:</strong> Offline capability for remote area assessments</li>
-                                <li><strong>Data Integration:</strong> Seamless sync with central analytics platforms</li>
-                                <li><strong>Real-time Reporting:</strong> Immediate feedback and progress tracking</li>
-                                <li><strong>Multi-language Support:</strong> Local language interface options</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                mohHiring: {
-                    title: "MOH Strategic Hiring Program",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Current Status - Pending Alignment</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Role Confirmation</div>
-                                    Number of roles and specific profiles awaiting central team alignment
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Job Descriptions</div>
-                                    Comprehensive role profiles and competency frameworks in development
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Training Program</div>
-                                    1-week intensive + online program coordinated through Academy
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Implementation Timeline</div>
-                                    Hiring process alignment required before country deployment
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>8 Critical Roles Framework (Per Country)</h3>
-                            <ul>
-                                <li><strong>Senior Data Engineer:</strong> Data pipeline architecture and optimization</li>
-                                <li><strong>Senior Data Analyst:</strong> Health metrics analysis and insights</li>
-                                <li><strong>Platform Engineer:</strong> System architecture and DevOps</li>
-                                <li><strong>Principal BI Architect:</strong> Business intelligence and visualization</li>
-                                <li><strong>Blueroom Lead:</strong> HIC operations coordination</li>
-                                <li><strong>Tech Operations Lead:</strong> Infrastructure and system monitoring</li>
-                                <li><strong>User Satisfaction Lead:</strong> Experience and feedback management</li>
-                                <li><strong>Learning & Development:</strong> Training coordination and capacity building</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                mohGovernance: {
-                    title: "MOH-Led Governance Structure",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Governance Framework</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Country Guidelines</div>
-                                    Governance structure following each country's specific requirements
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Specialized Training</div>
-                                    FIELD and other partners for technical gaps SAND cannot cover
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Local Partnerships</div>
-                                    Country launchers identify and manage specialized providers
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Handover Timeline</div>
-                                    HIC transition schedule pending central team clarification
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Partnership Strategy</h3>
-                            <ul>
-                                <li><strong>MOH Leadership:</strong> Government ownership and strategic direction</li>
-                                <li><strong>SAND Coordination:</strong> Technical excellence and quality standards</li>
-                                <li><strong>FIELD Integration:</strong> Specialized clinical and operational training</li>
-                                <li><strong>Local Providers:</strong> Context-specific expertise and delivery</li>
-                                <li><strong>Sustainability Focus:</strong> Long-term capacity and independence</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                impactMeasurement: {
-                    title: "Impact Measurement & Value Demonstration",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Measurement Framework</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Beneficiary Outcomes</div>
-                                    Health worker performance improvements and patient care metrics
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">System Efficiency</div>
-                                    Facility operational improvements and measurable cost savings
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">ROI Analytics</div>
-                                    Real-time dashboards tracking training effectiveness and returns
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Evidence Generation</div>
-                                    Rigorous evaluation frameworks for continuous improvement
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Reporting & Value Demonstration</h3>
-                            <ul>
-                                <li><strong>Funder Reports:</strong> Comprehensive impact documentation demonstrating SAND's value addition</li>
-                                <li><strong>Performance Metrics:</strong> Health facility efficiency and quality improvements</li>
-                                <li><strong>Cost-Benefit Analysis:</strong> Training investment returns and system savings</li>
-                                <li><strong>Success Stories:</strong> Case studies and documented improvement examples</li>
-                                <li><strong>Continuous Monitoring:</strong> Real-time tracking and adaptive management</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                physicalLayout: {
-                    title: "Physical Layout & HOS Facilities",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Facility Specifications</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Standardized Setup</div>
-                                    Consistent HOS facility configuration for 9 expansion countries
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Training Capacity</div>
-                                    50-100 trainees per facility with expansion capability
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Equipment Requirements</div>
-                                    IT hardware, furniture, medical training equipment specifications
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Cost Structure</div>
-                                    $180K setup cost per country facility (updated figure)
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Infrastructure Components</h3>
-                            <ul>
-                                <li><strong>Training Rooms:</strong> Flexible spaces for various training modalities</li>
-                                <li><strong>Technology Infrastructure:</strong> High-speed internet, AV systems, learning management platforms</li>
-                                <li><strong>Equipment Areas:</strong> Medical simulation and hands-on training spaces</li>
-                                <li><strong>Administrative Spaces:</strong> Office areas for staff and program coordination</li>
-                                <li><strong>Expansion Capability:</strong> Scalable design for future growth and additional programs</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                programFlyers: {
-                    title: "Official Program Documentation",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Documentation Suite</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Program Flyers</div>
-                                    Professional marketing materials designed for government stakeholders
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">MOH Proposals</div>
-                                    Country-specific implementation proposals with detailed timelines
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Partnership Agreements</div>
-                                    Template MOUs and collaboration frameworks for government engagement
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Compliance Documentation</div>
-                                    Regulatory alignment and accreditation materials for each country
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Implementation Tracking</h3>
-                            <ul>
-                                <li><strong>9 Priority Countries:</strong> Document status tracking for 2025 expansion</li>
-                                <li><strong>Government Approvals:</strong> Regulatory compliance and accreditation progress</li>
-                                <li><strong>Partnership Status:</strong> MOH engagement and agreement execution</li>
-                                <li><strong>Customization Level:</strong> Country-specific adaptation requirements</li>
-                                <li><strong>Approval Timeline:</strong> Government decision-making and implementation schedules</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                govPresentations: {
-                    title: "Stakeholder Presentation Materials",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Presentation Portfolio</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Executive Summaries</div>
-                                    High-level program overviews tailored for MOH leadership
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Technical Specifications</div>
-                                    Detailed implementation requirements and project timelines
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">ROI Analysis</div>
-                                    Cost-benefit analysis and comprehensive value proposition documents
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Success Stories</div>
-                                    Rwanda case studies and proven proof of concept materials
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Customization Strategy</h3>
-                            <ul>
-                                <li><strong>Country-Specific Adaptations:</strong> Local context integration and cultural considerations</li>
-                                <li><strong>Health System Mapping:</strong> Integration with existing structures and processes</li>
-                                <li><strong>Economic Impact:</strong> Cost savings projections and efficiency improvements</li>
-                                <li><strong>Implementation Roadmap:</strong> Phase-by-phase deployment and milestone tracking</li>
-                                <li><strong>Risk Mitigation:</strong> Identified challenges and proposed solutions</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                regulatoryDocs: {
-                    title: "Regulatory & Compliance Framework",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Compliance Components</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Accreditation Standards</div>
-                                    International certification alignment and professional recognition
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Quality Frameworks</div>
-                                    Training standards and comprehensive assessment criteria
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Legal Compliance</div>
-                                    Country-specific regulatory requirements and approval processes
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Professional Standards</div>
-                                    Medical council and professional association alignment
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Regulatory Package</h3>
-                            <ul>
-                                <li><strong>Complete Documentation:</strong> Full regulatory package for government approval</li>
-                                <li><strong>International Standards:</strong> WHO and global best practice compliance</li>
-                                <li><strong>Local Requirements:</strong> Country-specific regulations and approval processes</li>
-                                <li><strong>Quality Assurance:</strong> Continuous monitoring and compliance maintenance</li>
-                                <li><strong>Professional Recognition:</strong> Certificate validity and employer acceptance</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                ganttOverview: {
-                    title: "Master Gantt Chart - 9 Countries (2025)",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Project Overview</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Timeline Management</div>
-                                    Complete project schedule coordination across all priority countries
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Milestone Tracking</div>
-                                    Key deliverables and critical path dependencies monitoring
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Resource Allocation</div>
-                                    SAND trainer assignments and capacity planning optimization
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Risk Management</div>
-                                    Delay tracking and comprehensive mitigation strategies
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Coordination Features</h3>
-                            <ul>
-                                <li><strong>Multi-Country View:</strong> Simultaneous tracking of all 9 priority countries</li>
-                                <li><strong>Critical Path Analysis:</strong> Dependency mapping and bottleneck identification</li>
-                                <li><strong>Resource Optimization:</strong> SAND trainer deployment and availability management</li>
-                                <li><strong>Progress Reporting:</strong> Real-time status updates and stakeholder communication</li>
-                                <li><strong>Scenario Planning:</strong> Alternative timelines and risk mitigation options</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                countryGantt: {
-                    title: "Country-Specific Implementation Schedules",
-                    content: `
-                        <div class="modal-section">
-                            <h3>6-Phase Implementation</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Assessment Phase</div>
-                                    Country readiness evaluation and stakeholder alignment
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Hiring Phase</div>
-                                    MOH strategic recruitment and team building
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Training Phase</div>
-                                    Academy-based capacity building and certification
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Deployment Phase</div>
-                                    Local system launch and operational setup
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Implementation Management</h3>
-                            <ul>
-                                <li><strong>Readiness Grouping:</strong> High/Medium/Low readiness country classifications</li>
-                                <li><strong>Cross-Country Dependencies:</strong> Resource sharing and sequencing optimization</li>
-                                <li><strong>Budget Alignment:</strong> Cost tracking against timeline milestones</li>
-                                <li><strong>Quality Gates:</strong> Go/no-go decision points and success criteria</li>
-                                <li><strong>Adaptive Scheduling:</strong> Flexible timelines based on country progress</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                resourceGantt: {
-                    title: "Resource & Budget Timeline",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Financial Management</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Budget Milestones</div>
-                                    Release schedules and comprehensive spending tracking
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Personnel Planning</div>
-                                    SAND trainer deployment and availability coordination
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Equipment Procurement</div>
-                                    Physical setup and technology deployment schedules
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Cash Flow Management</div>
-                                    Monthly requirements and funding drawdown planning
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Performance Tracking</h3>
-                            <ul>
-                                <li><strong>Budget vs Actual:</strong> Real-time variance analysis and adjustment recommendations</li>
-                                <li><strong>Resource Utilization:</strong> SAND trainer efficiency and deployment optimization</li>
-                                <li><strong>Procurement Timeline:</strong> Equipment and infrastructure delivery tracking</li>
-                                <li><strong>Financial Reporting:</strong> Donor and stakeholder financial updates</li>
-                                <li><strong>Cost Optimization:</strong> Efficiency improvements and cost reduction opportunities</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                digitalAcademyMatrix: {
-                    title: "Digital Health Academy - Central Coordination Hub",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Dual Role: Central Excellence + Coordination</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Strategic Coordination</div>
-                                    Coordinate deployment of HOS systems and professional development programs across 9 priority countries.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Training Excellence</div>
-                                    Serve as central excellence hub for culture alignment, quality standards, and master trainer development.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">SAND Trainer Management</div>
-                                    Identify and assign experienced SAND trainers for MOH staff training and shadowing programs.
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Quality Assurance</div>
-                                    Monitor implementation progress and maintain consistent quality across all countries.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Multi-Country Coordination Functions</h3>
-                            <ul>
-                                <li><strong>System Deployment:</strong> Coordinate HOS Help Centers and Professional Development Programs across 9 priority countries</li>
-                                <li><strong>Trainer Assignment:</strong> Match SAND expertise with country-specific MOH training needs</li>
-                                <li><strong>Standards Management:</strong> Ensure consistent ALX-style certification protocols and quality frameworks</li>
-                                <li><strong>Pilot Coordination:</strong> Facilitate 12-week implementation pilots using proven methodologies</li>
-                                <li><strong>Progress Monitoring:</strong> Track quality metrics and implementation milestones across all countries</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Training & Development</h3>
-                            <ul>
-                                <li><strong>Core Team Training:</strong> Train leadership teams from all 9 countries using mixed SAND + external faculty</li>
-                                <li><strong>MOH Staff Onboarding:</strong> Comprehensive training for 8 critical roles per country (72 total)</li>
-                                <li><strong>Master Trainer Development:</strong> Certify 2-3 master trainers per country for local delivery</li>
-                                <li><strong>Specialized Training Coordination:</strong> Partner with FIELD and others for technical gaps</li>
-                                <li><strong>Continuous Development:</strong> Ongoing support and professional development programs</li>
-                            </ul>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Success Outcomes</h3>
-                            <ul>
-                                <li>9 priority countries with operational HOS systems under local MOH ownership</li>
-                                <li>72 MOH critical roles hired and trained across all countries</li>
-                                <li>Consistent quality standards while respecting local contexts</li>
-                                <li>Sustainable training networks in each country</li>
-                                <li>Evidence-based model for future African expansion</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                hosAcademyTeams: {
-                    title: "HOS Academy Teams (Country-Level)",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Country-Level Responsibilities</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Platform Management</div>
-                                    Manage country-specific HOS Help Center platforms and localized content
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Curriculum Delivery</div>
-                                    Deploy 7-Pod training curriculum adapted from central standards
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Master Trainers</div>
-                                    Deploy certified trainers from Digital Health Academy
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Partnership Coordination</div>
-                                    Work with FIELD and specialized training providers
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Implementation Timeline: Months 2-18</h3>
-                            <ul>
-                                <li><strong>Month 2-4:</strong> Platform setup and content localization</li>
-                                <li><strong>Month 4-8:</strong> Master trainer deployment and team building</li>
-                                <li><strong>Month 8-12:</strong> Full training program implementation</li>
-                                <li><strong>Month 12-16:</strong> Quality assurance and optimization</li>
-                                <li><strong>Month 16-18:</strong> Knowledge transfer to local teams</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                mohTeams: {
-                    title: "Country MOH Teams",
-                    content: `
-                        <div class="modal-section">
-                            <h3>MOH Team Responsibilities</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Strategic Hiring</div>
-                                    Execute recruitment for 8 critical data and technology roles
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Needs Assessment</div>
-                                    Participate in evaluation and provide essential local context
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Training Participation</div>
-                                    Engage in Academy training and SAND trainer shadowing programs
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">System Ownership</div>
-                                    Take full ownership of systems and processes within 12 months
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Implementation Timeline: Months 1-24</h3>
-                            <ul>
-                                <li><strong>Month 1-6:</strong> Strategic hiring and onboarding of 8 critical roles</li>
-                                <li><strong>Month 6-12:</strong> Academy training and skill development</li>
-                                <li><strong>Month 12-18:</strong> Operational leadership with SAND support</li>
-                                <li><strong>Month 18-24:</strong> Full system ownership and sustainability</li>
-                                <li><strong>Outcome:</strong> Local ownership and independent operations</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                step1Assessment: {
-                    title: "Step 1: Assessment & Stakeholder Alignment",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Readiness-Based Approach</h3>
-                            <div class="readiness-levels">
-                                <div class="readiness-item readiness-high">
-                                    <div class="detail-label">High Readiness Countries</div>
-                                    Strong MOH support, existing digital infrastructure, established training systems
-                                </div>
-                                <div class="readiness-item readiness-medium">
-                                    <div class="detail-label">Medium Readiness Countries</div>
-                                    Moderate infrastructure, developing digital capacity, some training experience
-                                </div>
-                                <div class="readiness-item readiness-low">
-                                    <div class="detail-label">Low Readiness Countries</div>
-                                    Limited infrastructure, early digital adoption, minimal training systems
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Assessment Workplan</h3>
-                            <ul>
-                                <li><strong>Week 1-2:</strong> Comprehensive country assessment and stakeholder mapping</li>
-                                <li><strong>Week 3-4:</strong> MOH engagement and partnership agreement development</li>
-                                <li><strong>Week 5-6:</strong> Infrastructure evaluation and technology requirements</li>
-                                <li><strong>Week 7-8:</strong> Curriculum adaptation and localization planning</li>
-                                <li><strong>Week 9-10:</strong> Implementation roadmap and resource allocation</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                step2Hiring: {
-                    title: "Step 2: MOH Strategic Hiring & SAND Trainer Assignment",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Hiring Strategy</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">8 Critical Roles</div>
-                                    Strategic recruitment for data, technology, and operations positions
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">SAND Trainer Assignment</div>
-                                    Match experienced trainers with country-specific needs
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Competency Framework</div>
-                                    Skills-based hiring with clear performance expectations
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Local Integration</div>
-                                    Cultural fit and local context understanding
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Hiring Workplan</h3>
-                            <ul>
-                                <li><strong>Month 1:</strong> Job description finalization and posting</li>
-                                <li><strong>Month 2:</strong> Candidate screening and interviewing</li>
-                                <li><strong>Month 3:</strong> Final selection and offer negotiation</li>
-                                <li><strong>Month 4:</strong> Onboarding and Academy preparation</li>
-                                <li><strong>Month 5:</strong> SAND trainer pairing and mentorship setup</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                step3Training: {
-                    title: "Step 3: Academy Training & Specialized Partnerships",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Training Strategy</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Academy Training</div>
-                                    Intensive 1-week + online programs at Digital Health Academy
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">SAND Mentorship</div>
-                                    Experienced trainer shadowing and skill transfer
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Specialized Partners</div>
-                                    FIELD and others for technical gaps beyond SAND capacity
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Certification</div>
-                                    ALX-style portfolio-based assessment and recognition
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Training Workplan</h3>
-                            <ul>
-                                <li><strong>Week 1:</strong> Intensive Academy training in Rwanda</li>
-                                <li><strong>Week 2-4:</strong> Online coursework and practical applications</li>
-                                <li><strong>Week 5-8:</strong> SAND trainer shadowing in-country</li>
-                                <li><strong>Week 9-12:</strong> Specialized training with partner organizations</li>
-                                <li><strong>Week 13-16:</strong> Portfolio development and certification assessment</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                step4Deployment: {
-                    title: "Step 4: Local Deployment & Help Center Launch",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Deployment Strategy</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Help Center Launch</div>
-                                    Country-specific platform based on Rwanda model
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Pilot Implementation</div>
-                                    12-week program with selected facilities
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Local Team Activation</div>
-                                    MOH staff leading with SAND support
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">System Integration</div>
-                                    Technology stack deployment and optimization
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Deployment Workplan</h3>
-                            <ul>
-                                <li><strong>Month 1:</strong> Platform setup and content deployment</li>
-                                <li><strong>Month 2:</strong> Pilot facility selection and preparation</li>
-                                <li><strong>Month 3:</strong> Launch 12-week pilot program</li>
-                                <li><strong>Month 4-6:</strong> Continuous improvement and optimization</li>
-                                <li><strong>Month 7:</strong> Evaluation and scale preparation</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                step5Scale: {
-                    title: "Step 5: Scale Operations & Quality Assurance",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Scaling Strategy</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">Facility Expansion</div>
-                                    Rollout to 50+ healthcare facilities nationwide
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Multi-Modal Delivery</div>
-                                    Combined in-person, online, and mobile training
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Quality Systems</div>
-                                    Continuous monitoring and performance improvement
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Local Capacity</div>
-                                    Master trainer network development and certification
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Scaling Workplan</h3>
-                            <ul>
-                                <li><strong>Month 1-3:</strong> Facility onboarding and trainer deployment</li>
-                                <li><strong>Month 4-6:</strong> System optimization and feedback integration</li>
-                                <li><strong>Month 7-9:</strong> Quality assurance and performance monitoring</li>
-                                <li><strong>Month 10-12:</strong> Full operations and sustainability preparation</li>
-                                <li><strong>Outcome:</strong> Stable, high-quality training delivery at scale</li>
-                            </ul>
-                        </div>
-                    `
-                },
-                step6Handover: {
-                    title: "Step 6: Handover & Sustainability Transition",
-                    content: `
-                        <div class="modal-section">
-                            <h3>Transition Strategy</h3>
-                            <div class="detail-grid">
-                                <div class="detail-item">
-                                    <div class="detail-label">MOH Leadership</div>
-                                    Complete operational control transfer to local teams
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Self-Sufficiency</div>
-                                    Independent training delivery and quality management
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Continuous Improvement</div>
-                                    Local capacity for system updates and enhancements
-                                </div>
-                                <div class="detail-item">
-                                    <div class="detail-label">Regional Networks</div>
-                                    Cross-country learning and support systems
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-section">
-                            <h3>Handover Workplan</h3>
-                            <ul>
-                                <li><strong>Month 1-3:</strong> Gradual responsibility transfer and oversight reduction</li>
-                                <li><strong>Month 4-6:</strong> Independent operations with remote support</li>
-                                <li><strong>Month 7-9:</strong> Full local ownership and quality maintenance</li>
-                                <li><strong>Month 10-12:</strong> Regional integration and knowledge sharing</li>
-                                <li><strong>Outcome:</strong> Sustainable, MOH-owned HOS training system</li>
-                            </ul>
-                        </div>
-                    `
-                }
-            };
+            <div class="action-item success">
+                <strong>Digital Infrastructure Discovery:</strong>
+                <ul style="font-size: 18px;">
+                    <li><strong>Botswana:</strong> DHIS2 used by CHWs identified</li>
+                    <li><strong>Botswana:</strong> OpenMRS migration (2/31 districts)</li>
+                    <li><strong>Benin:</strong> iHRS for CHWs identified as entry point</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div>
+            <h3 style="color: #dc3545;">❌ CRITICAL CHALLENGES</h3>
+            <div class="action-item">
+                <strong>Infrastructure Gaps:</strong>
+                <ul style="font-size: 18px;">
+                    <li><strong>Benin:</strong> Virtually no digitalization/EMRs</li>
+                    <li><strong>Botswana:</strong> Major connectivity & electricity issues</li>
+                    <li><strong>Multiple:</strong> Most facilities paper-based</li>
+                    <li><strong>Botswana:</strong> Digital tool adoption challenges</li>
+                </ul>
+            </div>
             
-            // Set modal content
-            if (content[contentType]) {
-                modalTitle.textContent = content[contentType].title;
-                modalBody.innerHTML = content[contentType].content;
-                
-                // Show modal
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
-            } else {
-                console.error('Content not found for:', contentType);
-            }
-        }
+            <div class="action-item">
+                <strong>Data Integration Issues:</strong>
+                <ul style="font-size: 18px;">
+                    <li><strong>CAR:</strong> Data deep dive blocked by MOU</li>
+                    <li><strong>Senegal:</strong> Not started</li>
+                    <li><strong>Sierra Leone:</strong> Awaiting Master Data List</li>
+                    <li><strong>Liberia:</strong> Pending discovery visit Sept 29</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-        function closeModal() {
-            const modal = document.getElementById('detailModal');
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        }
+    <h3>Facility Connection Readiness</h3>
+    <div class="detail-grid">
+        <div class="detail-card">
+            <h4>Digital Maturity Assessment</h4>
+            <ul>
+                <li><span class="win-badge">HIGH</span> Rwanda: EMR systems in place</li>
+                <li><span class="challenge-badge">LOW</span> Benin: Paper-based</li>
+                <li><span class="challenge-badge">LOW</span> Botswana: Legacy PIMS/IPMS</li>
+                <li><span class="win-badge">MEDIUM</span> Togo: DHIS2 ecosystem</li>
+            </ul>
+        </div>
+        <div class="detail-card">
+            <h4>September Targets</h4>
+            <ul>
+                <li>Rwanda: Connect Eastern cluster facilities</li>
+                <li>Togo: Solutions team to enrich content</li>
+                <li>Burkina: Connect initial facilities to NHIC</li>
+                <li>Others: Complete assessments</li>
+            </ul>
+        </div>
+    </div>
+    <div class="slide-number">4</div>
+</div>
 
-        // Close modal when clicking outside of it
-        window.onclick = function(event) {
-            const modal = document.getElementById('detailModal');
-            if (event.target === modal) {
-                closeModal();
-            }
-        };
+<!-- Slide 5: Capability Building Deep Dive -->
+<div class="slide">
+    <div class="header">
+        <div class="logo">SAND TECHNOLOGIES</div>
+        <div class="date">Capability Building - Progress & Challenges</div>
+    </div>
+    <h2>🎓 Capability Building Status</h2>
+    
+    <div class="two-column">
+        <div>
+            <h3 style="color: #28a745;">✅ ACHIEVEMENTS</h3>
+            <div class="action-item success">
+                <strong>Rwanda Leading Implementation:</strong>
+                <ul style="font-size: 18px;">
+                    <li>eBuzima deployment started in Musanze</li>
+                    <li>12 startups identified for rollout</li>
+                    <li>Content modules review finalized</li>
+                    <li>Training guide for startups completed</li>
+                    <li>2 senior support agents hired</li>
+                    <li>Success metrics approved by CDO</li>
+                </ul>
+            </div>
+            
+            <div class="action-item success">
+                <strong>HR Progress:</strong>
+                <ul style="font-size: 18px;">
+                    <li>Country Director JD drafted</li>
+                    <li>Hiring managers assigned for all countries</li>
+                    <li>TA support assigned (Gillian, Tejumade)</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div>
+            <h3 style="color: #dc3545;">❌ CRITICAL GAPS</h3>
+            <div class="action-item">
+                <strong>Hiring Crisis - 87% Unfilled:</strong>
+                <ul style="font-size: 18px;">
+                    <li><strong>0/3 filled:</strong> 7 countries</li>
+                    <li><strong>1/3 filled:</strong> Botswana, Liberia</li>
+                    <li><strong>2/3 filled:</strong> Rwanda only</li>
+                    <li><strong>Critical:</strong> No Ops Specialists in 8 countries</li>
+                </ul>
+            </div>
+            
+            <div class="action-item">
+                <strong>Ministry Engagement Delays:</strong>
+                <ul style="font-size: 18px;">
+                    <li><strong>Burkina:</strong> MoH still working on JDs</li>
+                    <li><strong>Senegal:</strong> Discussion not started with MoH</li>
+                    <li><strong>CAR:</strong> Ops Manager roles need approval</li>
+                    <li><strong>Sierra Leone:</strong> Hiring needs only identified</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                closeModal();
-            }
-        });
+    <h3>Hiring Pipeline Status</h3>
+    <table class="country-table">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Country Director</th>
+                <th>Solutions Manager</th>
+                <th>Ops Specialist</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Rwanda</td>
+                <td>✅ Pamela (filled)</td>
+                <td>❌ Not hiring</td>
+                <td>✅ Nehemie (filled)</td>
+            </tr>
+            <tr>
+                <td>Togo</td>
+                <td>🟡 Marie Christelle (launcher)</td>
+                <td>⚠️ Khadija (assigned)</td>
+                <td>⚠️ Saibou (assigned)</td>
+            </tr>
+            <tr>
+                <td>Botswana</td>
+                <td>🟡 Interviewing (10 candidates)</td>
+                <td>⚠️ Dingole (assigned)</td>
+                <td>✅ Katlego (filled)</td>
+            </tr>
+            <tr>
+                <td>Others (7)</td>
+                <td>🔴 Various stages</td>
+                <td>🔴 Not started/Interviewing</td>
+                <td>🔴 Not started</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="slide-number">5</div>
+</div>
 
-        console.log('HOS Dashboard JavaScript loaded successfully');
-    </script>
+<!-- Slide 6: Critical Actions & Escalations -->
+<div class="slide">
+    <div class="header">
+        <div class="logo">SAND TECHNOLOGIES</div>
+        <div class="date">Critical Actions Required</div>
+    </div>
+    <h2>🚨 Immediate Actions (48 Hours)</h2>
+    
+    <div class="detail-grid">
+        <div class="detail-card" style="border-left: 5px solid #dc3545;">
+            <h4>1. HIRING EMERGENCY</h4>
+            <strong>Owner: HR/CEO</strong>
+            <ul>
+                <li>Publish Country Director JD TODAY</li>
+                <li>Emergency Ops Specialist hiring sprint</li>
+                <li>Consider contractors for immediate gaps</li>
+                <li>Target: 2 hires/week minimum</li>
+            </ul>
+        </div>
+        
+        <div class="detail-card" style="border-left: 5px solid #dc3545;">
+            <h4>2. SENEGAL OPPORTUNITY</h4>
+            <strong>Owner: Christian Beck</strong>
+            <ul>
+                <li>Delegation leaves Sept 19 (2 days)</li>
+                <li>Prepare MOU for signature</li>
+                <li>They want education & agriculture</li>
+                <li>Confirm Sept 28 discovery visit</li>
+            </ul>
+        </div>
+        
+        <div class="detail-card" style="border-left: 5px solid #ffc107;">
+            <h4>4. MOU ACCELERATION</h4>
+            <strong>Owner: Legal Team</strong>
+            <ul>
+                <li><strong>CAR:</strong> Complete review (visit planned)</li>
+                <li><strong>Sierra Leone:</strong> Address data concerns</li>
+                <li><strong>Botswana:</strong> Initiate discussions</li>
+                <li><strong>Liberia:</strong> Prepare for Sept 29</li>
+            </ul>
+        </div>
+    </div>
+
+    <h2 style="margin-top: 40px;">📊 Weekly Targets & Escalation Triggers</h2>
+    
+    <div class="metric-grid">
+        <div class="metric-card">
+            <div class="metric-value" style="font-size: 36px; color: #dc3545;">2/week</div>
+            <div class="metric-label">Minimum Hiring Rate<br><small>Current: 0.4/week</small></div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" style="font-size: 36px; color: #ffc107;">Sept 30</div>
+            <div class="metric-label">Togo Center Live<br><small>Equipment pending</small></div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" style="font-size: 36px; color: #dc3545;">30 days</div>
+            <div class="metric-label">Max MOU Delay<br><small>Several overdue</small></div>
+        </div>
+        <div class="metric-card">
+            <div class="metric-value" style="font-size: 36px; color: #dc3545;">2 weeks</div>
+            <div class="metric-label">Max Zero Progress<br><small>Malawi at risk</small></div>
+        </div>
+    </div>
+
+    <div style="background: #f8d7da; padding: 30px; border-radius: 15px; margin-top: 30px;">
+        <h3 style="color: #721c24; margin-top: 0;">⚠️ Escalation Required If:</h3>
+        <ul style="font-size: 22px; line-height: 1.8;">
+            <li>Hiring rate remains below 2 positions/week by Sept 24</li>
+            <li>Togo equipment not ordered by Sept 20</li>
+            <li>Senegal MOU not signed before delegation departure</li>
+            <li>Malawi shows no progress by Sept 19</li>
+        </ul>
+    </div>
+    <div class="slide-number">6</div>
+</div>
+
+<!-- Slide 7: Wins & Opportunities -->
+<div class="slide">
+    <div class="header">
+        <div class="logo">SAND TECHNOLOGIES</div>
+        <div class="date">Strategic Wins & Opportunities</div>
+    </div>
+    <h2>🎯 Key Wins This Week</h2>
+    
+    <div class="detail-grid">
+        <div class="detail-card" style="border-left: 5px solid #28a745;">
+            <h4>🇸🇳 Senegal High-Level Buy-In</h4>
+            <ul>
+                <li>Delegation includes President's Office</li>
+                <li>Prime Minister's Office engaged</li>
+                <li>Impressed with HIC model</li>
+                <li>Requesting expansion to education & agriculture</li>
+                <li><strong>Action: Capitalize before Sept 19</strong></li>
+            </ul>
+        </div>
+        
+        <div class="detail-card" style="border-left: 5px solid #28a745;">
+            <h4>🇷🇼 Rwanda Execution Excellence</h4>
+            <ul>
+                <li>Only country with 67% hiring complete</li>
+                <li>eBuzima rollout started successfully</li>
+                <li>2 SNHIC centers progressing</li>
+                <li>Hosting benchmark visits for other countries</li>
+                <li><strong>Model for replication</strong></li>
+            </ul>
+        </div>
+        
+        <div class="detail-card" style="border-left: 5px solid #28a745;">
+            <h4>🇹🇬 Togo Physical Progress</h4>
+            <ul>
+                <li>First renovation actually underway</li>
+                <li>Partitions and panels being cut off-site</li>
+                <li>On track for Sept 30 completion</li>
+                <li><strong>First center to go live</strong></li>
+            </ul>
+        </div>
+        
+        <div class="detail-card" style="border-left: 5px solid #28a745;">
+            <h4>🇧🇫 Burkina Strong Foundation</h4>
+            <ul>
+                <li>MoH revised MoU (engaged)</li>
+                <li>Task force established</li>
+                <li>7 use cases from MoH wishlist</li>
+                <li>Clear roadmap in development</li>
+                <li><strong>Strong government alignment</strong></li>
+            </ul>
+        </div>
+    </div>
+
+    <h3 style="margin-top: 40px;">Process Improvements Implemented</h3>
+    <div style="background: #d4f4dd; padding: 30px; border-radius: 15px;">
+        <ul style="font-size: 22px; line-height: 1.8;">
+            <li>✅ MoU template finalized with video guide</li>
+            <li>✅ Weekly 30-min legal office hours starting Sept 23</li>
+            <li>✅ Hiring managers assigned for all countries</li>
+            <li>✅ People Principles & Processes under review</li>
+            <li>✅ Financial Controller role for Healthcare approved</li>
+        </ul>
+    </div>
+    <div class="slide-number">7</div>
+</div>
+
+<!-- Slide 8: Risk Matrix & Mitigation -->
+<div class="slide">
+    <div class="header">
+        <div class="logo">SAND TECHNOLOGIES</div>
+        <div class="date">Risk Assessment & Mitigation</div>
+    </div>
+    <h2>Risk Matrix by Country & Pillar</h2>
+    
+    <table class="country-table">
+        <thead>
+            <tr>
+                <th>Country</th>
+                <th>Overall Risk</th>
+                <th>Intelligence Centers</th>
+                <th>Connected Facilities</th>
+                <th>Capability Building</th>
+                <th>Key Mitigation</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><strong>Malawi</strong></td>
+                <td><span class="risk-indicator risk-high" style="font-size: 14px;">CRITICAL</span></td>
+                <td>🔴 No progress</td>
+                <td>🔴 No progress</td>
+                <td>🔴 No hiring</td>
+                <td>Immediate escalation to CEO</td>
+            </tr>
+            <tr>
+                <td><strong>Liberia</strong></td>
+                <td><span class="risk-indicator risk-high" style="font-size: 14px;">HIGH</span></td>
+                <td>🟡 Research only</td>
+                <td>🟡 Pending visit</td>
+                <td>🔴 1/3 hired</td>
+                <td>Confirm Sept 29 visit</td>
+            </tr>
+            <tr>
+                <td><strong>CAR</strong></td>
+                <td><span class="risk-indicator risk-high" style="font-size: 14px;">HIGH</span></td>
+                <td>🟢 Site selected</td>
+                <td>🔴 MOU blocking</td>
+                <td>🔴 No hires</td>
+                <td>Expedite MOU review</td>
+            </tr>
+            <tr>
+                <td><strong>Benin</strong></td>
+                <td><span class="risk-indicator risk-medium" style="font-size: 14px;">MEDIUM</span></td>
+                <td>🟢 Sites identified</td>
+                <td>🔴 No digital infrastructure</td>
+                <td>🔴 No hires</td>
+                <td>Pivot to iHRS approach</td>
+            </tr>
+            <tr>
+                <td><strong>Botswana</strong></td>
+                <td><span class="risk-indicator risk-medium" style="font-size: 14px;">MEDIUM</span></td>
+                <td>🟡 War room exists</td>
+                <td>🔴 Infrastructure issues</td>
+                <td>🟡 1/3 hired</td>
+                <td>STBF engagement urgent</td>
+            </tr>
+            <tr>
+                <td><strong>Sierra Leone</strong></td>
+                <td><span class="risk-indicator risk-medium" style="font-size: 14px;">MEDIUM</span></td>
+                <td>🟡 Contractor selection</td>
+                <td>🟡 Assessment phase</td>
+                <td>🔴 No hires</td>
+                <td>Fast-track contractor</td>
+            </tr>
+            <tr>
+                <td><strong>Senegal</strong></td>
+                <td><span class="risk-indicator risk-medium" style="font-size: 14px;">MEDIUM</span></td>
+                <td>🟡 Delegation visiting</td>
+                <td>🔴 Not started</td>
+                <td>🔴 No hires</td>
+                <td>Close before Sept 19</td>
+            </tr>
+            <tr>
+                <td><strong>Togo</strong></td>
+                <td><span class="risk-indicator risk-low" style="font-size: 14px;">LOW</span></td>
+                <td>🟢 Renovation 25%</td>
+                <td>🟡 DHIS2 mapping</td>
+                <td>🔴 No hires</td>
+                <td>Order equipment NOW</td>
+            </tr>
+            <tr>
+                <td><strong>Burkina Faso</strong></td>
+                <td><span class="risk-indicator risk-low" style="font-size: 14px;">LOW</span></td>
+                <td>🟢 Plans submitted</td>
+                <td>🟢 Sources identified</td>
+                <td>🔴 No hires</td>
+                <td>Select architect this week</td>
+            </tr>
+            <tr>
+                <td><strong>Rwanda</strong></td>
+                <td><span class="risk-indicator risk-low" style="font-size: 14px;">LOW</span></td>
+                <td>🟢 Design phase</td>
+                <td>🟢 Assessment started</td>
+                <td>🟢 67% hired</td>
+                <td>Maintain momentum</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h3 style="margin-top: 30px;">Top 5 Program Risks</h3>
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 15px;">
+        <div style="background: #dc3545; color: white; padding: 20px; border-radius: 10px; text-align: center;">
+            <strong>1. HIRING</strong><br>
+            87% unfilled<br>
+            <small>Impact: Cannot execute</small>
+        </div>
+        <div style="background: #dc3545; color: white; padding: 20px; border-radius: 10px; text-align: center;">
+            <strong>2. MALAWI</strong><br>
+            Zero progress<br>
+            <small>Impact: Country failure</small>
+        </div>
+        <div style="background: #ffc107; color: #333; padding: 20px; border-radius: 10px; text-align: center;">
+            <strong>3. INFRASTRUCTURE</strong><br>
+            Paper-based systems<br>
+            <small>Impact: Can't connect</small>
+        </div>
+        <div style="background: #ffc107; color: #333; padding: 20px; border-radius: 10px; text-align: center;">
+            <strong>4. PROCUREMENT</strong><br>
+            Equipment delays<br>
+            <small>Impact: Sept target miss</small>
+        </div>
+        <div style="background: #ffc107; color: #333; padding: 20px; border-radius: 10px; text-align: center;">
+            <strong>5. MOU DELAYS</strong><br>
+            7 incomplete<br>
+            <small>Impact: Legal blocks</small>
+        </div>
+    </div>
+    <div class="slide-number">8</div>
+</div>
+
 </body>
-</html>
+</html>>3. STALLED COUNTRIES</h4>
+            <strong>Owner: Regional Launchers</strong>
+            <ul>
+                <li><strong>Malawi:</strong> Report in 24 hours</li>
+                <li><strong>Botswana:</strong> STBF follow-up urgent</li>
+                <li><strong>Liberia:</strong> Confirm Sept 29 visit</li>
+            </ul>
+        </div>
+        
+        <div class="detail-card" style="border-left: 5px solid #ffc107;">
+            <h4
